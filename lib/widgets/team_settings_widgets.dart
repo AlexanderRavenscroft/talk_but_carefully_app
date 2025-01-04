@@ -15,10 +15,63 @@ class ColorBGState extends State<ColorBG> {
     return SvgPicture.asset(
       'assets/images/background-circles.svg', 
        fit: BoxFit.cover,  
-       color: teamAColor,
+   //    color: teamAColor,
     );
   }
 }
+
+class TeamSwitch extends StatefulWidget {
+  const TeamSwitch({super.key});
+  @override
+  State<TeamSwitch> createState() => TeamSwitchState();
+}
+
+class TeamSwitchState extends State<TeamSwitch> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.scale(
+      scale: 1.2,
+      child: Switch(
+        activeColor: AppColors.accentColor,  
+        inactiveThumbColor: AppColors.accentColor, 
+        inactiveTrackColor: teamAColor, 
+        activeTrackColor: teamBColor,  
+
+        value: areTeamBSettings,
+        onChanged: (value) {
+          setState(() {
+            areTeamBSettings = value;
+          });
+        },
+      ),
+    );   
+  }
+}
+
+class TeamNameTextArea extends StatelessWidget {
+  final TextEditingController controller;
+  final ValueChanged<String> onChanged;
+
+  const TeamNameTextArea({super.key, required this.controller, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      cursorColor: AppColors.textColor,
+      textAlign: TextAlign.center,
+      style: AppTypography.descBoldStyle.copyWith(
+        fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.018,
+      ),
+      decoration: InputDecoration(
+        hintText: controller.text,
+      ),
+      onChanged: onChanged, // Directly update the values in the parent widget
+    );
+  }
+}
+
 
 
 
@@ -38,7 +91,7 @@ class _ColorSelectionState extends State<ColorSelection> {
     0xFFAA54EA,
     0xFFF3D677
   ];
-  int selectedIndex = 1; // No selection initially
+  int selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +110,7 @@ class _ColorSelectionState extends State<ColorSelection> {
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).size.height * 0.01,
-              horizontal: MediaQuery.of(context).size.width * 0.01,
+              horizontal: MediaQuery.of(context).size.width * 0.02,
             ),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.15,
@@ -66,10 +119,18 @@ class _ColorSelectionState extends State<ColorSelection> {
                 color: Color(colorSelectionList[index]),
                 border: Border.all(
                   color: selectedIndex == index
-                      ? AppColors.textColor
+                      ? Colors.orange
                       : Colors.transparent,
+                      width: 3,
                 ),
                 borderRadius: BorderRadius.circular(14), 
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 1,
+                    offset: Offset(0, 1),
+                  ),
+                ],
               ),
             ),
           ),

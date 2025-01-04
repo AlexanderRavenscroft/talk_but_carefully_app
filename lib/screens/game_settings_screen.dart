@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gadajaleostroznie/widgets/game_settings_widgets.dart';
-import 'package:gadajaleostroznie/screens/teama_settings_screen.dart';
+import 'package:gadajaleostroznie/screens/team_settings_screen.dart';
+
 class GameSettingsScreen extends StatelessWidget {
   const GameSettingsScreen({super.key});
 
@@ -28,6 +29,7 @@ class GameSettingsScreen extends StatelessWidget {
           },
         ),
       ),
+      
       // BODY
       body: Stack(
         alignment: Alignment.center,
@@ -63,7 +65,7 @@ class GameSettingsScreen extends StatelessWidget {
         Positioned(
           top: (MediaQuery.of(context).size.height) * 0.76,
           
-          child: NextSettingsButton(nextScreenWidget: TeamASettingsScreen()),
+          child: NextSettingsButton(nextScreenWidget: TeamSettingsScreen()),
         ),
         ],
       ),

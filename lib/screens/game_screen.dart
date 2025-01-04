@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/themes/globals.dart';
-class TeamBSettingsScreen extends StatelessWidget {
-  const TeamBSettingsScreen({super.key});
+class GameScreen extends StatelessWidget {
+  const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class TeamBSettingsScreen extends StatelessWidget {
         ),
       ),
       // BODY
-      body: Center(child: Text("${selectedDifs.toString()} ${aviableSelections.toString()} ${selectedTime.toString()} ${aviablePoints.toString()} "))
+      body: Center(child: Text("${selectedDifs.toString()} ${aviableSelections.toString()} ${selectedTime.toString()} ${aviablePoints.toString()} ${teamAName.toString()} ${teamBName.toString()}"))
     );
   }
 }

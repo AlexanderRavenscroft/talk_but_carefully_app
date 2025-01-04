@@ -17,5 +17,12 @@ var colors = {
   TeamColors.teamPurpleColor: TeamColors.teamPurpleMatchingColor,
 };
 
-Color teamAColor = const Color(0xFFEB545D); // Default Team A Color
-Color teamBColor = const Color(0xFF62BAF3); // Default Team B Color
+Color teamAColor = TeamColors.teamRedColor; 
+Color teamBColor = TeamColors.teamBlueColor; 
+
+bool areTeamBSettings = false;
+
+String teamAName = "Czerowni";
+String teamBName = "Niebiescy";
+
+ String teamPlaceholder = "";

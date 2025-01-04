@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Gadaj Ale Ostrożnie',
+      title: 'Gadaj ale Ostrożnie',
       home: SplashScreen(),
     );
   }
