@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'splash2_screen.dart';
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Nazwa Apki',
+      home: SplashScreen(),
+    );
+  }
+}
+
+child: SvgPicture.asset(
+          'assets/images/background-circles.svg', // Path to your SVG file
+         //    colorFilter: const ColorFilter.mode(
+          //   Colors.blue, // Desired color
+          //   BlendMode.srcIn, // Blend mode to apply the color
+         //  ),
+        ),

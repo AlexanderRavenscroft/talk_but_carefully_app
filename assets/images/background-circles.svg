@@ -1,0 +1,12 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Background Color -->
+  <rect width="200" height="200" fill="#E64833" />
+  <!-- Pattern Definition -->
+  <defs>
+    <pattern id="dot-pattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="5" cy="5" r="2" fill="#F25B49" opacity="0.5" />
+    </pattern>10
+  </defs>
+  <!-- Apply Pattern -->
+  <rect width="200" height="200" fill="url(#dot-pattern)" />
+</svg>
