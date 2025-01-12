@@ -2,7 +2,7 @@
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter/material.dart';
 Set<int> selectedDifs = {0};
-
+List<String> players = [];
 int aviableSelections = 5;
 
 int selectedTime = 120;
@@ -20,9 +20,7 @@ var colors = {
 Color teamAColor = TeamColors.teamRedColor; 
 Color teamBColor = TeamColors.teamBlueColor; 
 
-bool areTeamBSettings = false;
-
 String teamAName = "Czerowni";
 String teamBName = "Niebiescy";
 
- String teamPlaceholder = "";
+

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/themes/globals.dart';
-import 'package:gadajaleostroznie/widgets/game_settings_widgets.dart';
-import 'package:gadajaleostroznie/screens/game_screen.dart';
 import 'package:gadajaleostroznie/widgets/team_settings_widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:gadajaleostroznie/provider.dart'; 
 
 class TeamSettingsScreen extends StatefulWidget {
   const TeamSettingsScreen({super.key});
@@ -18,6 +18,8 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isToggled = context.watch<ToggleProvider>().isToggled;
+
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
 
@@ -47,6 +49,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
+          // Bacground 
           Positioned.fill(
             child: ColorBG(),
           ),
@@ -107,47 +110,17 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
               ),
             ),
           ),
-
-          // Color selection container
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              width: (MediaQuery.of(context).size.width) * 0.26,
-              height: (MediaQuery.of(context).size.height) * 0.5,
-              decoration: BoxDecoration(
-                color: AppColors.neutralColor,      
-                border: Border(
-                  top: BorderSide(width: MediaQuery.of(context).size.width * 0.02, color: AppColors.accentColor),
-                  left: BorderSide(width: MediaQuery.of(context).size.width * 0.02, color: AppColors.accentColor),
-                  bottom: BorderSide(width: MediaQuery.of(context).size.width * 0.02, color: AppColors.accentColor),
-                  ),
-                  borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                    offset: Offset(-2, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ColorSelection(),
-                ],
-              ),
-            ),
-          ),
-
-          // Next settings button
+          
           Positioned(
-            top: (MediaQuery.of(context).size.height) * 0.76,
-            child: NextSettingsButton(nextScreenWidget: GameScreen()),
+            top: (MediaQuery.of(context).size.height) * 0.4,
+            child: Text( isToggled ? "Niebiiescy" : "Czerwoni"),
           ),
+
+          Positioned.fill(
+            top: (MediaQuery.of(context).size.height) * 0.14,
+            child:  PlayerListScreen(),
+          ),
+        
         ],
       ),
     );

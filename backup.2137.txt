@@ -1,94 +1,107 @@
-import 'package:flutter/material.dart';
-import 'package:gadajaleostroznie/themes/themes.dart';
-
-class MenuButton extends StatelessWidget {
-  final String buttonText;
-  final VoidCallback onPressed;
-  //final Icon icon;
-
-  const MenuButton({super.key,
-    required this.buttonText,
-    required this.onPressed,
-   // required this.icon,
-  });
+class ColorSelection extends StatefulWidget {
+  const ColorSelection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(
-            MediaQuery.of(context).size.width * 0.56,
-            MediaQuery.of(context).size.height * 0.1,
-          ),
-          backgroundColor: AppColors.accentColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        ),
-        onPressed: onPressed,
-        child: Text(
-          buttonText,
-          textAlign: TextAlign.center,
-          style: AppTypography.buttonStyle.copyWith(
-            fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.038,
-          ),
-        ),
-      ),
-    );
-  }
+  State<ColorSelection> createState() => _ColorSelectionState();
 }
 
-class RulesDialog extends StatelessWidget {
-  const RulesDialog({super.key});
+class _ColorSelectionState extends State<ColorSelection> {
+  final List<int> colorSelectionList = [
+    0xFFEB545D,
+    0xFF62BAF3,
+    0xFF6DE5B5,
+    0xFFAA54EA,
+    0xFFF3D677
+  ];
+  int teamASelectedIndex = 0; // Team A's selected color index
+  int teamBSelectedIndex = 1; // Team B's selected color index
+  bool areTeamBSettings = false; // Toggle between Team A and Team B
+
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(
-        "ZASADY",
-        textAlign: TextAlign.center,
-        style: AppTypography.descBoldStyle.copyWith(
-        fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
-        ),
-      ),
-      content: SizedBox(
-        width: double.maxFinite,
-        child: SingleChildScrollView(
-          child: Text(
-            """
-            Pewnego dnia, na końcu labiryntu wykonanego w całości z galaretek o smaku cebuli, mieszkała kura. Ale nie była to zwykła kura, o nie! Była to kura, która nie znosiła jaj, lecz kapsle po napojach gazowanych z lat 80-tych, których nikt już nie produkuje. Każdego ranka kura zjadała podręcznik do matematyki w języku, którego nikt nigdy nie wynalazł, a potem wypluwała równania kwadratowe z zapachem kawy.
-            Tymczasem w sąsiednim lesie, wszystkie drzewa postanowiły założyć drużynę koszykarską. Sosna, która była najstarsza, została trenerem, ale dąb nie chciał słuchać poleceń, bo uważał, że ma za grube gałęzie, żeby dryblować piłką. Każdy mecz zaczynał się od rytualnego odśpiewania hymnu w postaci odgłosów łamiących się patyków, co przyciągało widzów, głównie wiewiórki i zagubione kalosze.
-            Tymczasem w piwnicy opuszczonego domu na przedmieściach świata, człowiek o imieniu Zygmunt postanowił wynaleźć nowy rodzaj herbaty. Herbata ta miała być wykonana z pokrzyw, ołówków i odrobinę rozpuszczonej plasteliny. Jednak, gdy tylko Zygmunt spróbował pierwszego łyka, cały świat zamarł na sekundę i w tym czasie wszystkie lodówki na Ziemi zaczęły grać walca Szopena w tonacji fis-moll.
-            Na drugim końcu galaktyki grupa kosmitów imieniem Zenek, Bożena i Tadeusz próbowała ugotować rosół, ale nie mogli zrozumieć instrukcji znalezionej na opakowaniu makaronu. Problem polegał na tym, że w ich języku nie istniało słowo „gotować”, więc za każdym razem, gdy próbowali coś zrobić, ich zupa zamieniała się w parę wodną, która formowała chmury o kształcie trójkątów.
-            Wracając do kury w labiryncie galaretek, pewnego dnia znalazła ona drzwi. Ale te drzwi prowadziły nie do wyjścia, lecz do wielkiego magazynu wypełnionego butami, w których były zegarki. Kura, jak to kura, zaczęła grzebać w butach i przypadkiem uruchomiła zegar apokalipsy, który liczył czas w odwrotnej skali: od -7 do -∞. Ostatecznie nikt nie dowiedział się, co się stało, bo zegar wybuchł konfetti i zniknął w kłębie zapachu truskawek.
-            Wnioski z tej historii są żadne, ale za to zajęła kilka minut twojego życia. Dziękuję za uwagę. 
-            """,
-          textAlign: TextAlign.justify,
-          style: AppTypography.descStyle.copyWith(
-          fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.015,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Toggle Button to switch teams
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Editing: ",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-          ),
-        ),
-      ),
-      actions: [
-        TextButton(
-          style: TextButton.styleFrom(
-          minimumSize: Size(
-             double.maxFinite,
-             MediaQuery.of(context).size.height * 0.1,
-          ),
-          backgroundColor: AppColors.accentColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text(
-            "DOBRA!",
-          textAlign: TextAlign.center,
-          style: AppTypography.descBoldStyle.copyWith(
-          fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.025,
+            Switch(
+              value: areTeamBSettings,
+              onChanged: (value) {
+                setState(() {
+                  areTeamBSettings = value;
+                });
+              },
             ),
-          ),
+            Text(
+              areTeamBSettings ? "Team B" : "Team A",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(height: 20),
+        // Color Picker Grid
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: List.generate(colorSelectionList.length, (index) {
+            // Check if the color is already selected by the opposite team
+            bool isDisabledForCurrentTeam = areTeamBSettings
+                ? index == teamASelectedIndex
+                : index == teamBSelectedIndex;
+
+            return GestureDetector(
+              onTap: () {
+                // Only allow selection if the color is not disabled
+                if (!isDisabledForCurrentTeam) {
+                  setState(() {
+                    if (areTeamBSettings) {
+                      teamBSelectedIndex = index;
+                    } else {
+                      teamASelectedIndex = index;
+                    }
+                  });
+                }
+              },
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(colorSelectionList[index]),
+                  border: Border.all(
+                    color: areTeamBSettings
+                        ? (teamBSelectedIndex == index
+                            ? Colors.orange
+                            : Colors.transparent)
+                        : (teamASelectedIndex == index
+                            ? Colors.orange
+                            : Colors.transparent),
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 4,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: isDisabledForCurrentTeam
+                    ? Icon(
+                        Icons.block,
+                        color: Colors.white,
+                      )
+                    : null, // Show blocked icon if disabled
+              ),
+            );
+          }),
         ),
       ],
     );
