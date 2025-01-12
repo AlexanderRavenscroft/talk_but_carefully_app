@@ -27,7 +27,54 @@ class GameScreen extends StatelessWidget {
         ),
       ),
       // BODY
-      body: Center(child: Text("${selectedDifs.toString()} ${aviableSelections.toString()} ${selectedTime.toString()} ${aviablePoints.toString()} ${teamAName.toString()} ${teamBName.toString()}"))
+      body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Selected Difficulties: $selectedDifs",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+          Text(
+            "Available Selections: $aviableSelections",
+            style: TextStyle(fontSize:26, color: Colors.white),
+          ),
+          Text(
+            "Selected Time: $selectedTime",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+          Text(
+            "Available Points: $aviablePoints",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+          Text(
+            "Team A Name: $teamAName",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+          Text(
+            "Team B Name: $teamBName",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+          Text(
+            "Team A Players: ${playersA.join(', ')}",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+          Text(
+            "Team B Players: ${playersB.join(', ')}",
+            style: TextStyle(fontSize: 26, color: Colors.white),
+          ),
+           Text(
+            "Team A Color: $teamAselectedIndex",
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+          Text(
+            "Team B Color: $teamBselectedIndex",
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        ],
+      ),
+    ),
     );
   }
 }

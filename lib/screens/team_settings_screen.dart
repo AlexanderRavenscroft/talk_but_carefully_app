@@ -92,7 +92,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
                     ),
                   ),
                   
-                  TeamSwitch(),
+                  TeamSwitch(teamSelectedColor: isToggled ? teamBColor : teamAColor),
                   
                   // Team B name input
                   SizedBox(
@@ -111,16 +111,21 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
             ),
           ),
           
-          Positioned(
-            top: (MediaQuery.of(context).size.height) * 0.4,
-            child: Text( isToggled ? "Niebiiescy" : "Czerwoni"),
-          ),
 
           Positioned.fill(
             top: (MediaQuery.of(context).size.height) * 0.14,
-            child:  PlayerListScreen(),
+            child:  PlayerListScreen(players: isToggled ? playersB : playersA),
           ),
-        
+
+          
+          Align(
+            alignment: Alignment.centerRight,
+            child:  ColorPickerWidget(
+              
+              teamSelectedColor: isToggled ? teamBColor : teamAColor, 
+              selectedIndex: isToggled ? teamBselectedIndex : teamAselectedIndex,
+            ),
+          ),
         ],
       ),
     );

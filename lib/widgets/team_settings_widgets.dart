@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
@@ -32,6 +34,7 @@ class TeamNameTextArea extends StatelessWidget {
 
 class ColorBG extends StatefulWidget {
   const ColorBG({super.key});
+
   @override
   ColorBGState createState() => ColorBGState();
 }
@@ -39,20 +42,27 @@ class ColorBG extends StatefulWidget {
 class ColorBGState extends State<ColorBG> {
   @override
   Widget build(BuildContext context) {
-    bool isToggled = context.watch<ToggleProvider>().isToggled;
-    return SvgPicture.asset(
-      'assets/images/background-circles.svg', 
-       fit: BoxFit.cover,  
-       colorFilter:  ColorFilter.mode(
-       isToggled ? TeamColors.teamBlueColor : TeamColors.teamRedColor,
-       BlendMode.srcIn, 
-      ),
+    return Consumer<RefreshProvider>(
+      builder: (context, refreshProvider, child) {
+        // The widget rebuilds when RefreshProvider notifies listeners
+        bool isToggled = context.watch<ToggleProvider>().isToggled;
+
+        return SvgPicture.asset(
+          'assets/images/background-circles.svg', 
+          fit: BoxFit.cover,  
+          colorFilter: ColorFilter.mode(
+            isToggled ? teamBColor : teamAColor,
+            BlendMode.srcIn,
+          ),
+        );
+      },
     );
   }
 }
 
 class TeamSwitch extends StatefulWidget {
-  const TeamSwitch({super.key});
+  const TeamSwitch({super.key, required this.teamSelectedColor});
+  final Color teamSelectedColor;
   @override
   State<TeamSwitch> createState() => TeamSwitchState();
 }
@@ -61,21 +71,28 @@ class TeamSwitchState extends State<TeamSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.0012,
-      child: Switch(
-        activeColor: AppColors.accentColor,  
-        inactiveThumbColor: AppColors.accentColor, 
-        inactiveTrackColor: teamAColor, 
-        activeTrackColor: teamBColor,  
-        value: context.watch<ToggleProvider>().isToggled,
-        onChanged: (value) {
-          setState(() {
-             context.read<ToggleProvider>().toggle(); // Toggle the state
-          });
-        },
-      ),
-    );   
+    return Consumer<RefreshProvider>(
+      builder: (context, refreshProvider, child) {
+        // The widget rebuilds when RefreshProvider notifies listeners
+        return Transform.scale(
+          scale: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.0012,
+          child: Switch(
+            activeColor: widget.teamSelectedColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveThumbColor: widget.teamSelectedColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveTrackColor: teamAColor,
+            activeTrackColor: teamBColor,
+            value: context.watch<ToggleProvider>().isToggled,
+            onChanged: (value) {
+              setState(() {
+                context.read<ToggleProvider>().toggle(); // Toggle the state
+              });
+              // Trigger the refresh from RefreshProvider when the switch changes
+              refreshProvider.refreshPage(); // Call the refresh method
+            },
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -84,29 +101,36 @@ class TeamSwitchState extends State<TeamSwitch> {
 
 
 class PlayerListScreen extends StatefulWidget {
-  const PlayerListScreen({super.key});
+
+  const PlayerListScreen({super.key, required this.players});
+    final List<String> players;
+
   @override
   PlayerListScreenState createState() => PlayerListScreenState();
 }
 
 class PlayerListScreenState extends State<PlayerListScreen> {
   final TextEditingController _controller = TextEditingController();
-  List<String> players = [];
+
   // Function to add a player
   void _addPlayer() {
     setState(() {
-      players.add('Gracz ${players.length + 1}');
+      // if (isToggled) {
+        widget.players.add('Gracz ${widget.players.length + 1}');
+      // } else {
+      //   playersB.add('Gracz ${playersB.length + 1}');
+      // }
     });
   }
 
   // Function to update the player's nickname
   void _editPlayer(int index) {
-    _controller.text = players[index];
+    _controller.text = widget.players[index];
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Wpisz imię gracza ${players.length + 1}'),
+          title: Text('Wpisz imię gracza ${widget.players.length + 1}'),
           content: TextField(
             controller: _controller,
             decoration: InputDecoration(hintText: 'Nowe imię'),
@@ -122,7 +146,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  players[index] = _controller.text;
+                  widget.players[index] = _controller.text;
                 });
                 Navigator.pop(context);
               },
@@ -137,12 +161,13 @@ class PlayerListScreenState extends State<PlayerListScreen> {
   // Function to remove a player
   void _removePlayer(int index) {
     setState(() {
-      players.removeAt(index);
+      widget.players.removeAt(index);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
   return Column(
     children: [
       Expanded(
@@ -153,7 +178,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             Expanded(
               flex: 3, // Adjust this flex to control the width of the list
               child: ListView.builder(
-                itemCount: players.length,
+                itemCount: widget.players.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(
@@ -173,7 +198,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                           GestureDetector(
                             onTap: () => _editPlayer(index),
                             child: Text(
-                              players[index],
+                              widget.players[index],
                               style: TextStyle(color: AppColors.textColor, fontSize: 18.0),
                             ),
                           ),
@@ -267,3 +292,78 @@ class PlayerListScreenState extends State<PlayerListScreen> {
   }
 }
 
+class ColorPickerWidget extends StatefulWidget {
+    ColorPickerWidget({super.key, required this.teamSelectedColor, required this.selectedIndex});
+    Color teamSelectedColor; 
+    int selectedIndex;
+
+  @override
+  State<ColorPickerWidget> createState() => ColorPickerWidgetState();
+}
+
+class ColorPickerWidgetState extends State<ColorPickerWidget> {
+    final List<Color> colorSelectionList = [
+      TeamColors.teamRedColor, 
+      TeamColors.teamBlueColor, 
+      TeamColors.teamGreenColor,
+      TeamColors.teamPurpleColor,
+      TeamColors.teamYellowColor,
+    ];
+
+  @override
+  Widget build(BuildContext context) {
+    bool isToggled = context.watch<ToggleProvider>().isToggled;
+    return Container(
+      width: 150, 
+      height: 400, 
+      color: AppColors.neutralColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+
+        children: List.generate(colorSelectionList.length, (index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+if (isToggled) {
+      // Update global values for Team B
+      if (teamBselectedIndex != index) {
+        teamBselectedIndex = index;
+        teamBColor = colorSelectionList[index];
+      }
+    } else {
+      // Update global values for Team A
+      if (teamAselectedIndex != index) {
+        teamAselectedIndex = index;
+        teamAColor = colorSelectionList[index];
+      }
+    }
+    widget.selectedIndex = index;
+debugPrint(index.toString());
+Provider.of<RefreshProvider>(context, listen: false).refreshPage();
+//////////////////////
+
+
+              });
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.015,
+              ),
+              child: Container(
+                width: 75,
+                height: 75,
+                decoration: BoxDecoration(
+                  color: colorSelectionList[index],  
+                  border: Border.all(color: widget.selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
+                  width: 4,
+                  ),
+                ),        
+                
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}

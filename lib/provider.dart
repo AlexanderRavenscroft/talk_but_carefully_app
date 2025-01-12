@@ -10,3 +10,9 @@ class ToggleProvider extends ChangeNotifier {
     notifyListeners(); // Notify listeners to rebuild widgets
   }
 }
+
+class RefreshProvider extends ChangeNotifier {
+  void refreshPage() {
+    notifyListeners(); // Notify widgets that the page needs to rebuild
+  }
+}

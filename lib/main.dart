@@ -12,8 +12,12 @@ void main() {
     DeviceOrientation.portraitDown,
   ]).then((_) {
     runApp(
-      ChangeNotifierProvider(
-        create: (context) => ToggleProvider(),
+      MultiProvider(
+        providers: [
+          // Adding both the ToggleProvider and RefreshProvider
+          ChangeNotifierProvider(create: (context) => ToggleProvider()),
+          ChangeNotifierProvider(create: (context) => RefreshProvider()),
+        ],
         child: MyApp(),
       ),
     );

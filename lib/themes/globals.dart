@@ -1,8 +1,9 @@
 // ==================[PUBLIC LIABRY OF GLOBALS]==================
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter/material.dart';
+
 Set<int> selectedDifs = {0};
-List<String> players = [];
+
 int aviableSelections = 5;
 
 int selectedTime = 120;
@@ -20,7 +21,12 @@ var colors = {
 Color teamAColor = TeamColors.teamRedColor; 
 Color teamBColor = TeamColors.teamBlueColor; 
 
-String teamAName = "Czerowni";
-String teamBName = "Niebiescy";
+List<String> playersA = [];
+List<String> playersB = [];
 
+String teamAName = "Drużyna I";
+String teamBName = "Dryżyna II";
+
+     int teamAselectedIndex = 0;
+     int teamBselectedIndex = 1;
 
