@@ -121,7 +121,6 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
           Align(
             alignment: Alignment.centerRight,
             child:  ColorPickerWidget(
-              
               teamSelectedColor: isToggled ? teamBColor : teamAColor, 
               selectedIndex: isToggled ? teamBselectedIndex : teamAselectedIndex,
             ),
