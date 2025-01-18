@@ -27,6 +27,6 @@ List<String> playersB = [];
 String teamAName = "Drużyna I";
 String teamBName = "Dryżyna II";
 
-     int teamAselectedIndex = 0;
-     int teamBselectedIndex = 1;
+int teamAselectedIndex = 0;
+int teamBselectedIndex = 1;
 

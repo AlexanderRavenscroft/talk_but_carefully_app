@@ -109,27 +109,54 @@ class PlayerListScreenState extends State<PlayerListScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        bool isToggled = context.watch<ToggleProvider>().isToggled;
         return AlertDialog(
-          title: Text('Wpisz imię gracza ${widget.players.length + 1}'),
+          title: Text('Wpisz nazwę gracza ${widget.players.length + 1}',
+          style: AppTypography.descStyle),
           content: TextField(
             controller: _controller,
             decoration: InputDecoration(hintText: 'Nowe imię'),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('Anuluj'),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  widget.players[index] = _controller.text;
-                });
-                Navigator.pop(context);
-              },
-              child: Text('Zapisz'),
-            ),
-          ],
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end, 
+            spacing: 16,
+            children: [
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:isToggled ? teamBColor : teamAColor,
+                  elevation: 6,
+                  padding: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height * 0.02), horizontal: (MediaQuery.of(context).size.width * 0.05)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))), 
+                ),
+                child: Text(
+                  'Anuluj',
+                  style: AppTypography.descBoldStyle,
+                ),
+              ),
+
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.players[index] = _controller.text;
+                  });
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:isToggled ? teamBColor : teamAColor,
+                  elevation: 6,
+                  padding: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height * 0.02), horizontal: (MediaQuery.of(context).size.width * 0.05)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+                ),
+                child: Text(
+                  'Zapisz',
+                  style: AppTypography.descBoldStyle,
+                ),
+              ),
+            ],
+          ),
+        ],
         );
       },
     );
@@ -275,11 +302,17 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
   Widget build(BuildContext context) {
     bool isToggled = context.watch<ToggleProvider>().isToggled;
     return Container(
-      width: 150,
-      height: 400,
-      color: AppColors.neutralColor,
+      width: (MediaQuery.of(context).size.width) * 0.25,
+      height: (MediaQuery.of(context).size.height) * 0.5,
+      decoration: BoxDecoration(
+        color: AppColors.neutralColor,
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(24), bottomLeft: Radius.circular(24)), 
+        boxShadow: [BoxShadow(color: Colors.black, offset: const Offset(-1, 2), blurRadius: 10)]
+      ),
       child: Column(
+        spacing: 8,
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(colorSelectionList.length, (index) {
           return GestureDetector(
             onTap: () {
@@ -300,31 +333,30 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                 Provider.of<RefreshProvider>(context, listen: false).refreshPage();
               });
             },
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.015,
-              ),
-              child: Container(
-                width: 75,
-                height: 75,
-                decoration: BoxDecoration(
+            child: Container(
+                width: (MediaQuery.of(context).size.width) * 0.16,
+                height: (MediaQuery.of(context).size.height) * 0.084,
+                decoration: BoxDecoration( 
                   color: colorSelectionList[index],
+                  boxShadow: [BoxShadow(color: Colors.black,  blurRadius: 2)],
+                  borderRadius: BorderRadius.all(Radius.circular(10)),               
                   border: Border.all(
                     color: widget.selectedIndex == index
                         ? (isToggled
-                            ? (teamAselectedIndex == index ? AppColors.textColor : AppColors.primaryColor)
-                            : (teamBselectedIndex == index ? AppColors.textColor : AppColors.primaryColor))
-                        : AppColors.textColor,
-                    width: 4,
+                            ? (teamAselectedIndex == index ? Colors.transparent : AppColors.textColor)
+                            : (teamBselectedIndex == index ? Colors.transparent : AppColors.textColor))
+                        : Colors.transparent,
+                    width: 2,
                   ),
                 ),
                 child: Icon(
+                  size: (MediaQuery.of(context).size.height) * 0.01 + (MediaQuery.of(context).size.width) * 0.06,
+                  color: AppColors.textColor,
                   isToggled
                       ? (teamAselectedIndex == index ? Icons.do_disturb : null)
                       : (teamBselectedIndex == index ? Icons.do_disturb : null),
                 ),
               ),
-            ),
           );
         }),
       ),
