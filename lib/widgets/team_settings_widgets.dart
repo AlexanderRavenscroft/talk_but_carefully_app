@@ -1,9 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/themes/globals.dart';
 import 'package:provider/provider.dart';
 import 'package:gadajaleostroznie/provider.dart';
 import 'package:gadajaleostroznie/screens/game_screen.dart';
+import '../services/audio_service.dart';
 
 // Widget for the team name text input
 class TeamNameTextArea extends StatelessWidget {
@@ -123,7 +126,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             spacing: 16,
             children: [
               ElevatedButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {Navigator.pop(context); playTapAudio();},
                 style: ElevatedButton.styleFrom(
                   backgroundColor:isToggled ? teamBColor : teamAColor,
                   elevation: 6,
@@ -132,7 +135,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                 ),
                 child: Text(
                   'Anuluj',
-                  style: AppTypography.descBoldStyle,
+                  style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.01 + MediaQuery.of(context).size.height * 0.01),
                 ),
               ),
 
@@ -142,6 +145,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     widget.players[index] = _controller.text;
                   });
                   Navigator.pop(context);
+                  playTapAudio();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:isToggled ? teamBColor : teamAColor,
@@ -151,7 +155,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                 ),
                 child: Text(
                   'Zapisz',
-                  style: AppTypography.descBoldStyle,
+                  style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.01 + MediaQuery.of(context).size.height * 0.01),
                 ),
               ),
             ],
@@ -183,11 +187,15 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.1,
-                        vertical: MediaQuery.of(context).size.height * 0.008,
+                        horizontal: MediaQuery.of(context).size.width * 0.08,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
                       ),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.04, 
+                          top: MediaQuery.of(context).size.height * 0.014, 
+                          bottom: MediaQuery.of(context).size.height * 0.014, 
+                          ),
                         decoration: BoxDecoration(
                           color: AppColors.neutralColor,
                           borderRadius: BorderRadius.circular(8.0),
@@ -196,15 +204,15 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () => _editPlayer(index),
+                            onTap: () {_editPlayer(index);},
                               child: Text(
                                 widget.players[index],
-                                style: TextStyle(color: AppColors.textColor, fontSize: 18.0),
+                                style: TextStyle(color: AppColors.textColor, fontSize: MediaQuery.of(context).size.height * 0.018 + MediaQuery.of(context).size.width * 0.018),
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.cancel, color: AppColors.textColor),
-                              onPressed: () => _removePlayer(index),
+                              icon: Icon(Icons.cancel, size: MediaQuery.of(context).size.height * 0.022 + MediaQuery.of(context).size.width * 0.022, color: AppColors.textColor),
+                              onPressed: () {_removePlayer(index); playTapAudio();},
                             ),
                           ],
                         ),
@@ -224,7 +232,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: _addPlayer,
+                onPressed: () {_addPlayer; playTapAudio();},
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
                   shadowColor: WidgetStateProperty.all(Colors.black),
@@ -242,7 +250,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     ),
                   ),
                 ),
-                child: Icon(Icons.add, size: 40, color: AppColors.textColor),
+                child: Icon(Icons.add, size: MediaQuery.of(context).size.height*0.04 + MediaQuery.of(context).size.width *0.04, color: AppColors.textColor),
               ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.08),
               ElevatedButton(
@@ -251,6 +259,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => GameScreen()),
                   );
+                  playTapAudio();
                 },
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
@@ -269,7 +278,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     ),
                   ),
                 ),
-                child: Icon(Icons.arrow_forward, size: 40, color: AppColors.textColor),
+                child: Icon(Icons.arrow_forward, size: MediaQuery.of(context).size.height*0.04 + MediaQuery.of(context).size.width *0.04, color: AppColors.textColor),
               ),
             ],
           ),
@@ -290,6 +299,7 @@ class ColorPickerWidget extends StatefulWidget {
 }
 
 class ColorPickerWidgetState extends State<ColorPickerWidget> {
+
   final List<Color> colorSelectionList = [
     TeamColors.teamRedColor,
     TeamColors.teamBlueColor,
@@ -307,7 +317,7 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
       decoration: BoxDecoration(
         color: AppColors.neutralColor,
         borderRadius: BorderRadius.only(topLeft: Radius.circular(24), bottomLeft: Radius.circular(24)), 
-        boxShadow: [BoxShadow(color: Colors.black, offset: const Offset(-1, 2), blurRadius: 10)]
+        boxShadow: [BoxShadow(color: Colors.black, offset: const Offset(-1, 2), blurRadius: 6)]
       ),
       child: Column(
         spacing: 8,
@@ -322,16 +332,18 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                     teamBselectedIndex = index;
                     teamBColor = colorSelectionList[index];
                     widget.selectedIndex = index;
+                     playTapAudio();
                   }
                 } else {
                   if (teamAselectedIndex != index && teamBselectedIndex != index) {
                     teamAselectedIndex = index;
                     teamAColor = colorSelectionList[index];
                     widget.selectedIndex = index;
+                     playTapAudio();
                   }
                 }
                 Provider.of<RefreshProvider>(context, listen: false).refreshPage();
-              });
+              });  
             },
             child: Container(
                 width: (MediaQuery.of(context).size.width) * 0.16,

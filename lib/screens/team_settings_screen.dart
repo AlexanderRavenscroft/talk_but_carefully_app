@@ -13,6 +13,7 @@ class TeamSettingsScreen extends StatefulWidget {
 }
 
 class TeamSettingsScreenState extends State<TeamSettingsScreen> {
+  
   TextEditingController teamAController = TextEditingController(text: teamAName);
   TextEditingController teamBController = TextEditingController(text: teamBName);
 
