@@ -22,10 +22,10 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
     bool isToggled = context.watch<ToggleProvider>().isToggled;
 
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
 
       // APPBAR
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: AppColors.accentColor,
         toolbarHeight: (MediaQuery.of(context).size.height) * 0.08,
         title: Image.asset(

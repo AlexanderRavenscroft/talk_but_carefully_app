@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/themes/globals.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
 
 //====================[DIF SELECTION]====================
 class DifSelection extends StatefulWidget {
@@ -30,7 +31,7 @@ class DifSelectionState extends State<DifSelection> {
                 selectedDifs.add(index);
               }
             });
-            // debugPrint('Selected indexes: $selectedDifs');
+            playOptionChoiceAudio();
           },
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.014),
@@ -75,7 +76,7 @@ class SkipSelectionState extends State<SkipSelection> {
                 aviableSelections = _getSelectionValue(timeSelectionList[index]);
               }
             });
-           // debugPrint('Aviable selections: $aviableSelections');
+           playOptionChoiceAudio();
           },
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -128,7 +129,7 @@ class TimeSelectionState extends State<TimeSelection> {
                 selectedTime = _getTimeInSeconds(timeSelectionList[index]);
               }
             });
-           // debugPrint('Selected time (seconds): $selectedTime');
+            playOptionChoiceAudio();
           },
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -181,7 +182,7 @@ class PointsSelectionState extends State<PointsSelection> {
                 aviablePoints = pointsSelectionList[index];
               }
             });
-          //  debugPrint('Aviable Points: $aviablePoints');
+          playOptionChoiceAudio();
           },
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -268,6 +269,7 @@ class NextSettingsButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>  nextScreenWidget));
+        playTapAudio();
       },
       style: ButtonStyle(
         elevation: WidgetStateProperty.all(10.0), 

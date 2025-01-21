@@ -59,6 +59,9 @@ flutter:
     - assets/images/background-squares.svg
     - assets/images/logo.png
     - assets/sounds/button-press.mp3
+    - assets/sounds/option-choice.mp3
+    - assets/sounds/correct-answer.mp3
+    - assets/sounds/wrong-answer.mp3
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

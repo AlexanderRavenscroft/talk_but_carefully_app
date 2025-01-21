@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/screens/game_settings_screen.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gadajaleostroznie/widgets/menu_widgets.dart';
@@ -40,7 +41,8 @@ class MenuScreen extends StatelessWidget {
               buttonIcon: Icons.gamepad_rounded,
               buttonText: "GRAJ",
               onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const GameSettingsScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const GameSettingsScreen()));
+                playTapAudio();
               },
             ),
           ),
@@ -58,6 +60,7 @@ class MenuScreen extends StatelessWidget {
                   return RulesDialog();
                   },
                 );
+                playTapAudio();
               },
             )
           ),
@@ -69,7 +72,8 @@ class MenuScreen extends StatelessWidget {
               buttonIcon: Icons.settings_outlined,
               buttonText: "USTAWIENIA",
               onPressed: () {
-              debugPrint("Button 3 pressed");
+                debugPrint("Button 3 pressed");
+                playTapAudio();
               },
             )
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-
+import 'package:gadajaleostroznie/services/audio_service.dart';
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {
   final String buttonText;
@@ -85,12 +85,11 @@ class RulesDialog extends StatelessWidget {
         child: SingleChildScrollView(
           child: Text(
             """
-            Pewnego dnia, na końcu labiryntu wykonanego w całości z galaretek o smaku cebuli, mieszkała kura. Ale nie była to zwykła kura, o nie! Była to kura, która nie znosiła jaj, lecz kapsle po napojach gazowanych z lat 80-tych, których nikt już nie produkuje. Każdego ranka kura zjadała podręcznik do matematyki w języku, którego nikt nigdy nie wynalazł, a potem wypluwała równania kwadratowe z zapachem kawy.
-            Tymczasem w sąsiednim lesie, wszystkie drzewa postanowiły założyć drużynę koszykarską. Sosna, która była najstarsza, została trenerem, ale dąb nie chciał słuchać poleceń, bo uważał, że ma za grube gałęzie, żeby dryblować piłką. Każdy mecz zaczynał się od rytualnego odśpiewania hymnu w postaci odgłosów łamiących się patyków, co przyciągało widzów, głównie wiewiórki i zagubione kalosze.
-            Tymczasem w piwnicy opuszczonego domu na przedmieściach świata, człowiek o imieniu Zygmunt postanowił wynaleźć nowy rodzaj herbaty. Herbata ta miała być wykonana z pokrzyw, ołówków i odrobinę rozpuszczonej plasteliny. Jednak, gdy tylko Zygmunt spróbował pierwszego łyka, cały świat zamarł na sekundę i w tym czasie wszystkie lodówki na Ziemi zaczęły grać walca Szopena w tonacji fis-moll.
-            Na drugim końcu galaktyki grupa kosmitów imieniem Zenek, Bożena i Tadeusz próbowała ugotować rosół, ale nie mogli zrozumieć instrukcji znalezionej na opakowaniu makaronu. Problem polegał na tym, że w ich języku nie istniało słowo „gotować”, więc za każdym razem, gdy próbowali coś zrobić, ich zupa zamieniała się w parę wodną, która formowała chmury o kształcie trójkątów.
-            Wracając do kury w labiryncie galaretek, pewnego dnia znalazła ona drzwi. Ale te drzwi prowadziły nie do wyjścia, lecz do wielkiego magazynu wypełnionego butami, w których były zegarki. Kura, jak to kura, zaczęła grzebać w butach i przypadkiem uruchomiła zegar apokalipsy, który liczył czas w odwrotnej skali: od -7 do -∞. Ostatecznie nikt nie dowiedział się, co się stało, bo zegar wybuchł konfetti i zniknął w kłębie zapachu truskawek.
-            Wnioski z tej historii są żadne, ale za to zajęła kilka minut twojego życia. Dziękuję za uwagę. 
+            Gra toczy się w dwóch drużynach, które rywalizują ze sobą o punkty. Drużyna, która pierwsza zdobędzie limit punktów wygrywa!
+            Jedna osoba z drużyny odgadujących staje się opisywaczem. Jej zadaniem jest naprowadzenie reszty swojej drużyny na konkretne hasło widoczne na ekranie.
+            Podczas opisywania nie można używać zkazanych słów. Słowa te są wymienione pod głównym hasłem i trzeba ich unikać za wszelką cenę! Każda drużyna ma ograniczony czas na odgadnięcie jak największej liczby haseł.
+            Drużyna zdobywa punkt za każde odgadnięte hasło. Uwaga – jeśli opisujący użyje zakazanego słowa, traci punkt!
+            Wybrany gracz drużyny przeciwnej kontroluje, czy zakazane słowa nie są wypowiedziane.
             """,
           textAlign: TextAlign.justify,
           style: AppTypography.descStyle.copyWith(
@@ -111,6 +110,7 @@ class RulesDialog extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.of(context).pop();
+            playTapAudio();
           },
           child: Text(
             "DOBRA!",

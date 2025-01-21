@@ -198,7 +198,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                           ),
                         decoration: BoxDecoration(
                           color: AppColors.neutralColor,
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,7 +232,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {_addPlayer; playTapAudio();},
+                onPressed: () {_addPlayer(); playTapAudio();},
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
                   shadowColor: WidgetStateProperty.all(Colors.black),
@@ -332,14 +332,14 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                     teamBselectedIndex = index;
                     teamBColor = colorSelectionList[index];
                     widget.selectedIndex = index;
-                     playTapAudio();
+                     playOptionChoiceAudio();
                   }
                 } else {
                   if (teamAselectedIndex != index && teamBselectedIndex != index) {
                     teamAselectedIndex = index;
                     teamAColor = colorSelectionList[index];
                     widget.selectedIndex = index;
-                     playTapAudio();
+                     playOptionChoiceAudio();
                   }
                 }
                 Provider.of<RefreshProvider>(context, listen: false).refreshPage();
