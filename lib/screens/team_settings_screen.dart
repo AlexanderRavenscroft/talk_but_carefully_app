@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/themes/globals.dart';
+import 'package:gadajaleostroznie/logic/globals.dart';
 import 'package:gadajaleostroznie/widgets/team_settings_widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:gadajaleostroznie/provider.dart'; 
+import 'package:gadajaleostroznie/logic/provider.dart'; 
 
 class TeamSettingsScreen extends StatefulWidget {
   const TeamSettingsScreen({super.key});
@@ -22,11 +22,13 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
     bool isToggled = context.watch<ToggleProvider>().isToggled;
 
     return Scaffold(
-
+      resizeToAvoidBottomInset: false,
       // APPBAR
       appBar: AppBar(
         elevation: 0,
+        scrolledUnderElevation: 0,
         backgroundColor: AppColors.accentColor,
+        shadowColor: Colors.transparent,
         toolbarHeight: (MediaQuery.of(context).size.height) * 0.08,
         title: Image.asset(
           'assets/images/logo.png',

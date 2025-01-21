@@ -72,7 +72,12 @@ class MenuScreen extends StatelessWidget {
               buttonIcon: Icons.settings_outlined,
               buttonText: "USTAWIENIA",
               onPressed: () {
-                debugPrint("Button 3 pressed");
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SettingsDialog();
+                  },
+                );
                 playTapAudio();
               },
             )

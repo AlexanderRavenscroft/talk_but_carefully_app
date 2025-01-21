@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/logic/globals.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 //====================[MENU BUTTON]====================
@@ -73,12 +74,24 @@ class RulesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-        "ZASADY",
-        textAlign: TextAlign.center,
-        style: AppTypography.descBoldStyle.copyWith(
-        fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
-        ),
+      backgroundColor: AppColors.neutralColor,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+         children: [
+           Icon(
+             Icons.rule_sharp, 
+             color: AppColors.textColor,
+             size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03),
+
+           Text(
+             "ZASADY",
+             textAlign: TextAlign.center,
+             style: AppTypography.descBoldStyle.copyWith(
+             fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
+             ),
+           ),
+         ]
       ),
       content: SizedBox(
         width: double.maxFinite,
@@ -125,3 +138,105 @@ class RulesDialog extends StatelessWidget {
   }
 }
 
+
+
+class SettingsDialog extends StatefulWidget {
+  const SettingsDialog({super.key});
+
+  @override
+  State<SettingsDialog> createState() => SettingsDialogState();
+}
+
+class SettingsDialogState extends State<SettingsDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: AppColors.neutralColor,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.settings, 
+            color: AppColors.textColor,
+            size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03),
+
+          Text(
+            "USTAWIENIA",
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(
+            fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
+            ),
+          ),
+        ]
+      ),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Text(
+                "Dźwięk:",
+                textAlign: TextAlign.justify,
+                style: AppTypography.descBoldStyle.copyWith(
+                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.02,)
+                ),
+
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      soundToggled = !soundToggled; 
+                    });
+                  },
+                  style: ButtonStyle(
+                    maximumSize: WidgetStateProperty.all(Size(
+                      MediaQuery.of(context).size.width * 0.2,
+                      MediaQuery.of(context).size.height * 0.4,
+                    )),
+                    backgroundColor: WidgetStateProperty.all(AppColors.neutralColor),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                    ),
+                  ),
+
+                  child: Icon(
+                    soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
+                    color: AppColors.textColor,
+                    size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.02,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+      actions: [
+        TextButton(
+          style: TextButton.styleFrom(
+          minimumSize: Size(
+             double.maxFinite,
+             MediaQuery.of(context).size.height * 0.075,
+          ),
+          backgroundColor: AppColors.accentColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+            playTapAudio();
+          },
+          child: Text(
+            "POWRÓT",
+          textAlign: TextAlign.center,
+          style: AppTypography.descBoldStyle.copyWith(
+          fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.025,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

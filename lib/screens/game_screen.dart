@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/themes/globals.dart';
+import 'package:gadajaleostroznie/logic/globals.dart';
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import required for SystemChrome
 import 'screens/splash_screen.dart';
 import 'package:provider/provider.dart';
-import 'provider.dart'; // Import your provider file
+import 'logic/provider.dart'; // Import your provider file
 
 void main() {
   // Set preferred orientations before running the app

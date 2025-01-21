@@ -1,10 +1,8 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/themes/globals.dart';
+import 'package:gadajaleostroznie/logic/globals.dart';
 import 'package:provider/provider.dart';
-import 'package:gadajaleostroznie/provider.dart';
+import 'package:gadajaleostroznie/logic/provider.dart';
 import 'package:gadajaleostroznie/screens/game_screen.dart';
 import '../services/audio_service.dart';
 
@@ -194,7 +192,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                         padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.04, 
                           top: MediaQuery.of(context).size.height * 0.014, 
-                          bottom: MediaQuery.of(context).size.height * 0.014, 
+                          bottom: MediaQuery.of(context).size.height* 0.014, 
                           ),
                         decoration: BoxDecoration(
                           color: AppColors.neutralColor,
