@@ -177,6 +177,8 @@ class SettingsDialogState extends State<SettingsDialog> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
               children: [
                 Text(
                 "Dźwięk:",
@@ -192,20 +194,26 @@ class SettingsDialogState extends State<SettingsDialog> {
                     });
                   },
                   style: ButtonStyle(
-                    maximumSize: WidgetStateProperty.all(Size(
-                      MediaQuery.of(context).size.width * 0.2,
-                      MediaQuery.of(context).size.height * 0.4,
+                    fixedSize: WidgetStateProperty.all(Size(
+                      MediaQuery.of(context).size.width * 0.04,
+                      MediaQuery.of(context).size.height * 0.07,
                     )),
-                    backgroundColor: WidgetStateProperty.all(AppColors.neutralColor),
+                    backgroundColor: WidgetStateProperty.all(AppColors.accentColor),
                     shape: WidgetStateProperty.all(
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(
+                          color: AppColors.textColor,
+                          width: 2,
+                        )
+                        ),
                     ),
                   ),
 
                   child: Icon(
                     soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
                     color: AppColors.textColor,
-                    size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.02,
+                    size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
                   ),
                 ),
               ],
