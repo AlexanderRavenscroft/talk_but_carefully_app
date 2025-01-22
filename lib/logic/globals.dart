@@ -31,5 +31,8 @@ bool soundToggled = true;
 // DEFINE SOUNDS HERE
 const String tapSound = "sounds/button-press.mp3";
 const String optionChoiceSound = "sounds/option-choice.mp3";
+const String optionSwitchSound = "sounds/option-switch.mp3";
+
 const String correctAnswerSound = "sounds/correct-answer.mp3";
 const String wrongAnswerSound = "sounds/wrong-answer.mp3";
+

@@ -194,7 +194,7 @@ class SettingsDialogState extends State<SettingsDialog> {
                       soundToggled = !soundToggled; 
                       PreferenceService.savePreference('soundToggled', soundToggled);
                     });
-                  playAudio(tapSound);
+                  playAudio(optionSwitchSound);
                   },
                   style: ButtonStyle(
                     fixedSize: WidgetStateProperty.all(Size(

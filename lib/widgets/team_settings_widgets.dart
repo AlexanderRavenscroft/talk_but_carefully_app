@@ -79,6 +79,7 @@ class TeamSwitchState extends State<TeamSwitch> {
                 context.read<ToggleProvider>().toggle();
               });
               refreshProvider.refreshPage();
+              playAudio(optionSwitchSound);
             },
           ),
         );
@@ -143,7 +144,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     widget.players[index] = _controller.text;
                   });
                   Navigator.pop(context);
-                  playAudio(tapSound);
+                  playAudio(optionSwitchSound);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:isToggled ? teamBColor : teamAColor,
