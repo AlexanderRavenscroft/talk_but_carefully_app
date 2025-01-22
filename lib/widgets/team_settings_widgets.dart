@@ -124,7 +124,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             spacing: 16,
             children: [
               ElevatedButton(
-                onPressed: () {Navigator.pop(context); playTapAudio();},
+                onPressed: () {Navigator.pop(context); playAudio(tapSound);},
                 style: ElevatedButton.styleFrom(
                   backgroundColor:isToggled ? teamBColor : teamAColor,
                   elevation: 6,
@@ -143,7 +143,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     widget.players[index] = _controller.text;
                   });
                   Navigator.pop(context);
-                  playTapAudio();
+                  playAudio(tapSound);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:isToggled ? teamBColor : teamAColor,
@@ -210,7 +210,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                             ),
                             IconButton(
                               icon: Icon(Icons.cancel, size: MediaQuery.of(context).size.height * 0.022 + MediaQuery.of(context).size.width * 0.022, color: AppColors.textColor),
-                              onPressed: () {_removePlayer(index); playTapAudio();},
+                              onPressed: () {_removePlayer(index); playAudio(tapSound);},
                             ),
                           ],
                         ),
@@ -230,7 +230,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {_addPlayer(); playTapAudio();},
+                onPressed: () {_addPlayer(); playAudio(tapSound);},
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
                   shadowColor: WidgetStateProperty.all(Colors.black),
@@ -257,7 +257,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => GameScreen()),
                   );
-                  playTapAudio();
+                  playAudio(tapSound);
                 },
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
@@ -330,14 +330,14 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                     teamBselectedIndex = index;
                     teamBColor = colorSelectionList[index];
                     widget.selectedIndex = index;
-                     playOptionChoiceAudio();
+                    playAudio(optionChoiceSound);
                   }
                 } else {
                   if (teamAselectedIndex != index && teamBselectedIndex != index) {
                     teamAselectedIndex = index;
                     teamAColor = colorSelectionList[index];
                     widget.selectedIndex = index;
-                     playOptionChoiceAudio();
+                    playAudio(optionChoiceSound);
                   }
                 }
                 Provider.of<RefreshProvider>(context, listen: false).refreshPage();

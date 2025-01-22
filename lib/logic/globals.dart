@@ -1,7 +1,8 @@
-// ==================[PUBLIC LIABRY OF GLOBALS]==================
+// ==================[ALL GLOBALS VARIABLES FILE]==================
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter/material.dart';
 
+// ==================[SETTINGS VARIABLES]==================
 Set<int> selectedDifs = {0};
 
 int aviableSelections = 5;
@@ -22,4 +23,13 @@ String teamBName = "Drużyna II";
 int teamAselectedIndex = 0;
 int teamBselectedIndex = 1;
 
+// ==================[TEAMS VARIABLES]==================
+
+// ==================[SOUNDS]==================
 bool soundToggled = true;
+
+// DEFINE SOUNDS HERE
+const String tapSound = "sounds/button-press.mp3";
+const String optionChoiceSound = "sounds/option-choice.mp3";
+const String correctAnswerSound = "sounds/correct-answer.mp3";
+const String wrongAnswerSound = "sounds/wrong-answer.mp3";

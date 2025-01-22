@@ -4,6 +4,7 @@ import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gadajaleostroznie/widgets/menu_widgets.dart';
+import 'package:gadajaleostroznie/logic/globals.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -42,7 +43,7 @@ class MenuScreen extends StatelessWidget {
               buttonText: "GRAJ",
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const GameSettingsScreen()));
-                playTapAudio();
+                playAudio(tapSound);
               },
             ),
           ),
@@ -60,7 +61,7 @@ class MenuScreen extends StatelessWidget {
                   return RulesDialog();
                   },
                 );
-                playTapAudio();
+                playAudio(tapSound);
               },
             )
           ),
@@ -78,7 +79,7 @@ class MenuScreen extends StatelessWidget {
                     return SettingsDialog();
                   },
                 );
-                playTapAudio();
+                playAudio(tapSound);
               },
             )
           ),

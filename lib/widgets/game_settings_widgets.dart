@@ -31,7 +31,7 @@ class DifSelectionState extends State<DifSelection> {
                 selectedDifs.add(index);
               }
             });
-            playOptionChoiceAudio();
+            playAudio(optionChoiceSound);
           },
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.014),
@@ -76,7 +76,7 @@ class SkipSelectionState extends State<SkipSelection> {
                 aviableSelections = _getSelectionValue(timeSelectionList[index]);
               }
             });
-           playOptionChoiceAudio();
+           playAudio(optionChoiceSound);
           },
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -129,7 +129,7 @@ class TimeSelectionState extends State<TimeSelection> {
                 selectedTime = _getTimeInSeconds(timeSelectionList[index]);
               }
             });
-            playOptionChoiceAudio();
+            playAudio(optionChoiceSound);
           },
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -182,7 +182,7 @@ class PointsSelectionState extends State<PointsSelection> {
                 aviablePoints = pointsSelectionList[index];
               }
             });
-          playOptionChoiceAudio();
+          playAudio(optionChoiceSound);
           },
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -269,7 +269,7 @@ class NextSettingsButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>  nextScreenWidget));
-        playTapAudio();
+        playAudio(tapSound);
       },
       style: ButtonStyle(
         elevation: WidgetStateProperty.all(10.0), 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/logic/globals.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
+import 'package:gadajaleostroznie/services/preference_service.dart';
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {
   final String buttonText;
@@ -123,7 +124,7 @@ class RulesDialog extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.of(context).pop();
-            playTapAudio();
+            playAudio(tapSound);
           },
           child: Text(
             "DOBRA!",
@@ -191,7 +192,9 @@ class SettingsDialogState extends State<SettingsDialog> {
                   onPressed: () {
                     setState(() {
                       soundToggled = !soundToggled; 
+                      PreferenceService.savePreference('soundToggled', soundToggled);
                     });
+                  playAudio(tapSound);
                   },
                   style: ButtonStyle(
                     fixedSize: WidgetStateProperty.all(Size(
@@ -234,7 +237,7 @@ class SettingsDialogState extends State<SettingsDialog> {
           ),
           onPressed: () {
             Navigator.of(context).pop();
-            playTapAudio();
+            playAudio(tapSound);
           },
           child: Text(
             "POWRÓT",

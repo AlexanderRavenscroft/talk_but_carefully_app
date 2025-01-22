@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gadajaleostroznie/logic/globals.dart';
+
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
@@ -24,19 +25,7 @@ class AudioService {
 
 final AudioService audioService = AudioService();
 
-// Simplified functions without repeating the sound toggle check
-Future<void> playTapAudio() async {
-  await audioService.playSound('sounds/button-press.mp3');
-}
-
-Future<void> playOptionChoiceAudio() async {
-  await audioService.playSound('sounds/option-choice.mp3');
-}
-
-Future<void> playCorrectAnswerAudio() async {
-  await audioService.playSound('sounds/correct-answer.mp3');
-}
-
-Future<void> playWrongAnswerAudio() async {
-  await audioService.playSound('sounds/wrong-answer.mp3');
+// Simplified function to play any sound based on passed argument
+Future<void> playAudio(String sound) async {
+  await audioService.playSound(sound);
 }

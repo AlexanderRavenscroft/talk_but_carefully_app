@@ -3,10 +3,15 @@ import 'package:flutter/services.dart'; // Import required for SystemChrome
 import 'screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'logic/provider.dart'; // Import your provider file
+import 'services/preference_service.dart';
 
 void main() {
-  // Set preferred orientations before running the app
+
+  // Add this line to load preferences
   WidgetsFlutterBinding.ensureInitialized();
+  PreferenceService.loadPreferences();
+
+  // Set preferred orientations before running the app
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
