@@ -20,7 +20,7 @@ class TeamNameTextArea extends StatelessWidget {
       cursorColor: AppColors.textColor,
       textAlign: TextAlign.center,
       style: AppTypography.descBoldStyle.copyWith(
-        fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.018,
+        fontSize:  MediaQuery.of(context).size.height * 0.03,
       ),
       decoration: InputDecoration(
         hintText: controller.text,
@@ -67,7 +67,7 @@ class TeamSwitchState extends State<TeamSwitch> {
     return Consumer<RefreshProvider>(
       builder: (context, refreshProvider, child) {
         return Transform.scale(
-          scale: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.0012,
+          scale: MediaQuery.of(context).size.height * 0.0018,
           child: Switch(
             activeColor: widget.teamSelectedColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
             inactiveThumbColor: widget.teamSelectedColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
@@ -134,7 +134,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                 ),
                 child: Text(
                   'Anuluj',
-                  style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.01 + MediaQuery.of(context).size.height * 0.01),
+                  style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.02),
                 ),
               ),
 
@@ -154,7 +154,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                 ),
                 child: Text(
                   'Zapisz',
-                  style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.01 + MediaQuery.of(context).size.height * 0.01),
+                  style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.02),
                 ),
               ),
             ],
@@ -206,11 +206,11 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                             onTap: () {_editPlayer(index);},
                               child: Text(
                                 widget.players[index],
-                                style: TextStyle(color: AppColors.textColor, fontSize: MediaQuery.of(context).size.height * 0.018 + MediaQuery.of(context).size.width * 0.018),
+                                style: TextStyle(color: AppColors.textColor, fontSize: MediaQuery.of(context).size.height * 0.03),
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.cancel, size: MediaQuery.of(context).size.height * 0.022 + MediaQuery.of(context).size.width * 0.022, color: AppColors.textColor),
+                              icon: Icon(Icons.cancel, color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036),
                               onPressed: () {_removePlayer(index); playAudio(tapSound);},
                             ),
                           ],
@@ -225,9 +225,12 @@ class PlayerListScreenState extends State<PlayerListScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.all((MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.022),
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.015,
+            horizontal: MediaQuery.of(context).size.width * 0.025,
+            ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
@@ -249,9 +252,8 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     ),
                   ),
                 ),
-                child: Icon(Icons.add, size: MediaQuery.of(context).size.height*0.04 + MediaQuery.of(context).size.width *0.04, color: AppColors.textColor),
+                child: Icon(Icons.add, size: MediaQuery.of(context).size.height*0.06, color: AppColors.textColor),
               ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.08),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -277,7 +279,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     ),
                   ),
                 ),
-                child: Icon(Icons.arrow_forward, size: MediaQuery.of(context).size.height*0.04 + MediaQuery.of(context).size.width *0.04, color: AppColors.textColor),
+                child: Icon(Icons.arrow_forward, size: MediaQuery.of(context).size.height*0.06, color: AppColors.textColor),
               ),
             ],
           ),
@@ -316,11 +318,10 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
       decoration: BoxDecoration(
         color: AppColors.neutralColor,
         borderRadius: BorderRadius.only(topLeft: Radius.circular(24), bottomLeft: Radius.circular(24)), 
-        boxShadow: [BoxShadow(color: Colors.black, offset: const Offset(-1, 2), blurRadius: 6)]
+        boxShadow: [BoxShadow(color: Colors.black, offset: Offset(-1, 2), blurRadius: 6)]
       ),
       child: Column(
-        spacing: 8,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(colorSelectionList.length, (index) {
           return GestureDetector(
@@ -345,8 +346,8 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
               });  
             },
             child: Container(
-                width: (MediaQuery.of(context).size.width) * 0.16,
-                height: (MediaQuery.of(context).size.height) * 0.084,
+                width: (MediaQuery.of(context).size.height) * 0.08,
+                height: (MediaQuery.of(context).size.height) * 0.08,
                 decoration: BoxDecoration( 
                   color: colorSelectionList[index],
                   boxShadow: [BoxShadow(color: Colors.black,  blurRadius: 2)],
@@ -361,7 +362,7 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                   ),
                 ),
                 child: Icon(
-                  size: (MediaQuery.of(context).size.height) * 0.01 + (MediaQuery.of(context).size.width) * 0.06,
+                  size: MediaQuery.of(context).size.height * 0.05,
                   color: AppColors.textColor,
                   isToggled
                       ? (teamAselectedIndex == index ? Icons.do_disturb : null)

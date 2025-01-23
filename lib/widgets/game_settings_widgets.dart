@@ -12,35 +12,31 @@ class DifSelection extends StatefulWidget {
 }
 
 class DifSelectionState extends State<DifSelection> {
-  final List<String> difSelectionList = ["łatwe", "średnie", "trudne"];
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(difSelectionList.length, (index) {
         return GestureDetector(
           onTap: () {
             setState(() {
-              if (selectedDifs.contains(index)) {
-                if (selectedDifs.length > 1) {
-                  selectedDifs.remove(index);
+              if (aviableDifs.contains(index)) {
+                if (aviableDifs.length > 1) {
+                  aviableDifs.remove(index);
                 }
               } else {
-                selectedDifs.add(index);
+                aviableDifs.add(index);
               }
             });
             playAudio(optionChoiceSound);
           },
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.014),
-            child: Text(
-              difSelectionList[index],
-              style: AppTypography.descBoldStyle.copyWith(
-                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.022,
-                color: selectedDifs.contains(index) ? AppColors.primaryColor : AppColors.textColor,
-              ),
+          child: Text(
+            difSelectionList[index],
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.036,
+              color: aviableDifs.contains(index) ? AppColors.primaryColor : AppColors.textColor,
             ),
           ),
         );
@@ -58,42 +54,37 @@ class SkipSelection extends StatefulWidget {
 }
 
 class SkipSelectionState extends State<SkipSelection> {
-  final List<String> timeSelectionList = ["0", "5", "10", "15", "∞"];
+  
   int selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: List.generate(timeSelectionList.length, (index) {
+      children: List.generate(skipSelectionList.length, (index) {
         return GestureDetector(
           onTap: () {
             setState(() {
               if (selectedIndex != index) {
                 selectedIndex = index;
-                aviableSelections = 0;
-                aviableSelections = _getSelectionValue(timeSelectionList[index]);
+                aviableSkips = _getSelectionValue(skipSelectionList[index]);
               }
             });
            playAudio(optionChoiceSound);
           },
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.015,
-            ),
-            child: Text(
-              timeSelectionList[index],
-              style: AppTypography.descBoldStyle.copyWith(
-                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.024,
-                color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
-              ),
+          child: Text(
+            skipSelectionList[index],
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.036,
+              color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
             ),
           ),
         );
       }),
     );
   }
+
   // Exception for infinity:
   int _getSelectionValue(String selection) {
     if (selection == "∞") {
@@ -112,13 +103,13 @@ class TimeSelection extends StatefulWidget {
 }
 
 class TimeSelectionState extends State<TimeSelection> {
-  final List<String> timeSelectionList = ["00:10", "00:30", "1:00", "2:00", "3:00"];
-  int selectedIndex = 3;
+  
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(timeSelectionList.length, (index) {
         return GestureDetector(
@@ -126,27 +117,23 @@ class TimeSelectionState extends State<TimeSelection> {
             setState(() {
               if (selectedIndex != index) {
                 selectedIndex = index;
-                selectedTime = _getTimeInSeconds(timeSelectionList[index]);
+                aviableTime = _getTimeInSeconds(timeSelectionList[index]);
               }
             });
             playAudio(optionChoiceSound);
           },
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.005,
-            ),
-            child: Text(
-              timeSelectionList[index],
-              style: AppTypography.descBoldStyle.copyWith(
-                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.02,
-                color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
-              ),
+          child: Text(
+            timeSelectionList[index],
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.036,
+              color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
             ),
           ),
         );
       }),
     );
   }
+
   // Change time to seconds format:
   int _getTimeInSeconds(String time) {
     final parts = time.split(':');
@@ -165,13 +152,13 @@ class PointsSelection extends StatefulWidget {
 }
 
 class PointsSelectionState extends State<PointsSelection> {
-  final List<int> pointsSelectionList = [10, 20, 30, 40, 50];
+
   int selectedIndex = 1;
  
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(pointsSelectionList.length, (index) {
         return GestureDetector(
@@ -184,16 +171,11 @@ class PointsSelectionState extends State<PointsSelection> {
             });
           playAudio(optionChoiceSound);
           },
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.015,
-            ),
-            child: Text(
-              pointsSelectionList[index].toString(),
-              style: AppTypography.descBoldStyle.copyWith(
-                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.024,
-                color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
-              ),
+          child: Text(
+            pointsSelectionList[index].toString(),
+             style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.036,
+              color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
             ),
           ),
         );
@@ -215,8 +197,8 @@ class OptionsSelectionContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: (MediaQuery.of(context).size.width) * 0.9,
-          height: (MediaQuery.of(context).size.height) * 0.06,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.06,
           decoration: BoxDecoration(
             color: AppColors.accentColor,
             border: Border.all(color: Colors.transparent),
@@ -229,7 +211,7 @@ class OptionsSelectionContainer extends StatelessWidget {
             child: Text(
               optionsText,
               style: AppTypography.descBoldStyle.copyWith(
-                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.022,
+                fontSize: MediaQuery.of(context).size.height * 0.032,
               ),
             ),
           ),
@@ -248,7 +230,7 @@ class OptionsSelectionContainer extends StatelessWidget {
               BoxShadow(
                 color: Colors.black,
                 blurRadius: 2,
-                offset: Offset(0, 4),
+                offset: Offset(0, 5),
               ),
             ],
           ),
@@ -275,20 +257,17 @@ class NextSettingsButton extends StatelessWidget {
         elevation: WidgetStateProperty.all(10.0), 
         shadowColor: WidgetStateProperty.all(Colors.black), 
         padding: WidgetStateProperty.all(EdgeInsets.zero),
-        minimumSize: WidgetStateProperty.all(Size(
+        fixedSize: WidgetStateProperty.all(Size(
           MediaQuery.of(context).size.width * 0.9,
           MediaQuery.of(context).size.height * 0.08,
         )),
-        maximumSize: WidgetStateProperty.all(Size(
-          MediaQuery.of(context).size.width * 0.95,
-          MediaQuery.of(context).size.height * 0.1,
-        )),
+
         backgroundColor: WidgetStateProperty.all(AppColors.accentColor),
         shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
       ),
-      child: Icon(Icons.arrow_forward, size: 40, color: AppColors.textColor),
+      child: Icon(Icons.arrow_forward, size: MediaQuery.of(context).size.height * 0.05, color: AppColors.textColor),
     );
   }
 }

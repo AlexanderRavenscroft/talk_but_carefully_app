@@ -28,53 +28,42 @@ class GameScreen extends StatelessWidget {
       ),
       // BODY
       body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Selected Difficulties: $selectedDifs",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-          Text(
-            "Available Selections: $aviableSelections",
-            style: TextStyle(fontSize:26, color: Colors.white),
-          ),
-          Text(
-            "Selected Time: $selectedTime",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-          Text(
-            "Available Points: $aviablePoints",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-          Text(
-            "Team A Name: $teamAName",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-          Text(
-            "Team B Name: $teamBName",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-          Text(
-            "Team A Players: ${playersA.join(', ')}",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-          Text(
-            "Team B Players: ${playersB.join(', ')}",
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-           Text(
-            "Team A Color: $teamAselectedIndex",
-            style: TextStyle(fontSize: 16, color: Colors.white),
-          ),
-          Text(
-            "Team B Color: $teamBselectedIndex",
-            style: TextStyle(fontSize: 16, color: Colors.white),
-          ),
-        ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Define a MediaQuery-based font size
+            Builder(
+              builder: (context) {
+
+                // Reusable method to build styled text widgets
+                Widget buildText(String content, {double fontSize = 30}) {
+                  return Text(
+                    content,
+                    style: TextStyle(fontSize: fontSize, color: Colors.white),
+                  );
+                }
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildText("Selected Difficulties: $aviableDifs"),
+                    buildText("Available Skips: $aviableSkips"),
+                    buildText("Selected Time: $aviableTime"),
+                    buildText("Available Points: $aviablePoints"),
+                    buildText("Team A Name: $teamAName"),
+                    buildText("Team B Name: $teamBName"),
+                    buildText("Team A Players: ${playersA.join(', ')}"),
+                    buildText("Team B Players: ${playersB.join(', ')}"),
+                    buildText("Team A Color: $teamAselectedIndex"),
+                    buildText("Team B Color: $teamBselectedIndex"),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 }

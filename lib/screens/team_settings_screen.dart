@@ -79,7 +79,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
                 ],
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Team A name input
@@ -113,14 +113,12 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
               ),
             ),
           ),
-          
 
           Positioned.fill(
             top: (MediaQuery.of(context).size.height) * 0.14,
             child:  PlayerListScreen(players: isToggled ? playersB : playersA),
           ),
-
-          
+    
           Align(
             alignment: Alignment.centerRight,
             child:  ColorPickerWidget(

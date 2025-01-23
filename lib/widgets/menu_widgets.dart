@@ -3,6 +3,7 @@ import 'package:gadajaleostroznie/logic/globals.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
+
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {
   final String buttonText;
@@ -20,12 +21,11 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
   return ElevatedButton(
     style: ButtonStyle(
-      padding: WidgetStateProperty.all(EdgeInsets.zero), 
-      minimumSize: WidgetStateProperty.all(Size(
-        MediaQuery.of(context).size.width * 0.54,
-        MediaQuery.of(context).size.height * 0.1,
-      )),
-      maximumSize: WidgetStateProperty.all(Size(
+      padding: WidgetStateProperty.all(
+        EdgeInsets.symmetric(vertical: 0, horizontal: MediaQuery.of(context).size.width * 0.03,
+        ),
+      ), 
+      fixedSize: WidgetStateProperty.all(Size(
         MediaQuery.of(context).size.width * 0.56,
         MediaQuery.of(context).size.height * 0.12,
       )),
@@ -39,26 +39,21 @@ class MenuButton extends StatelessWidget {
     onPressed: onPressed,
     
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.02, right: 0), 
-          child: Icon(
-            buttonIcon,
-            color: AppColors.textColor,
-            size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.028,
-          ),
+        Icon(
+          buttonIcon,
+          color: AppColors.textColor,
+          size: MediaQuery.of(context).size.height * 0.042,
         ),
+        
         Expanded(
           child: Center(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                buttonText,
-                style: AppTypography.buttonStyle.copyWith(
-                  fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.028,
-                ),
+            child: Text(
+              buttonText,
+              style: AppTypography.buttonStyle.copyWith(
+                fontSize: MediaQuery.of(context).size.height * 0.042,
               ),
             ),
           ),
@@ -77,19 +72,22 @@ class RulesDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: AppColors.neutralColor,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
          children: [
            Icon(
              Icons.rule_sharp, 
              color: AppColors.textColor,
-             size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03),
-
+             size: MediaQuery.of(context).size.height * 0.042,
+           ),
+           SizedBox(
+            width: MediaQuery.of(context).size.height * 0.01,
+           ),
            Text(
              "ZASADY",
              textAlign: TextAlign.center,
              style: AppTypography.descBoldStyle.copyWith(
-             fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
+             fontSize: MediaQuery.of(context).size.height * 0.042,
              ),
            ),
          ]
@@ -107,7 +105,7 @@ class RulesDialog extends StatelessWidget {
             """,
           textAlign: TextAlign.justify,
           style: AppTypography.descStyle.copyWith(
-          fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.015,
+          fontSize: MediaQuery.of(context).size.height * 0.024,
             ),
           ),
         ),
@@ -130,7 +128,7 @@ class RulesDialog extends StatelessWidget {
             "DOBRA!",
           textAlign: TextAlign.center,
           style: AppTypography.descBoldStyle.copyWith(
-          fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.025,
+          fontSize: MediaQuery.of(context).size.height * 0.042,
             ),
           ),
         ),
@@ -139,8 +137,7 @@ class RulesDialog extends StatelessWidget {
   }
 }
 
-
-
+//====================[RULES POPUP]====================
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});
 
@@ -149,27 +146,31 @@ class SettingsDialog extends StatefulWidget {
 }
 
 class SettingsDialogState extends State<SettingsDialog> {
+  
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.neutralColor,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
-            Icons.settings, 
+            Icons.settings_outlined, 
             color: AppColors.textColor,
-            size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03),
-
+            size: MediaQuery.of(context).size.height * 0.042,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.height * 0.01,
+          ),
           Text(
             "USTAWIENIA",
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
-            fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
+            fontSize: MediaQuery.of(context).size.height * 0.04,
             ),
           ),
-        ]
+        ],
       ),
       content: SizedBox(
         width: double.maxFinite,
@@ -182,12 +183,12 @@ class SettingsDialogState extends State<SettingsDialog> {
               spacing: 10,
               children: [
                 Text(
-                "Dźwięk:",
-                textAlign: TextAlign.justify,
-                style: AppTypography.descBoldStyle.copyWith(
-                fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.02,)
+                  "Dźwięk:",
+                  textAlign: TextAlign.justify,
+                  style: AppTypography.descBoldStyle.copyWith(
+                  fontSize: (MediaQuery.of(context).size.height * 0.042),
+                  ),
                 ),
-
                 TextButton(
                   onPressed: () {
                     setState(() {
@@ -243,7 +244,7 @@ class SettingsDialogState extends State<SettingsDialog> {
             "POWRÓT",
           textAlign: TextAlign.center,
           style: AppTypography.descBoldStyle.copyWith(
-          fontSize: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.025,
+          fontSize: MediaQuery.of(context).size.height * 0.042,
             ),
           ),
         ),
