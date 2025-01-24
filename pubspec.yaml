@@ -39,6 +39,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   device_preview: ^1.2.0
+  package_info_plus: ^8.1.3
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,9 @@ flutter:
     - assets/sounds/correct-answer.mp3
     - assets/sounds/wrong-answer.mp3
     - assets/sounds/option-switch.mp3
+    - assets/texts/authors.txt
+    - assets/texts/rules.txt
+    - assets/texts/agreement.txt
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

@@ -5,30 +5,39 @@ import 'package:provider/provider.dart';
 import 'logic/provider.dart'; // Import your provider file
 import 'services/preference_service.dart';
 import 'package:device_preview/device_preview.dart';
-void main() {
-  // Ensure Flutter bindings are initialized before accessing native code or preferences
-  WidgetsFlutterBinding.ensureInitialized();
-  PreferenceService.loadPreferences();
+import 'package:gadajaleostroznie/logic/globals.dart';
 
-  // Set preferred orientations before running the app
-  SystemChrome.setPreferredOrientations([
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter bindings are initialized
+
+  // Load preferences and app version concurrently
+  await Future.wait([
+    PreferenceService.loadPreferences(),  // Load preferences before the app starts
+    getAppVersion(),                      // Initialize app version and build number
+  ]);
+
+  // Set preferred orientations
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((_) {
-    runApp(
-      DevicePreview(
+  ]);
+
+  // Load all text files concurrently using Future.wait
+  await Future.wait(textFiles.keys.map((path) => loadText(path)));
+
+  // Once everything is done, run the app
+  runApp(
+    DevicePreview(
       enabled: true,
-         builder: (context) => MultiProvider(
-           providers: [
-             // Adding both the ToggleProvider and RefreshProvider
-             ChangeNotifierProvider(create: (context) => ToggleProvider()),
-             ChangeNotifierProvider(create: (context) => RefreshProvider()),
-          ],
-          child: MyApp(), // Your main app widget
-        ),
+      builder: (context) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => ToggleProvider()),
+          ChangeNotifierProvider(create: (context) => RefreshProvider()),
+        ],
+        child: MyApp(), // Pass loaded text to the app
       ),
-    );
-  });
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,13 +50,11 @@ class MyApp extends StatelessWidget {
       title: 'Gadaj ale Ostrożnie',
       home: SplashScreen(),
       builder: (context, child) {
-        // Use LayoutBuilder to manage layout adaptability
         return LayoutBuilder(
           builder: (context, constraints) {
-            // You can use constraints to adjust the layout for different screen sizes
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(
-                textScaler: TextScaler.noScaling, // Set a fixed text scale factor if necessary
+                textScaler: TextScaler.noScaling, // Disable system font scaling
               ),
               child: child!,
             );

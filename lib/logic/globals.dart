@@ -1,6 +1,38 @@
 // ==================[ALL GLOBALS VARIABLES FILE]==================
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:flutter/services.dart' show rootBundle;
+
+// ==================[GET APP VERSION && BUILD]==================
+String appVersion = '';
+String buildNumber = '';
+
+Future<void> getAppVersion() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    appVersion = packageInfo.version;
+    buildNumber = packageInfo.buildNumber;
+}
+
+const String agreementTextPath = "texts/agreement.txt";
+const String authorsTextPath = "texts/authors.txt";
+const String rulesTextPath = "texts/rules.txt";
+
+Map<String, String> textFiles = {
+  'texts/agreement.txt': '', 
+  'texts/authors.txt': '',   
+  'texts/rules.txt': '',    
+};
+
+
+
+// Generic function to load text into the map
+Future<void> loadText(String path) async {
+  if (textFiles.containsKey(path)) {
+    String text = await rootBundle.loadString('assets/$path');
+    textFiles[path] = text; // Update the map with the loaded text
+  } 
+}
 
 // ==================[SETTINGS VARIABLES]==================
 const List<String> difSelectionList = ["łatwe", "średnie", "trudne"];

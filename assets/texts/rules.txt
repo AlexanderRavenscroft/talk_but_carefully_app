@@ -1,0 +1,5 @@
+Gra toczy się w dwóch drużynach, które rywalizują ze sobą o punkty. Drużyna, która pierwsza zdobędzie limit punktów wygrywa!
+Jedna osoba z drużyny odgadujących staje się opisywaczem. Jej zadaniem jest naprowadzenie reszty swojej drużyny na konkretne hasło widoczne na ekranie.
+Podczas opisywania nie można używać zkazanych słów. Słowa te są wymienione pod głównym hasłem i trzeba ich unikać za wszelką cenę! Każda drużyna ma ograniczony czas na odgadnięcie jak największej liczby haseł.
+Drużyna zdobywa punkt za każde odgadnięte hasło. Uwaga – jeśli opisujący użyje zakazanego słowa, traci punkt!
+Wybrany gracz drużyny przeciwnej kontroluje, czy zakazane słowa nie są wypowiedziane.
