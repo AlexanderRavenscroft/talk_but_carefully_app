@@ -19,41 +19,38 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return ElevatedButton(
-    style: ButtonStyle(
-      padding: WidgetStateProperty.all(
-        EdgeInsets.symmetric(vertical: 0, horizontal: MediaQuery.of(context).size.width * 0.04,
+    return ElevatedButton(
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all(
+          EdgeInsets.symmetric(vertical: 0, horizontal: MediaQuery.of(context).size.width * 0.04),
         ),
-      ), 
-      fixedSize: WidgetStateProperty.all(Size(
-        MediaQuery.of(context).size.width * 0.56,
-        MediaQuery.of(context).size.height * 0.12,
-      )),
-      backgroundColor: WidgetStateProperty.all(AppColors.accentColor),
-      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
-      elevation: WidgetStateProperty.all(10.0), 
-      shadowColor: WidgetStateProperty.all(Colors.black), 
-    ),
-    onPressed: onPressed,
-    
-    child: Row(
-      children: [
-        Icon(
-          buttonIcon,
-          color: AppColors.textColor,
-          size: MediaQuery.of(context).size.height * 0.042,
-        ),
-        
-        Expanded(
-          child: Center(
-            child: Text(
-              buttonText,
-              style: AppTypography.buttonStyle.copyWith(
-                fontSize: MediaQuery.of(context).size.height * 0.042,
+        fixedSize: WidgetStateProperty.all(Size(
+          MediaQuery.of(context).size.width * 0.56,
+          MediaQuery.of(context).size.height * 0.12,
+        )),
+        backgroundColor: WidgetStateProperty.all(AppColors.accentColor),
+        shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
+        elevation: WidgetStateProperty.all(10.0),
+        shadowColor: WidgetStateProperty.all(Colors.black),
+      ),
+      onPressed: onPressed,
+      child: Row(
+        children: [
+          Icon(
+            buttonIcon,
+            color: AppColors.textColor,
+            size: MediaQuery.of(context).size.height * 0.042,
+          ),
+          Expanded(
+            child: Center(
+              child: Text(
+                buttonText,
+                style: AppTypography.buttonStyle.copyWith(
+                  fontSize: MediaQuery.of(context).size.height * 0.042,
+                ),
               ),
             ),
           ),
-        ),
         ],
       ),
     );
@@ -63,7 +60,18 @@ class MenuButton extends StatelessWidget {
 
 //====================[RULES POPUP]====================
 class RulesDialog extends StatelessWidget {
-  const RulesDialog({super.key});
+  final IconData headingIcon;
+  final String headingText;
+  final String contentText;
+  final String buttonText;
+
+  const RulesDialog({
+    super.key, 
+    required this.headingIcon, 
+    required this.headingText, 
+    required this.contentText, 
+    required this.buttonText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +83,7 @@ class RulesDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
-            Icons.rule_sharp, 
+            headingIcon, 
             color: AppColors.textColor,
             size: MediaQuery.of(context).size.height * 0.042,
           ),
@@ -83,20 +91,20 @@ class RulesDialog extends StatelessWidget {
             width: MediaQuery.of(context).size.height * 0.01,
           ),
           Text(
-            "ZASADY",
+            headingText, 
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.042,
             ),
           ),
-        ]
+        ],
       ),
       // Content: Instructions for the game
       content: SizedBox(
         width: double.maxFinite,
         child: SingleChildScrollView(
           child: Text(
-             textFiles['texts/authors.txt'] ?? 'Ładowanie tekstu...',
+            textFiles[contentText] ?? 'Ładowanie tekstu...',
             textAlign: TextAlign.justify,
             style: AppTypography.descStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.024,
@@ -117,7 +125,7 @@ class RulesDialog extends StatelessWidget {
             playAudio(tapSound);
           },
           child: Text(
-            "DOBRA!",
+            buttonText,
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.042,
@@ -185,7 +193,6 @@ class SettingsDialogState extends State<SettingsDialog> {
               },
               settingsButtonIcon: soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
             ),
-
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
             // License & Agreement section
@@ -195,11 +202,17 @@ class SettingsDialogState extends State<SettingsDialog> {
               settingsButtonPress: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) {
-                    return TosDialog();
+                  barrierColor: Colors.black.withValues(alpha: 0.3), // Remove double-dialog stacking background problem
+                  builder: (BuildContext context) {    
+                    return RulesDialog(
+                      headingIcon: Icons.assignment,
+                      headingText: "REGULAMIN",
+                      buttonText: "ZGADZAM SIĘ",
+                      contentText: 'texts/agreement.txt',
+                    );
                   },
                 );
-                playAudio(tapSound);
+                playAudio(optionSwitchSound);
               },
               settingsButtonIcon: Icons.rule,
             ),
@@ -212,11 +225,17 @@ class SettingsDialogState extends State<SettingsDialog> {
               settingsButtonPress: () {
                 showDialog(
                   context: context,
+                  barrierColor: Colors.black.withValues(alpha: 0.3), // Remove double-dialog stacking background problem
                   builder: (BuildContext context) {
-                    return AuthorsDialog();
+                    return RulesDialog(
+                      headingIcon: Icons.face,
+                      headingText: "AUTORZY",
+                      buttonText: "FAJNIE",
+                      contentText: 'texts/authors.txt',
+                    );
                   },
                 );
-                playAudio(tapSound);
+                playAudio(optionSwitchSound);
               },
               settingsButtonIcon: Icons.face,
             ),
@@ -268,7 +287,7 @@ class SettingsText extends StatelessWidget {
     return Text(
       settingsTextString,
       style: AppTypography.descBoldStyle.copyWith(
-        fontSize: MediaQuery.of(context).size.height * 0.04,
+        fontSize: MediaQuery.of(context).size.height * 0.034,
       ),
     );
   }
@@ -307,141 +326,3 @@ class SettingsButton extends StatelessWidget {
   }
 }
 //====================[/Reusable widget for buttons]====================
-
-//====================[RULES POPUP]====================
-class AuthorsDialog extends StatelessWidget {
-  const AuthorsDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: AppColors.neutralColor,
-      // Title Row with icon and text
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.rule_sharp, 
-            color: AppColors.textColor,
-            size: MediaQuery.of(context).size.height * 0.042,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Text(
-            "ZASADY",
-            textAlign: TextAlign.center,
-            style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.042,
-            ),
-          ),
-        ]
-      ),
-      // Content: Instructions for the game
-      content: SizedBox(
-        width: double.maxFinite,
-        child: SingleChildScrollView(
-          child: Text(
-             textFiles['texts/authors.txt'] ?? 'Ładowanie tekstu...',
-            textAlign: TextAlign.justify,
-            style: AppTypography.descStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.024,
-            ),
-          ),
-        ),
-      ),
-      // Actions: Button to close the dialog
-      actions: [
-        TextButton(
-          style: TextButton.styleFrom(
-            minimumSize: Size(double.maxFinite, MediaQuery.of(context).size.height * 0.075),
-            backgroundColor: AppColors.accentColor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-            playAudio(tapSound);
-          },
-          child: Text(
-            "FAJNIE!",
-            textAlign: TextAlign.center,
-            style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.042,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-//====================[/RULES POPUP]====================
-
-//====================[RULES POPUP]====================
-class TosDialog extends StatelessWidget {
-  const TosDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: AppColors.neutralColor,
-      // Title Row with icon and text
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.rule_sharp, 
-            color: AppColors.textColor,
-            size: MediaQuery.of(context).size.height * 0.042,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.height * 0.01,
-          ),
-          Text(
-            "ZASADY",
-            textAlign: TextAlign.center,
-            style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.042,
-            ),
-          ),
-        ]
-      ),
-      // Content: Instructions for the game
-      content: SizedBox(
-        width: double.maxFinite,
-        child: SingleChildScrollView(
-          child: Text(
-             textFiles['texts/agreement.txt'] ?? 'Ładowanie tekstu...',
-            textAlign: TextAlign.justify,
-            style: AppTypography.descStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.024,
-            ),
-          ),
-        ),
-      ),
-      // Actions: Button to close the dialog
-      actions: [
-        TextButton(
-          style: TextButton.styleFrom(
-            minimumSize: Size(double.maxFinite, MediaQuery.of(context).size.height * 0.075),
-            backgroundColor: AppColors.accentColor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-            playAudio(tapSound);
-          },
-          child: Text(
-            "FAJNIE!",
-            textAlign: TextAlign.center,
-            style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.042,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-//====================[/RULES POPUP]====================

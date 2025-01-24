@@ -58,10 +58,15 @@ class MenuScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return RulesDialog();
-                  },
-                );
-                playAudio(tapSound);
+                  return RulesDialog(
+                    headingIcon: Icons.rule_sharp,
+                    headingText: "ZASADY",
+                    buttonText: "DOBRA",
+                    contentText: 'texts/rules.txt',
+                  );
+                },
+              );
+              playAudio(tapSound);
               },
             )
           ),
@@ -75,6 +80,7 @@ class MenuScreen extends StatelessWidget {
               onPressed: () {
                 showDialog(
                   context: context,
+                //   barrierColor: Colors.black.withValues(alpha: 0.6), 
                   builder: (BuildContext context) {
                     return SettingsDialog();
                   },
