@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'logic/provider.dart'; // Import your provider file
 import 'services/preference_service.dart';
 import 'package:device_preview/device_preview.dart';
-
 void main() {
   // Ensure Flutter bindings are initialized before accessing native code or preferences
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +17,7 @@ void main() {
   ]).then((_) {
     runApp(
       DevicePreview(
-      enabled: false,
+      enabled: true,
          builder: (context) => MultiProvider(
            providers: [
              // Adding both the ToggleProvider and RefreshProvider
@@ -37,17 +36,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final view = View.of(context); // Use View.of to get the view context
-
-    return MediaQuery(
-      data: MediaQueryData.fromView(view).copyWith(
-        textScaler: TextScaler.noScaling, // Fix text scale factor to ignore system settings
-      ),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Gadaj ale Ostrożnie',
-        home: SplashScreen(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Gadaj ale Ostrożnie',
+      home: SplashScreen(),
+      builder: (context, child) {
+        // Use LayoutBuilder to manage layout adaptability
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            // You can use constraints to adjust the layout for different screen sizes
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: TextScaler.noScaling, // Set a fixed text scale factor if necessary
+              ),
+              child: child!,
+            );
+          },
+        );
+      },
     );
   }
 }

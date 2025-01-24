@@ -28,28 +28,30 @@ class AppTypography {
 
   static const TextStyle headingStyle = TextStyle(
     fontFamily: primaryFont,
+    fontWeight: FontWeight.normal, 
+    fontStyle: FontStyle.normal,   
     color: AppColors.textColor,
     letterSpacing: 3,
   );
-  static const TextStyle subHeadingStyle = TextStyle(
-    fontFamily: primaryFont,
-    color: AppColors.neutralColor,
-    letterSpacing: 1,
-  );
+
   static const TextStyle buttonStyle = TextStyle(
     fontFamily: primaryFont,
+    fontWeight: FontWeight.normal, 
+    fontStyle: FontStyle.normal,   
     color: AppColors.textColor,
   );
 
   static const TextStyle descStyle = TextStyle(
     fontFamily: secondaryFont,
     fontWeight: FontWeight.normal,
+    fontStyle: FontStyle.normal,   
     color: AppColors.textColor,
   );
 
   static const TextStyle descBoldStyle= TextStyle(
     fontFamily: secondaryFont,
     fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,   
     color: AppColors.textColor,
   );
 }

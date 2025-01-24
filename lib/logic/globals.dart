@@ -15,15 +15,14 @@ int aviableTime = 120;
 final List<int> pointsSelectionList = [10, 20, 30, 40, 50];
 int aviablePoints = 20;
 
-
-Color teamAColor = TeamColors.teamRedColor; 
-Color teamBColor = TeamColors.teamBlueColor; 
+String teamAName = "Drużyna I";
+String teamBName = "Drużyna II";
 
 List<String> playersA = [];
 List<String> playersB = [];
 
-String teamAName = "Drużyna I";
-String teamBName = "Drużyna II";
+Color teamAColor = TeamColors.teamRedColor; 
+Color teamBColor = TeamColors.teamBlueColor; 
 
 int teamAselectedIndex = 0;
 int teamBselectedIndex = 1;

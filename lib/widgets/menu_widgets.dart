@@ -22,7 +22,7 @@ class MenuButton extends StatelessWidget {
   return ElevatedButton(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(
-        EdgeInsets.symmetric(vertical: 0, horizontal: MediaQuery.of(context).size.width * 0.03,
+        EdgeInsets.symmetric(vertical: 0, horizontal: MediaQuery.of(context).size.width * 0.04,
         ),
       ), 
       fixedSize: WidgetStateProperty.all(Size(
@@ -30,17 +30,13 @@ class MenuButton extends StatelessWidget {
         MediaQuery.of(context).size.height * 0.12,
       )),
       backgroundColor: WidgetStateProperty.all(AppColors.accentColor),
-      shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-      ),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
       elevation: WidgetStateProperty.all(10.0), 
       shadowColor: WidgetStateProperty.all(Colors.black), 
     ),
     onPressed: onPressed,
     
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Icon(
           buttonIcon,
@@ -63,35 +59,39 @@ class MenuButton extends StatelessWidget {
     );
   }
 }
+//====================[/MENU BUTTON]====================
 
 //====================[RULES POPUP]====================
 class RulesDialog extends StatelessWidget {
   const RulesDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.neutralColor,
+      // Title Row with icon and text
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-         children: [
-           Icon(
-             Icons.rule_sharp, 
-             color: AppColors.textColor,
-             size: MediaQuery.of(context).size.height * 0.042,
-           ),
-           SizedBox(
+        children: [
+          Icon(
+            Icons.rule_sharp, 
+            color: AppColors.textColor,
+            size: MediaQuery.of(context).size.height * 0.042,
+          ),
+          SizedBox(
             width: MediaQuery.of(context).size.height * 0.01,
-           ),
-           Text(
-             "ZASADY",
-             textAlign: TextAlign.center,
-             style: AppTypography.descBoldStyle.copyWith(
-             fontSize: MediaQuery.of(context).size.height * 0.042,
-             ),
-           ),
-         ]
+          ),
+          Text(
+            "ZASADY",
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.042,
+            ),
+          ),
+        ]
       ),
+      // Content: Instructions for the game
       content: SizedBox(
         width: double.maxFinite,
         child: SingleChildScrollView(
@@ -103,22 +103,20 @@ class RulesDialog extends StatelessWidget {
             Drużyna zdobywa punkt za każde odgadnięte hasło. Uwaga – jeśli opisujący użyje zakazanego słowa, traci punkt!
             Wybrany gracz drużyny przeciwnej kontroluje, czy zakazane słowa nie są wypowiedziane.
             """,
-          textAlign: TextAlign.justify,
-          style: AppTypography.descStyle.copyWith(
-          fontSize: MediaQuery.of(context).size.height * 0.024,
+            textAlign: TextAlign.justify,
+            style: AppTypography.descStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.024,
             ),
           ),
         ),
       ),
+      // Actions: Button to close the dialog
       actions: [
         TextButton(
           style: TextButton.styleFrom(
-          minimumSize: Size(
-             double.maxFinite,
-             MediaQuery.of(context).size.height * 0.075,
-          ),
-          backgroundColor: AppColors.accentColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            minimumSize: Size(double.maxFinite, MediaQuery.of(context).size.height * 0.075),
+            backgroundColor: AppColors.accentColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -126,9 +124,9 @@ class RulesDialog extends StatelessWidget {
           },
           child: Text(
             "DOBRA!",
-          textAlign: TextAlign.center,
-          style: AppTypography.descBoldStyle.copyWith(
-          fontSize: MediaQuery.of(context).size.height * 0.042,
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.042,
             ),
           ),
         ),
@@ -136,8 +134,9 @@ class RulesDialog extends StatelessWidget {
     );
   }
 }
+//====================[/RULES POPUP]====================
 
-//====================[RULES POPUP]====================
+//====================[SETTINGS POPUP]====================
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});
 
@@ -146,11 +145,11 @@ class SettingsDialog extends StatefulWidget {
 }
 
 class SettingsDialogState extends State<SettingsDialog> {
-  
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.neutralColor,
+      // Title Row with settings icon and text
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -167,11 +166,12 @@ class SettingsDialogState extends State<SettingsDialog> {
             "USTAWIENIA",
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
-            fontSize: MediaQuery.of(context).size.height * 0.04,
+              fontSize: MediaQuery.of(context).size.height * 0.04,
             ),
           ),
         ],
       ),
+      // Content: Sound toggle option
       content: SizedBox(
         width: double.maxFinite,
         child: Column(
@@ -186,16 +186,16 @@ class SettingsDialogState extends State<SettingsDialog> {
                   "Dźwięk:",
                   textAlign: TextAlign.justify,
                   style: AppTypography.descBoldStyle.copyWith(
-                  fontSize: (MediaQuery.of(context).size.height * 0.042),
+                    fontSize: (MediaQuery.of(context).size.height * 0.042),
                   ),
                 ),
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      soundToggled = !soundToggled; 
+                      soundToggled = !soundToggled;
                       PreferenceService.savePreference('soundToggled', soundToggled);
                     });
-                  playAudio(optionSwitchSound);
+                    playAudio(optionSwitchSound);
                   },
                   style: ButtonStyle(
                     fixedSize: WidgetStateProperty.all(Size(
@@ -209,11 +209,10 @@ class SettingsDialogState extends State<SettingsDialog> {
                         side: BorderSide(
                           color: AppColors.textColor,
                           width: 2,
-                        )
                         ),
+                      ),
                     ),
                   ),
-
                   child: Icon(
                     soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
                     color: AppColors.textColor,
@@ -225,16 +224,13 @@ class SettingsDialogState extends State<SettingsDialog> {
           ],
         ),
       ),
-
+      // Actions: Button to close the dialog
       actions: [
         TextButton(
           style: TextButton.styleFrom(
-          minimumSize: Size(
-             double.maxFinite,
-             MediaQuery.of(context).size.height * 0.075,
-          ),
-          backgroundColor: AppColors.accentColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            minimumSize: Size(double.maxFinite, MediaQuery.of(context).size.height * 0.075),
+            backgroundColor: AppColors.accentColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -242,9 +238,9 @@ class SettingsDialogState extends State<SettingsDialog> {
           },
           child: Text(
             "POWRÓT",
-          textAlign: TextAlign.center,
-          style: AppTypography.descBoldStyle.copyWith(
-          fontSize: MediaQuery.of(context).size.height * 0.042,
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.042,
             ),
           ),
         ),
@@ -252,3 +248,4 @@ class SettingsDialogState extends State<SettingsDialog> {
     );
   }
 }
+//====================[/SETTINGS POPUP]====================
