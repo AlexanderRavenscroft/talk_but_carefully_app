@@ -95,7 +95,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
                     ),
                   ),
                   
-                  TeamSwitch(teamSelectedColor: isToggled ? teamBColor : teamAColor),
+                  TeamSwitch(),
                   
                   // Team B name input
                   SizedBox(
@@ -121,10 +121,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
     
           Align(
             alignment: Alignment.centerRight,
-            child:  ColorPickerWidget(
-              teamSelectedColor: isToggled ? teamBColor : teamAColor, 
-              selectedIndex: isToggled ? teamBselectedIndex : teamAselectedIndex,
-            ),
+            child:  ColorPickerWidget(),
           ),
         ],
       ),

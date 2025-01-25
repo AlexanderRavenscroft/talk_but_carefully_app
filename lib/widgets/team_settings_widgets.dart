@@ -54,14 +54,14 @@ class ColorBGState extends State<ColorBG> {
 
 // Widget to toggle between teams
 class TeamSwitch extends StatefulWidget {
-  const TeamSwitch({super.key, required this.teamSelectedColor});
-  final Color teamSelectedColor;
+  const TeamSwitch({super.key});
 
   @override
   State<TeamSwitch> createState() => TeamSwitchState();
 }
 
 class TeamSwitchState extends State<TeamSwitch> {
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<RefreshProvider>(
@@ -69,8 +69,8 @@ class TeamSwitchState extends State<TeamSwitch> {
         return Transform.scale(
           scale: MediaQuery.of(context).size.height * 0.0018,
           child: Switch(
-            activeColor: widget.teamSelectedColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
-            inactiveThumbColor: widget.teamSelectedColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            activeColor: teamBColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveThumbColor: teamAColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
             inactiveTrackColor: teamAColor,
             activeTrackColor: teamBColor,
             value: context.watch<ToggleProvider>().isToggled,
@@ -291,9 +291,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
 
 // Widget for selecting team colors
 class ColorPickerWidget extends StatefulWidget {
-  ColorPickerWidget({super.key, required this.teamSelectedColor, required this.selectedIndex});
-  Color teamSelectedColor;
-  int selectedIndex;
+  const ColorPickerWidget({super.key});
 
   @override
   State<ColorPickerWidget> createState() => ColorPickerWidgetState();
@@ -301,13 +299,7 @@ class ColorPickerWidget extends StatefulWidget {
 
 class ColorPickerWidgetState extends State<ColorPickerWidget> {
 
-  final List<Color> colorSelectionList = [
-    TeamColors.teamRedColor,
-    TeamColors.teamBlueColor,
-    TeamColors.teamGreenColor,
-    TeamColors.teamPurpleColor,
-    TeamColors.teamYellowColor,
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -331,14 +323,12 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                   if (teamBselectedIndex != index && teamAselectedIndex != index) {
                     teamBselectedIndex = index;
                     teamBColor = colorSelectionList[index];
-                    widget.selectedIndex = index;
                     playAudio(optionChoiceSound);
                   }
                 } else {
                   if (teamAselectedIndex != index && teamBselectedIndex != index) {
                     teamAselectedIndex = index;
                     teamAColor = colorSelectionList[index];
-                    widget.selectedIndex = index;
                     playAudio(optionChoiceSound);
                   }
                 }
@@ -353,11 +343,13 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                   boxShadow: [BoxShadow(color: Colors.black,  blurRadius: 2)],
                   borderRadius: BorderRadius.all(Radius.circular(10)),               
                   border: Border.all(
-                    color: widget.selectedIndex == index
-                        ? (isToggled
-                            ? (teamAselectedIndex == index ? Colors.transparent : AppColors.textColor)
-                            : (teamBselectedIndex == index ? Colors.transparent : AppColors.textColor))
-                        : Colors.transparent,
+                    color: (isToggled
+                        ? (teamBselectedIndex == index 
+                            ? AppColors.textColor
+                            : Colors.transparent)
+                        : (teamAselectedIndex == index 
+                            ? AppColors.textColor
+                            : Colors.transparent)),
                     width: 2,
                   ),
                 ),
