@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/logic/globals.dart';
 
+//====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
   final Color teamColor;
   const TeamBackground({super.key, required this.teamColor});
@@ -19,8 +20,9 @@ class TeamBackgroundState extends State<TeamBackground> {
     );
   }
 }
+//====================[/TEAM COLOR BACKGROUND]====================
 
-
+//====================[TEAM POINTS DISPLAY]====================
 class TeamPointsDisplay extends StatelessWidget {
   final int teamPoints;
   final Color teamColor;
@@ -36,7 +38,9 @@ class TeamPointsDisplay extends StatelessWidget {
     );
   }
 }
+//====================[/TEAM POINTS DISPLAY]====================
 
+//====================[ROUND TIMER]====================
 class TimerWidget extends StatefulWidget {
   const TimerWidget({super.key});
 
@@ -45,6 +49,7 @@ class TimerWidget extends StatefulWidget {
 }
 
 class TimerWidgetState extends State<TimerWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -55,3 +60,51 @@ class TimerWidgetState extends State<TimerWidget> {
     );
   }
 }
+//====================[/ROUND TIMER]====================
+
+//====================[TEXT BEFORE QUESTION SCREEN]====================
+class PlayerEncounterText extends StatefulWidget {
+  const PlayerEncounterText({super.key});
+
+  @override
+  State<PlayerEncounterText> createState() => PlayerEncounterTextState();
+}
+
+class PlayerEncounterTextState extends State<PlayerEncounterText> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('RUNDA ${currentRound.toString()}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
+        Text('TERAZ GRAJĄ: ${isTeamBlueTurn ? teamBName : teamAName}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
+        Text((getEncounterMessage()), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
+        Text(currentGameScreen.toString(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
+      ],
+    );
+  }
+}
+//====================[/TEXT BEFORE QUESTION SCREEN]====================
+
+//====================[QUESTION CARD SCREEN]====================
+class QuestionScreen extends StatefulWidget {
+  const QuestionScreen({super.key});
+
+  @override
+  State<QuestionScreen> createState() => QuestionScreenState();
+}
+
+class QuestionScreenState extends State<QuestionScreen> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Pytanka tutaj",
+      style: AppTypography.descBoldStyle.copyWith(
+        color: AppColors.textColor, 
+        fontSize:  MediaQuery.of(context).size.height * 0.06),
+    );
+  }
+}
+//====================[/QUESTION CARD SCREEN]====================

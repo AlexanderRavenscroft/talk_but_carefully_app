@@ -24,15 +24,16 @@ void main() async {
 
   // Load all text files concurrently using Future.wait
   await Future.wait(textFiles.keys.map((path) => loadText(path)));
-
+  await loadEncounterMessages();
   // Once everything is done, run the app
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ToggleProvider()),
           ChangeNotifierProvider(create: (context) => RefreshProvider()),
+          ChangeNotifierProvider(create: (context) => GameToggleProvider()),
         ],
         child: MyApp(), // Pass loaded text to the app
       ),
