@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/logic/globals.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:provider/provider.dart';
-import 'package:gadajaleostroznie/logic/provider.dart';
-import 'package:gadajaleostroznie/screens/game_screen.dart';
-import '../services/audio_service.dart';
+import 'package:gadajaleostroznie/core/provider.dart';
+import 'package:gadajaleostroznie/presentation/game/game_screen.dart';
+import '../../services/audio_service.dart';
 
 // Widget for the team name text input
 class TeamNameTextArea extends StatelessWidget {

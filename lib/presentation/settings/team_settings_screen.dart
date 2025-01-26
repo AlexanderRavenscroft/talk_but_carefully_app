@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/logic/globals.dart';
-import 'package:gadajaleostroznie/widgets/team_settings_widgets.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/presentation/settings/team_settings_widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:gadajaleostroznie/logic/provider.dart'; 
+import 'package:gadajaleostroznie/core/provider.dart'; 
 
 class TeamSettingsScreen extends StatefulWidget {
   const TeamSettingsScreen({super.key});

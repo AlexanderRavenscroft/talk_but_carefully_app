@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gadajaleostroznie/widgets/game_settings_widgets.dart';
-import 'package:gadajaleostroznie/screens/team_settings_screen.dart';
+import 'package:gadajaleostroznie/presentation/settings/game_settings_widgets.dart';
+import 'package:gadajaleostroznie/presentation/settings/team_settings_screen.dart';
 
 class GameSettingsScreen extends StatelessWidget {
   const GameSettingsScreen({super.key});

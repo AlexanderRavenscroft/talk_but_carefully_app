@@ -1,6 +1,7 @@
+// Audio manager for whole app. Edit the actual sounds in core/globals.dart
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gadajaleostroznie/logic/globals.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();

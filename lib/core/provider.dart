@@ -1,5 +1,7 @@
+// Global provider to refresh: team_settings_screen and game_screen
 import 'package:flutter/material.dart';
 
+///  Refresh WHOLE team_settings_screen when switch is toggled
 class ToggleProvider extends ChangeNotifier {
   bool _isToggled = false;
 
@@ -7,20 +9,20 @@ class ToggleProvider extends ChangeNotifier {
 
   void toggle() {
     _isToggled = !_isToggled;
-    notifyListeners(); // Notify listeners to rebuild widgets
+    notifyListeners(); 
   }
 }
 
+/// Refresh team_settings_screen when color is choosen
 class RefreshProvider extends ChangeNotifier {
   void refreshPage() {
     notifyListeners(); // Notify widgets that the page needs to rebuild
   }
 }
 
+/// Refresh game screen
 class GameToggleProvider extends ChangeNotifier {
-
   void toggleTurns() {
-    
-    notifyListeners(); // Notify listeners to rebuild widgets
+    notifyListeners();
   }
 }

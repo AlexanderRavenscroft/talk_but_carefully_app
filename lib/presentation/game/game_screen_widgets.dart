@@ -1,6 +1,8 @@
+// This file contains widgets for Game Screen
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/logic/globals.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/core/setup.dart';
 
 //====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
@@ -22,6 +24,7 @@ class TeamBackgroundState extends State<TeamBackground> {
 }
 //====================[/TEAM COLOR BACKGROUND]====================
 
+
 //====================[TEAM POINTS DISPLAY]====================
 class TeamPointsDisplay extends StatelessWidget {
   final int teamPoints;
@@ -34,11 +37,13 @@ class TeamPointsDisplay extends StatelessWidget {
       teamPoints.toString(),
       style: AppTypography.descBoldStyle.copyWith(
         color: teamColor, 
-        fontSize:  MediaQuery.of(context).size.height * 0.06),
+        fontSize:  MediaQuery.of(context).size.height * 0.06,
+      ),
     );
   }
 }
 //====================[/TEAM POINTS DISPLAY]====================
+
 
 //====================[ROUND TIMER]====================
 class TimerWidget extends StatefulWidget {
@@ -56,11 +61,13 @@ class TimerWidgetState extends State<TimerWidget> {
       "12:34",
       style: AppTypography.descBoldStyle.copyWith(
         color: AppColors.textColor, 
-        fontSize:  MediaQuery.of(context).size.height * 0.06),
+        fontSize:  MediaQuery.of(context).size.height * 0.06,
+      ),
     );
   }
 }
 //====================[/ROUND TIMER]====================
+
 
 //====================[TEXT BEFORE QUESTION SCREEN]====================
 class PlayerEncounterText extends StatefulWidget {
@@ -78,7 +85,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('RUNDA ${currentRound.toString()}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
-        Text('TERAZ GRAJĄ: ${isTeamBlueTurn ? teamBName : teamAName}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
+        Text('TERAZ GRAJĄ: ${isTeamBTurn ? teamBName : teamAName}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
         Text((getEncounterMessage()), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
         Text(currentGameScreen.toString(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
       ],
@@ -86,6 +93,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
   }
 }
 //====================[/TEXT BEFORE QUESTION SCREEN]====================
+
 
 //====================[QUESTION CARD SCREEN]====================
 class QuestionScreen extends StatefulWidget {
@@ -103,7 +111,8 @@ class QuestionScreenState extends State<QuestionScreen> {
       "Pytanka tutaj",
       style: AppTypography.descBoldStyle.copyWith(
         color: AppColors.textColor, 
-        fontSize:  MediaQuery.of(context).size.height * 0.06),
+        fontSize:  MediaQuery.of(context).size.height * 0.06,
+      ),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gadajaleostroznie/logic/globals.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
+import 'package:gadajaleostroznie/core/setup.dart';
 
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {

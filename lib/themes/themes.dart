@@ -1,4 +1,7 @@
+// All colors and tyography is defined here
 import 'package:flutter/material.dart';
+
+//==================[COLORS]==================
 class AppColors{
   static const Color primaryColor = Color(0xFFE64833);
   static const Color textColor = Color(0xFF0D1137);
@@ -13,15 +16,9 @@ class TeamColors{
   static const Color teamGreenColor = Color(0xFF6DE5B5);
   static const Color teamPurpleColor = Color(0xFFAA54EA);
   static const Color teamYellowColor = Color(0xFFF3D677);
-
-  static const Color teamRedMatchingColor = Color(0xFFF19C9E);
-  static const Color teamBlueMatchingColor= Color(0xFFA4D7F9);
-  static const Color teamGreenMatchingColor = Color(0xFFA7F1D1);
-  static const Color teamPurpleMatchingColor = Color(0xFFC99BEB);
-  static const Color teamYellowMatchingColor = Color(0xFFF9E69E);
 }
 
-
+//==================[TYPOGRAPHY]==================
 class AppTypography {
   static const String primaryFont = 'Bangers';
   static const String secondaryFont = 'SF Pro Display';

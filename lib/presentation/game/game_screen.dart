@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/logic/globals.dart';
-import 'package:gadajaleostroznie/widgets/game_screen_widgets.dart';
-import 'package:gadajaleostroznie/logic/provider.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/presentation/game/game_screen_widgets.dart';
+import 'package:gadajaleostroznie/core/provider.dart';
 import 'package:provider/provider.dart';
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
@@ -33,7 +33,7 @@ class GameScreen extends StatelessWidget {
        Positioned.fill(
         child: Consumer<GameToggleProvider>(
           builder: (context, gameToggleProvider, child) {
-            return TeamBackground(teamColor: isTeamBlueTurn ? teamBColor : teamAColor,);
+            return TeamBackground(teamColor: isTeamBTurn ? teamBColor : teamAColor,);
           },
         ),
         ),
@@ -45,7 +45,7 @@ class GameScreen extends StatelessWidget {
             currentGameScreen++;
             if(currentGameScreen == 2 || currentGameScreen == 4)
             {
-              isTeamBlueTurn = !isTeamBlueTurn;     
+              isTeamBTurn = !isTeamBTurn;     
               
                           
             }
@@ -71,5 +71,13 @@ class GameScreen extends StatelessWidget {
       ],
      ),
     );
+  }
+}
+void assignCurrentPlayers() {
+  if(playersB.isNotEmpty) {
+    currentTeamBPlayer = (currentTeamBPlayer + 1) % playersB.length;
+  }
+  if(playersA.isNotEmpty){
+    currentTeamAPlayer = (currentTeamAPlayer + 1) % playersA.length;
   }
 }
