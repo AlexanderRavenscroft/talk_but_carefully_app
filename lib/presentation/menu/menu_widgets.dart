@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
-import 'package:gadajaleostroznie/core/setup.dart';
+
 
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {
@@ -59,6 +60,7 @@ class MenuButton extends StatelessWidget {
 }
 //====================[/MENU BUTTON]====================
 
+
 //====================[RULES POPUP]====================
 class RulesDialog extends StatelessWidget {
   final IconData headingIcon;
@@ -78,7 +80,8 @@ class RulesDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.neutralColor,
-      // Title Row with icon and text
+
+      // Title: Row with icon and text
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,7 +103,8 @@ class RulesDialog extends StatelessWidget {
           ),
         ],
       ),
-      // Content: Instructions for the game
+
+      // Content: Long scrollable text
       content: SizedBox(
         width: double.maxFinite,
         child: SingleChildScrollView(
@@ -113,7 +117,7 @@ class RulesDialog extends StatelessWidget {
           ),
         ),
       ),
-      // Actions: Button to close the dialog
+      // Actions: Single button to close the dialog
       actions: [
         TextButton(
           style: TextButton.styleFrom(
@@ -140,14 +144,14 @@ class RulesDialog extends StatelessWidget {
 //====================[/RULES POPUP]====================
 
 //====================[SETTINGS POPUP]====================
-class SettingsDialog extends StatefulWidget {
-  const SettingsDialog({super.key});
+class SettingsMenu extends StatefulWidget {
+  const SettingsMenu({super.key});
 
   @override
-  State<SettingsDialog> createState() => SettingsDialogState();
+  State<SettingsMenu> createState() => SettingsMenuState();
 }
 
-class SettingsDialogState extends State<SettingsDialog> {
+class SettingsMenuState extends State<SettingsMenu> {
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +184,6 @@ class SettingsDialogState extends State<SettingsDialog> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             // Sound section
             SettingsText(settingsTextString: "Dźwięk:"),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -194,6 +197,7 @@ class SettingsDialogState extends State<SettingsDialog> {
               },
               settingsButtonIcon: soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
             ),
+
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
             // License & Agreement section
@@ -217,6 +221,7 @@ class SettingsDialogState extends State<SettingsDialog> {
               },
               settingsButtonIcon: Icons.rule,
             ),
+
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
             // Authors section
@@ -240,6 +245,7 @@ class SettingsDialogState extends State<SettingsDialog> {
               },
               settingsButtonIcon: Icons.face,
             ),
+
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
             // App version and build number
@@ -252,7 +258,7 @@ class SettingsDialogState extends State<SettingsDialog> {
           ],
         ),
       ),
-      // Actions: Button to close the dialog
+      // Actions: Button to settings menu
       actions: [
         TextButton(
           style: TextButton.styleFrom(
@@ -278,7 +284,7 @@ class SettingsDialogState extends State<SettingsDialog> {
 }
 //====================[/SETTINGS POPUP]====================
 
-//====================[Reusable widget for text labels]====================
+//====================[Reusable widget for settings text labels]====================
 class SettingsText extends StatelessWidget {
   final String settingsTextString;
   const SettingsText({super.key, required this.settingsTextString});
@@ -295,7 +301,7 @@ class SettingsText extends StatelessWidget {
 }
 //====================[/Reusable widget for text labels]====================
 
-//====================[Reusable widget for buttons]====================
+//====================[Reusable widget for settings buttons]====================
 class SettingsButton extends StatelessWidget {
   final VoidCallback settingsButtonPress;
   final IconData settingsButtonIcon;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
+import 'package:gadajaleostroznie/core/taboo_api.dart';
 
 //====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
@@ -108,10 +109,10 @@ class QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Pytanka tutaj",
+      '$title \n$forbiddenWords\n$difficulty',
       style: AppTypography.descBoldStyle.copyWith(
         color: AppColors.textColor, 
-        fontSize:  MediaQuery.of(context).size.height * 0.06,
+        fontSize:  MediaQuery.of(context).size.height * 0.03,
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import required for SystemChrome
+import 'package:device_preview/device_preview.dart';
 import 'presentation/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'core/provider.dart'; // Import your provider file
 import 'services/preference_service.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 
 void main() async {

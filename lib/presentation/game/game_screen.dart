@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
-import 'package:gadajaleostroznie/presentation/game/game_screen_widgets.dart';
 import 'package:gadajaleostroznie/core/provider.dart';
-import 'package:provider/provider.dart';
+import 'package:gadajaleostroznie/presentation/game/game_screen_widgets.dart';
+import 'package:gadajaleostroznie/core/taboo_api.dart';
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
 
@@ -41,6 +42,7 @@ class GameScreen extends StatelessWidget {
         top: 200,
         child: ElevatedButton(
           onPressed: () {
+            fetchData();
             Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
             currentGameScreen++;
             if(currentGameScreen == 2 || currentGameScreen == 4)

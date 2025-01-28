@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/presentation/settings/game_settings_widgets.dart';
 import 'package:gadajaleostroznie/presentation/settings/team_settings_screen.dart';
 
@@ -10,8 +10,6 @@ class GameSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
-
       // APPBAR
       appBar: AppBar(
         backgroundColor: AppColors.accentColor,

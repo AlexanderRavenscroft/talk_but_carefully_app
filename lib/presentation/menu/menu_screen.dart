@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dart';
-import 'package:gadajaleostroznie/services/audio_service.dart';
-import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gadajaleostroznie/presentation/menu/menu_widgets.dart';
+import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
+import 'package:gadajaleostroznie/presentation/menu/menu_widgets.dart';
+import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -42,7 +42,9 @@ class MenuScreen extends StatelessWidget {
               buttonIcon: Icons.gamepad_rounded,
               buttonText: "GRAJ",
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const GameSettingsScreen()));
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => const GameSettingsScreen()
+                ));
                 playAudio(tapSound);
               },
             ),
@@ -68,7 +70,7 @@ class MenuScreen extends StatelessWidget {
               );
               playAudio(tapSound);
               },
-            )
+            ),
           ),
 
           // SETTINGS BUTTON
@@ -80,9 +82,8 @@ class MenuScreen extends StatelessWidget {
               onPressed: () {
                 showDialog(
                   context: context,
-                //   barrierColor: Colors.black.withValues(alpha: 0.6), 
                   builder: (BuildContext context) {
-                    return SettingsDialog();
+                    return SettingsMenu();
                   },
                 );
                 playAudio(tapSound);
