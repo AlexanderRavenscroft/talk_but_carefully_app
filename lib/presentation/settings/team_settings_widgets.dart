@@ -45,7 +45,7 @@ class ColorBGState extends State<ColorBG> {
       builder: (context, refreshProvider, child) {
         bool isToggled = context.watch<ToggleProvider>().isToggled;
         return Container(
-          color: isToggled ? teamBColor : teamAColor,
+          color: isToggled ? TeamSettings.teamBColor : TeamSettings.teamAColor,
         );
       },
     );
@@ -69,17 +69,17 @@ class TeamSwitchState extends State<TeamSwitch> {
         return Transform.scale(
           scale: MediaQuery.of(context).size.height * 0.0018,
           child: Switch(
-            activeColor: teamBColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
-            inactiveThumbColor: teamAColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
-            inactiveTrackColor: teamAColor,
-            activeTrackColor: teamBColor,
+            activeColor: TeamSettings.teamBColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveThumbColor: TeamSettings.teamAColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveTrackColor: TeamSettings.teamAColor,
+            activeTrackColor: TeamSettings.teamBColor,
             value: context.watch<ToggleProvider>().isToggled,
             onChanged: (value) {
               setState(() {
                 context.read<ToggleProvider>().toggle();
               });
               refreshProvider.refreshPage();
-              playAudio(optionSwitchSound);
+              playAudio(GameSounds.optionSwitchSound);
             },
           ),
         );
@@ -125,9 +125,9 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             spacing: 16,
             children: [
               ElevatedButton(
-                onPressed: () {Navigator.pop(context); playAudio(tapSound);},
+                onPressed: () {Navigator.pop(context); playAudio(GameSounds.tapSound);},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:isToggled ? teamBColor : teamAColor,
+                  backgroundColor:isToggled ? TeamSettings.teamBColor : TeamSettings.teamAColor,
                   elevation: 6,
                   padding: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height * 0.02), horizontal: (MediaQuery.of(context).size.width * 0.05)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))), 
@@ -144,10 +144,10 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     widget.players[index] = _controller.text;
                   });
                   Navigator.pop(context);
-                  playAudio(optionSwitchSound);
+                  playAudio(GameSounds.optionSwitchSound);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:isToggled ? teamBColor : teamAColor,
+                  backgroundColor:isToggled ? TeamSettings.teamBColor : TeamSettings.teamAColor,
                   elevation: 6,
                   padding: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height * 0.02), horizontal: (MediaQuery.of(context).size.width * 0.05)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
@@ -211,7 +211,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                             ),
                             IconButton(
                               icon: Icon(Icons.cancel, color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036),
-                              onPressed: () {_removePlayer(index); playAudio(tapSound);},
+                              onPressed: () {_removePlayer(index); playAudio(GameSounds.tapSound);},
                             ),
                           ],
                         ),
@@ -234,7 +234,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {_addPlayer(); playAudio(tapSound);},
+                onPressed: () {_addPlayer(); playAudio(GameSounds.tapSound);},
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
                   shadowColor: WidgetStateProperty.all(Colors.black),
@@ -260,7 +260,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => GameScreen()),
                   );
-                  playAudio(tapSound);
+                  playAudio(GameSounds.tapSound);
                 },
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10.0),
@@ -298,8 +298,16 @@ class ColorPickerWidget extends StatefulWidget {
 }
 
 class ColorPickerWidgetState extends State<ColorPickerWidget> {
-
-
+  final List<Color> colorSelectionList = [
+    TeamColors.teamRedColor,
+    TeamColors.teamBlueColor,
+    TeamColors.teamGreenColor,
+    TeamColors.teamPurpleColor,
+    TeamColors.teamYellowColor,
+  ];
+  // Default colorPikcer option choice for each team
+  int teamAselectedIndex = 0; 
+  int teamBselectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -322,14 +330,14 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                 if (isToggled) {
                   if (teamBselectedIndex != index && teamAselectedIndex != index) {
                     teamBselectedIndex = index;
-                    teamBColor = colorSelectionList[index];
-                    playAudio(optionChoiceSound);
+                    TeamSettings.teamBColor = colorSelectionList[index];
+                    playAudio(GameSounds.optionChoiceSound);
                   }
                 } else {
                   if (teamAselectedIndex != index && teamBselectedIndex != index) {
                     teamAselectedIndex = index;
-                    teamAColor = colorSelectionList[index];
-                    playAudio(optionChoiceSound);
+                    TeamSettings.teamAColor = colorSelectionList[index];
+                    playAudio(GameSounds.optionChoiceSound);
                   }
                 }
                 Provider.of<RefreshProvider>(context, listen: false).refreshPage();

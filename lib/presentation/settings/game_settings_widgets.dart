@@ -12,6 +12,7 @@ class DifSelection extends StatefulWidget {
 }
 
 class DifSelectionState extends State<DifSelection> {
+  final List<String> difSelectionList = ["łatwe", "średnie", "trudne"];
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +23,21 @@ class DifSelectionState extends State<DifSelection> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              if (aviableDifs.contains(index)) {
-                if (aviableDifs.length > 1) {
-                  aviableDifs.remove(index);
+              if (GameSettings.aviableDifs.contains(index)) {
+                if (GameSettings.aviableDifs.length > 1) {
+                  GameSettings.aviableDifs.remove(index);
                 }
               } else {
-                aviableDifs.add(index);
+                GameSettings.aviableDifs.add(index);
               }
             });
-            playAudio(optionChoiceSound);
+            playAudio(GameSounds.optionChoiceSound);
           },
           child: Text(
             difSelectionList[index],
             style: AppTypography.descBoldStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.036,
-              color: aviableDifs.contains(index) ? AppColors.primaryColor : AppColors.textColor,
+              color: GameSettings.aviableDifs.contains(index) ? AppColors.primaryColor : AppColors.textColor,
             ),
           ),
         );
@@ -54,7 +55,7 @@ class SkipSelection extends StatefulWidget {
 }
 
 class SkipSelectionState extends State<SkipSelection> {
-  
+  final List<String> skipSelectionList = ["0", "5", "10", "15", "∞"];
   int selectedIndex = 1;
 
   @override
@@ -68,10 +69,10 @@ class SkipSelectionState extends State<SkipSelection> {
             setState(() {
               if (selectedIndex != index) {
                 selectedIndex = index;
-                aviableSkips = _getSelectionValue(skipSelectionList[index]);
+                GameSettings.aviableSkips = _getSelectionValue(skipSelectionList[index]);
               }
             });
-           playAudio(optionChoiceSound);
+           playAudio(GameSounds.optionChoiceSound);
           },
           child: Text(
             skipSelectionList[index],
@@ -103,7 +104,7 @@ class TimeSelection extends StatefulWidget {
 }
 
 class TimeSelectionState extends State<TimeSelection> {
-  
+  final List<String> timeSelectionList = ["00:10", "1:00", "2:00", "3:00"];
   int selectedIndex = 0;
 
   @override
@@ -117,10 +118,10 @@ class TimeSelectionState extends State<TimeSelection> {
             setState(() {
               if (selectedIndex != index) {
                 selectedIndex = index;
-                aviableTime = _getTimeInSeconds(timeSelectionList[index]);
+                GameSettings.aviableTime = _getTimeInSeconds(timeSelectionList[index]);
               }
             });
-            playAudio(optionChoiceSound);
+            playAudio(GameSounds.optionChoiceSound);
           },
           child: Text(
             timeSelectionList[index],
@@ -152,7 +153,7 @@ class PointsSelection extends StatefulWidget {
 }
 
 class PointsSelectionState extends State<PointsSelection> {
-
+  final List<int> pointsSelectionList = [10, 20, 30, 40, 50];
   int selectedIndex = 1;
  
   @override
@@ -166,10 +167,10 @@ class PointsSelectionState extends State<PointsSelection> {
             setState(() {
               if (selectedIndex != index) {
                 selectedIndex = index;
-                aviablePoints = pointsSelectionList[index];
+                GameSettings.aviablePoints = pointsSelectionList[index];
               }
             });
-          playAudio(optionChoiceSound);
+          playAudio(GameSounds.optionChoiceSound);
           },
           child: Text(
             pointsSelectionList[index].toString(),
@@ -251,7 +252,7 @@ class NextSettingsButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>  nextScreenWidget));
-        playAudio(tapSound);
+        playAudio(GameSounds.tapSound);
       },
       style: ButtonStyle(
         elevation: WidgetStateProperty.all(10.0), 

@@ -45,23 +45,23 @@ String getRandomElement(List<String> list) {
 // Return the whole message (Empty list avoidence thanks to logical statements)
 String fullEncounterMessage = '';
 String getEncounterMessage() {
-  if (playersA.isEmpty && playersB.isEmpty) {
+  if (TeamSettings.teamAPlayers.isEmpty && TeamSettings.teamBPlayers.isEmpty) {
     fullEncounterMessage = 'OBIE LISTY SĄ PUSTE!';
   } 
   else if(isTeamBTurn){
-    if(playersB.isEmpty){
-    fullEncounterMessage = '${getRandomElement(playerEncounterList)} $teamBName';
+    if(TeamSettings.teamBPlayers.isEmpty){
+    fullEncounterMessage = '${getRandomElement(playerEncounterList)} $TeamSettings.teamBName';
     }
     else{
-      fullEncounterMessage= '${getRandomElement(playerEncounterList)} ${isTeamBTurn ? playersB[currentTeamBPlayer] : playersA[currentTeamAPlayer]}!';
+      fullEncounterMessage= '${getRandomElement(playerEncounterList)} ${isTeamBTurn ? TeamSettings.teamBPlayers[currentTeamBPlayer] : TeamSettings.teamAPlayers[currentTeamAPlayer]}!';
     }
   }
   else{
-    if(playersA.isEmpty){
-    fullEncounterMessage = '${getRandomElement(playerEncounterList)} $teamAName';
+    if(TeamSettings.teamAPlayers.isEmpty){
+    fullEncounterMessage = '${getRandomElement(playerEncounterList)} $TeamSettings.teamAName';
     }
     else{
-      fullEncounterMessage= '${getRandomElement(playerEncounterList)} ${isTeamBTurn ? playersB[currentTeamBPlayer] : playersA[currentTeamAPlayer]}!';
+      fullEncounterMessage= '${getRandomElement(playerEncounterList)} ${isTeamBTurn ? TeamSettings.teamBPlayers[currentTeamBPlayer] : TeamSettings.teamAPlayers[currentTeamAPlayer]}!';
     }
   }
   return fullEncounterMessage; 

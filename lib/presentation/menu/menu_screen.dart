@@ -45,7 +45,7 @@ class MenuScreen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) => const GameSettingsScreen()
                 ));
-                playAudio(tapSound);
+                playAudio(GameSounds.tapSound);
               },
             ),
           ),
@@ -68,7 +68,7 @@ class MenuScreen extends StatelessWidget {
                   );
                 },
               );
-              playAudio(tapSound);
+              playAudio(GameSounds.tapSound);
               },
             ),
           ),
@@ -86,7 +86,7 @@ class MenuScreen extends StatelessWidget {
                     return SettingsMenu();
                   },
                 );
-                playAudio(tapSound);
+                playAudio(GameSounds.tapSound);
               },
             )
           ),

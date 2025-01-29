@@ -86,8 +86,8 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('RUNDA ${currentRound.toString()}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
-        Text('TERAZ GRAJĄ: ${isTeamBTurn ? teamBName : teamAName}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
-        Text((getEncounterMessage()), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
+        Text('TERAZ GRAJĄ: ${isTeamBTurn ? TeamSettings.teamBName : TeamSettings.teamAName}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
+        Text(getEncounterMessage(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
         Text(currentGameScreen.toString(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
       ],
     );

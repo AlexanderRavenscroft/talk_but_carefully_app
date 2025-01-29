@@ -8,7 +8,7 @@ class PreferenceService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Load soundToggled preference, default to true
-    soundToggled = prefs.getBool('soundToggled') ?? true;
+    GameSounds.soundToggled = prefs.getBool('soundToggled') ?? true;
 
   }
 

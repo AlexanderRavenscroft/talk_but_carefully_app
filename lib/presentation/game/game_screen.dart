@@ -21,9 +21,9 @@ class GameScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TeamPointsDisplay(teamPoints: teamAPoints, teamColor: teamAColor),
+            TeamPointsDisplay(teamPoints: teamAPoints, teamColor: TeamSettings.teamAColor),
             TimerWidget(),
-            TeamPointsDisplay(teamPoints: teamBPoints,teamColor: teamBColor),
+            TeamPointsDisplay(teamPoints: teamBPoints,teamColor: TeamSettings.teamBColor),
           ],
         ),
       ),
@@ -34,7 +34,7 @@ class GameScreen extends StatelessWidget {
        Positioned.fill(
         child: Consumer<GameToggleProvider>(
           builder: (context, gameToggleProvider, child) {
-            return TeamBackground(teamColor: isTeamBTurn ? teamBColor : teamAColor,);
+            return TeamBackground(teamColor: isTeamBTurn ? TeamSettings.teamBColor : TeamSettings.teamAColor,);
           },
         ),
         ),
@@ -70,16 +70,25 @@ class GameScreen extends StatelessWidget {
           },
         ),
       ),
+       Positioned(
+        top: 400,
+        child: ElevatedButton(
+          onPressed: () {
+
+          },
+          child: null
+        ),
+      ),
       ],
      ),
     );
   }
 }
 void assignCurrentPlayers() {
-  if(playersB.isNotEmpty) {
-    currentTeamBPlayer = (currentTeamBPlayer + 1) % playersB.length;
+  if(TeamSettings.teamBPlayers.isNotEmpty) {
+    currentTeamBPlayer = (currentTeamBPlayer + 1) % TeamSettings.teamBPlayers.length;
   }
-  if(playersA.isNotEmpty){
-    currentTeamAPlayer = (currentTeamAPlayer + 1) % playersA.length;
+  if(TeamSettings.teamAPlayers.isNotEmpty){
+    currentTeamAPlayer = (currentTeamAPlayer + 1) % TeamSettings.teamAPlayers.length;
   }
 }

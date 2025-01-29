@@ -14,8 +14,8 @@ class TeamSettingsScreen extends StatefulWidget {
 
 class TeamSettingsScreenState extends State<TeamSettingsScreen> {
   
-  TextEditingController teamAController = TextEditingController(text: teamAName);
-  TextEditingController teamBController = TextEditingController(text: teamBName);
+  TextEditingController teamAController = TextEditingController(text: TeamSettings.teamAName);
+  TextEditingController teamBController = TextEditingController(text: TeamSettings.teamBName);
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
                       controller: teamAController,
                       onChanged: (newText) {
                         setState(() {
-                          teamAName = newText;
+                          TeamSettings.teamAName = newText;
                         });
                       },
                     ),
@@ -104,7 +104,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
                       controller: teamBController,
                       onChanged: (newText) {
                         setState(() {
-                          teamBName = newText;
+                          TeamSettings.teamBName = newText;
                         });
                       },
                     ),
@@ -116,7 +116,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
 
           Positioned.fill(
             top: (MediaQuery.of(context).size.height) * 0.14,
-            child:  PlayerListScreen(players: isToggled ? playersB : playersA),
+            child:  PlayerListScreen(players: isToggled ? TeamSettings.teamBPlayers : TeamSettings.teamAPlayers),
           ),
     
           Align(

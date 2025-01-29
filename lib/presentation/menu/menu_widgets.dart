@@ -127,7 +127,7 @@ class RulesDialog extends StatelessWidget {
           ),
           onPressed: () {
             Navigator.of(context).pop();
-            playAudio(tapSound);
+            playAudio(GameSounds.tapSound);
           },
           child: Text(
             buttonText,
@@ -190,12 +190,12 @@ class SettingsMenuState extends State<SettingsMenu> {
             SettingsButton(
               settingsButtonPress: () {
                 setState(() {
-                  soundToggled = !soundToggled;
-                  PreferenceService.savePreference('soundToggled', soundToggled);
+                  GameSounds.soundToggled = !GameSounds.soundToggled;
+                  PreferenceService.savePreference('soundToggled', GameSounds.soundToggled);
                 });
-                playAudio(optionSwitchSound);
+                playAudio(GameSounds.optionSwitchSound);
               },
-              settingsButtonIcon: soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
+              settingsButtonIcon: GameSounds.soundToggled ? Icons.volume_up_rounded : Icons.volume_off,
             ),
 
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -217,7 +217,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                     );
                   },
                 );
-                playAudio(optionSwitchSound);
+                playAudio(GameSounds.optionSwitchSound);
               },
               settingsButtonIcon: Icons.rule,
             ),
@@ -241,7 +241,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                     );
                   },
                 );
-                playAudio(optionSwitchSound);
+                playAudio(GameSounds.optionSwitchSound);
               },
               settingsButtonIcon: Icons.face,
             ),
@@ -268,7 +268,7 @@ class SettingsMenuState extends State<SettingsMenu> {
           ),
           onPressed: () {
             Navigator.of(context).pop();
-            playAudio(tapSound);
+            playAudio(GameSounds.tapSound);
           },
           child: Text(
             "POWRÓT",

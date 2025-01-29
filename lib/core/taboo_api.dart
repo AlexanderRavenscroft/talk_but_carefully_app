@@ -31,7 +31,7 @@ Map<Set<int>, Uri> urlsMap = {
 };
 
   // Debugging: Print aviableDifs and urlsMap keys
-  debugPrint('aviableDifs: $aviableDifs');
+  debugPrint('aviableDifs: $GameSettings.aviableDifs');
   debugPrint('urlsMap keys: ${urlsMap.keys}');
 
   // Create an equality object for deep equality checks
@@ -40,7 +40,7 @@ Map<Set<int>, Uri> urlsMap = {
   //Uri? matchingUrl;
 
   for (Set<int> key in urlsMap.keys) {
-    if (setEquality.equals(key, aviableDifs)) {
+    if (setEquality.equals(key, GameSettings.aviableDifs)) {
       url = urlsMap[key] ?? allDiffsUrl;
       break;
     }

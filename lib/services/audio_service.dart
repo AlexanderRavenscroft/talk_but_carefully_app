@@ -10,7 +10,7 @@ class AudioService {
 
   // Centralized method to play audio only if soundToggled is true
   Future<void> playSound(String filePath) async {
-    if (!soundToggled) {
+    if (!GameSounds.soundToggled) {
       debugPrint('Sound is toggled off, not playing: $filePath');
       return; // Return early if sound is off
     }

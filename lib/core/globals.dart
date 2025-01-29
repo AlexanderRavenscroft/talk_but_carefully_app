@@ -3,51 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 
 //==================[SOUNDS]==================
-bool soundToggled = true;
+class GameSounds{
+  static bool soundToggled = true;
 
-const String tapSound = "sounds/button-press.mp3";
-const String optionChoiceSound = "sounds/option-choice.mp3";
-const String optionSwitchSound = "sounds/option-switch.mp3";
+  static const String tapSound = "sounds/button-press.mp3";
+  static const String optionChoiceSound = "sounds/option-choice.mp3";
+  static const String optionSwitchSound = "sounds/option-switch.mp3";
 
-const String correctAnswerSound = "sounds/correct-answer.mp3";
-const String wrongAnswerSound = "sounds/wrong-answer.mp3";
+  static const String correctAnswerSound = "sounds/correct-answer.mp3";
+  static const String wrongAnswerSound = "sounds/wrong-answer.mp3";
+}
 
 //==================[GAME SETTINGS VARIABLES]==================  
-
-//Default values bellow
-const List<String> difSelectionList = ["łatwe", "średnie", "trudne"];
-Set<int> aviableDifs = {0};           
-
-final List<String> skipSelectionList = ["0", "5", "10", "15", "∞"];
-int aviableSkips = 5;                 
-
-final List<String> timeSelectionList = ["00:10", "1:00", "2:00", "3:00"];
-int aviableTime = 120;                
-
-final List<int> pointsSelectionList = [10, 20, 30, 40, 50];
-int aviablePoints = 20;              
+class GameSettings{
+  // Default game settings selection (Must match the defualt selectedIndex)
+  static Set<int> aviableDifs = {0};           
+  static int aviableSkips = 5;                 
+  static int aviableTime = 120;                
+  static int aviablePoints = 20;        
+}
 
 //==================[Team SETTINGS VARIABLES]==================
-String teamAName = "Drużyna I";
-String teamBName = "Drużyna II";
+class TeamSettings{
+  static String teamAName = "Drużyna I";
+  static String teamBName = "Drużyna II";
 
-List<String> playersA = [];
-List<String> playersB = [];
+  static List<String> teamAPlayers = [];
+  static List<String> teamBPlayers = [];
 
-final List<Color> colorSelectionList = [
-  TeamColors.teamRedColor,
-  TeamColors.teamBlueColor,
-  TeamColors.teamGreenColor,
-  TeamColors.teamPurpleColor,
-  TeamColors.teamYellowColor,
-];
-
-// Default selected colors for each team (Must match the default indexes)
-Color teamAColor = TeamColors.teamRedColor; 
-Color teamBColor = TeamColors.teamBlueColor; 
-
-int teamAselectedIndex = 0; 
-int teamBselectedIndex = 1;
+  // Default selected colors for each team (Must match the default indexes)
+  static Color teamAColor = TeamColors.teamRedColor; 
+  static Color teamBColor = TeamColors.teamBlueColor; 
+}
 
 //==================[GAME VARIABLES]==================
 bool isTeamBTurn = false;
