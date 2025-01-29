@@ -45,7 +45,7 @@ class ColorBGState extends State<ColorBG> {
       builder: (context, refreshProvider, child) {
         bool isToggled = context.watch<ToggleProvider>().isToggled;
         return Container(
-          color: isToggled ? TeamSettings.teamBColor : TeamSettings.teamAColor,
+          color: isToggled ? teamB.color : teamA.color,
         );
       },
     );
@@ -69,10 +69,10 @@ class TeamSwitchState extends State<TeamSwitch> {
         return Transform.scale(
           scale: MediaQuery.of(context).size.height * 0.0018,
           child: Switch(
-            activeColor: TeamSettings.teamBColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
-            inactiveThumbColor: TeamSettings.teamAColor == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
-            inactiveTrackColor: TeamSettings.teamAColor,
-            activeTrackColor: TeamSettings.teamBColor,
+            activeColor: teamB.color == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveThumbColor: teamA.color == TeamColors.teamYellowColor ? AppColors.textColor : AppColors.accentColor,
+            inactiveTrackColor: teamA.color,
+            activeTrackColor: teamB.color,
             value: context.watch<ToggleProvider>().isToggled,
             onChanged: (value) {
               setState(() {
@@ -91,7 +91,7 @@ class TeamSwitchState extends State<TeamSwitch> {
 // Screen to manage the list of players
 class PlayerListScreen extends StatefulWidget {
   const PlayerListScreen({super.key, required this.players});
-  final List<String> players;
+  final List<Player> players;
 
   @override
   PlayerListScreenState createState() => PlayerListScreenState();
@@ -102,18 +102,18 @@ class PlayerListScreenState extends State<PlayerListScreen> {
 
   void _addPlayer() {
     setState(() {
-      widget.players.add('Gracz ${widget.players.length + 1}');
+      widget.players.add(Player('Gracz ${widget.players.length + 1}', 0));
     });
   }
 
   void _editPlayer(int index) {
-    _controller.text = widget.players[index];
+    _controller.text = widget.players[index].username;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         bool isToggled = context.watch<ToggleProvider>().isToggled;
         return AlertDialog(
-          title: Text('Wpisz nazwę gracza ${widget.players.length + 1}',
+          title: Text('Wpisz nazwę gracza ${index + 1}',
           style: AppTypography.descStyle),
           content: TextField(
             controller: _controller,
@@ -127,7 +127,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
               ElevatedButton(
                 onPressed: () {Navigator.pop(context); playAudio(GameSounds.tapSound);},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:isToggled ? TeamSettings.teamBColor : TeamSettings.teamAColor,
+                  backgroundColor:isToggled ? teamB.color : teamA.color,
                   elevation: 6,
                   padding: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height * 0.02), horizontal: (MediaQuery.of(context).size.width * 0.05)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))), 
@@ -141,13 +141,13 @@ class PlayerListScreenState extends State<PlayerListScreen> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    widget.players[index] = _controller.text;
+                    widget.players[index] = Player(_controller.text, 0);
                   });
                   Navigator.pop(context);
                   playAudio(GameSounds.optionSwitchSound);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:isToggled ? TeamSettings.teamBColor : TeamSettings.teamAColor,
+                  backgroundColor:isToggled ? teamB.color : teamA.color,
                   elevation: 6,
                   padding: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height * 0.02), horizontal: (MediaQuery.of(context).size.width * 0.05)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
@@ -205,7 +205,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                             GestureDetector(
                             onTap: () {_editPlayer(index);},
                               child: Text(
-                                widget.players[index],
+                                widget.players[index].username,
                                 style: TextStyle(color: AppColors.textColor, fontSize: MediaQuery.of(context).size.height * 0.03),
                               ),
                             ),
@@ -330,13 +330,13 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                 if (isToggled) {
                   if (teamBselectedIndex != index && teamAselectedIndex != index) {
                     teamBselectedIndex = index;
-                    TeamSettings.teamBColor = colorSelectionList[index];
+                    teamB.color = colorSelectionList[index];
                     playAudio(GameSounds.optionChoiceSound);
                   }
                 } else {
                   if (teamAselectedIndex != index && teamBselectedIndex != index) {
                     teamAselectedIndex = index;
-                    TeamSettings.teamAColor = colorSelectionList[index];
+                    teamA.color = colorSelectionList[index];
                     playAudio(GameSounds.optionChoiceSound);
                   }
                 }

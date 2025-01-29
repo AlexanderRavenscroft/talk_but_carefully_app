@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'core/provider.dart'; // Import your provider file
 import 'services/preference_service.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter bindings are initialized
 
@@ -26,6 +25,7 @@ void main() async {
   await Future.wait(textFiles.keys.map((path) => loadText(path)));
   await loadEncounterMessages();
   // Once everything is done, run the app
+  
   runApp(
     DevicePreview(
       enabled: false,

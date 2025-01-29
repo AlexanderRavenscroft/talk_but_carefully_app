@@ -24,17 +24,25 @@ class GameSettings{
 }
 
 //==================[Team SETTINGS VARIABLES]==================
-class TeamSettings{
-  static String teamAName = "Drużyna I";
-  static String teamBName = "Drużyna II";
+class Player{
+  String username;
+  int points;
 
-  static List<String> teamAPlayers = [];
-  static List<String> teamBPlayers = [];
-
-  // Default selected colors for each team (Must match the default indexes)
-  static Color teamAColor = TeamColors.teamRedColor; 
-  static Color teamBColor = TeamColors.teamBlueColor; 
+  Player(this.username, this.points);
 }
+
+class Team{
+  String name;
+  List<Player> players;
+  Color color;
+  int points;
+  int skips;
+
+  Team(this.name, this.players, this.color, this.points, this.skips);
+}
+
+Team teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
+Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
 
 //==================[GAME VARIABLES]==================
 bool isTeamBTurn = false;
@@ -45,12 +53,5 @@ int currentRound = 1;
 
 int currentTeamAPlayer = 0;
 int currentTeamBPlayer = 0;
-
-//==================[POINTS VARIABLES]==================
-int teamAPoints = 0;
-int teamBPoints = 0;
-
-int teamASkips = 0;
-int teamBSkips = 0;
 
 

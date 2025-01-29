@@ -86,7 +86,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('RUNDA ${currentRound.toString()}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
-        Text('TERAZ GRAJĄ: ${isTeamBTurn ? TeamSettings.teamBName : TeamSettings.teamAName}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
+        Text('TERAZ GRAJĄ: ${isTeamBTurn ? teamB.name : teamA.name}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
         Text(getEncounterMessage(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
         Text(currentGameScreen.toString(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
       ],
@@ -109,7 +109,7 @@ class QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '$title \n$forbiddenWords\n$difficulty',
+      '$title \n\n${forbiddenWords.join('\n')}\n\n$difficulty',
       style: AppTypography.descBoldStyle.copyWith(
         color: AppColors.textColor, 
         fontSize:  MediaQuery.of(context).size.height * 0.03,
