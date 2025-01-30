@@ -4,11 +4,10 @@ import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/core/taboo_api.dart';
-
+import 'package:gadajaleostroznie/core/game_logic.dart';
 //====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
-  final Color teamColor;
-  const TeamBackground({super.key, required this.teamColor});
+ const TeamBackground({super.key});
 
   @override
   State<TeamBackground> createState() => TeamBackgroundState();
@@ -19,7 +18,7 @@ class TeamBackgroundState extends State<TeamBackground> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.teamColor,
+      color: currentTeam.color,
     );
   }
 }
@@ -88,7 +87,6 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
         Text('RUNDA ${currentRound.toString()}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
         Text('TERAZ GRAJĄ: ${isTeamBTurn ? teamB.name : teamA.name}', style: AppTypography.descBoldStyle.copyWith(fontSize: 30)),
         Text(getEncounterMessage(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
-        Text(currentGameScreen.toString(), style: AppTypography.descBoldStyle.copyWith(fontSize: 20)),
       ],
     );
   }

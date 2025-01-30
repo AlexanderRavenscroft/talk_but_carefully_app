@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/core/game_logic.dart';
 import 'package:provider/provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
@@ -12,26 +13,28 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // APPBAR
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.12),
-        child: Container(
+  appBar: PreferredSize(
+    preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.12),
+    child: Consumer<GameToggleProvider>(
+      builder: (context, gameToggleProvider, child) {
+        return Container(
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color: AppColors.textColor,
                 blurRadius: 10,
-                offset: Offset(0, 2), 
+                offset: Offset(0, 2),
               ),
             ],
           ),
           child: AppBar(
             toolbarHeight: MediaQuery.of(context).size.height * 0.12,
-            backgroundColor: AppColors.neutralColor, 
+            backgroundColor: AppColors.neutralColor,
             elevation: 0,
             automaticallyImplyLeading: false,
             title: Center(
               child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
                   TimerWidget(),
@@ -40,8 +43,10 @@ class GameScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
+    ),
+  ),
    
       // BODY
      body: Stack(
@@ -50,75 +55,49 @@ class GameScreen extends StatelessWidget {
        Positioned.fill(
         child: Consumer<GameToggleProvider>(
           builder: (context, gameToggleProvider, child) {
-            return TeamBackground(teamColor: isTeamBTurn ? teamB.color : teamA.color);
+            return TeamBackground();
           },
         ),
         ),
        Positioned(
-        top: 200,
+        top: 400,
         child: ElevatedButton(
           onPressed: () {
-            fetchData();
+            
+            nextScreen();
             Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-            currentGameScreen++;
-            if(currentGameScreen == 2 || currentGameScreen == 4)
-            {
-              isTeamBTurn = !isTeamBTurn;     
-              
-                          
-            }
-            // End of turn
-            if(currentGameScreen > 4)
-            { 
-              assignCurrentPlayers();
-              currentGameScreen = 1;
-              currentRound++;
-            }
           },
-          child: null
+          child: Icon(Icons.arrow_forward_sharp,size: 40),
         ),
       ),
       Center(child: Consumer<GameToggleProvider>(
           builder: (context, gameToggleProvider, child) {
-            return (currentGameScreen==1 || currentGameScreen==3) 
+            return (currentScreen == Screen.encounter) 
             ? PlayerEncounterText()
             : QuestionScreen();
           },
         ),
       ),
        Positioned(
-        top: 400,
+        top: 520,
         child: ElevatedButton(
-          onPressed: () {
-            if(isTeamBTurn)
-            {
-              teamB.points++;
-              teamB.players[currentTeamBPlayer].points++;
-              for (var player in teamB.players) {
-                debugPrint("${player.username}: ${player.points} points");
-              }
-            }
-            else{
-              teamA.points++;
-              teamA.players[currentTeamAPlayer].points++;
-              for (var player in teamA.players) {
-                debugPrint("${player.username}: ${player.points} points");
-              }
-            }
-          },
-          child: null
+         onPressed: () {
+addPoints();
+        },
+          child: Icon(Icons.plus_one,size: 40),
+        ),
+      ),
+             Positioned(
+        top: 590,
+        child: ElevatedButton(
+         onPressed: () {
+removePoints();
+        },
+          child: Icon(Icons.exposure_minus_1_outlined,size: 40),
         ),
       ),
       ],
      ),
     );
-  }
-}
-void assignCurrentPlayers() {
-  if(teamB.players.isNotEmpty) {
-    currentTeamBPlayer = (currentTeamBPlayer + 1) % teamB.players.length;
-  }
-  if(teamA.players.isNotEmpty){
-    currentTeamAPlayer = (currentTeamAPlayer + 1) % teamA.players.length;
   }
 }

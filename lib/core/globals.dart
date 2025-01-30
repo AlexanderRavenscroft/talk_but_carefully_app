@@ -29,6 +29,8 @@ class Player{
   int points;
 
   Player(this.username, this.points);
+  
+
 }
 
 class Team{
@@ -45,13 +47,14 @@ Team teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
 Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
 
 //==================[GAME VARIABLES]==================
-bool isTeamBTurn = false;
 
-int currentGameScreen = 1;
 
 int currentRound = 1;
 
-int currentTeamAPlayer = 0;
-int currentTeamBPlayer = 0;
 
+int currentPlayerIndex = 0;
+enum Screen {encounter, question}
+Screen currentScreen = Screen.encounter;
+bool isTeamBTurn = false;
+Team currentTeam = teamA;
 
