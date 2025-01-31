@@ -10,7 +10,7 @@ Map<Team, int> teamPlayerIndexes = {
 String fullEncounterMessage = '';
 String getEncounterMessage() {
   if (currentTeam.players.isEmpty) {
-    return '${getRandomElement(playerEncounterList)} ${currentTeam.name}';
+    return '${getRandomElement(playerEncounterList)} ${currentTeam.name}!';
   }
 
   int index = teamPlayerIndexes[currentTeam]!;  // Get the current player index for the team

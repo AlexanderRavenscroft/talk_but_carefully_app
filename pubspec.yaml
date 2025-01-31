@@ -96,6 +96,9 @@ flutter:
      fonts:
        - asset: assets/fonts/SFPRODISPLAYREGULAR.OTF
        - asset: assets/fonts/SFPRODISPLAYBOLD.OTF
+   - family: MyFlutterApp
+     fonts:
+       - asset: assets/fonts/MyFlutterApp.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
