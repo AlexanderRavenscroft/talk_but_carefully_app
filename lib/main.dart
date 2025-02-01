@@ -28,7 +28,7 @@ void main() async {
   
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ToggleProvider()),

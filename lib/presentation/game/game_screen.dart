@@ -23,7 +23,7 @@ class GameScreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.textColor,
-                    blurRadius: 10,
+                    blurRadius: 12,
                     offset: Offset(0, 2),
                   ),
                 ],
@@ -97,16 +97,10 @@ class GameScreen extends StatelessWidget {
             ),
           ),
 
-          // Next Screen Button
+          // Start Button
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.7,
-            child: ElevatedButton(
-              onPressed: () {
-                nextScreen();
-                Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-              },
-              child: Icon(Icons.arrow_forward_sharp, size: 40),
-            ),
+            top: MediaQuery.of(context).size.height * 0.66,
+            child: RoundStartButton(),
           ),
 
           // Main Content (Encounter or Question Screen)
@@ -119,6 +113,7 @@ class GameScreen extends StatelessWidget {
               },
             ),
           ),
+          
 
           // Add Points Button
           // Positioned(

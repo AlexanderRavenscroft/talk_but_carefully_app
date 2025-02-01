@@ -4,6 +4,8 @@ import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/taboo_api.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
+import 'package:gadajaleostroznie/core/provider.dart';
+import 'package:provider/provider.dart';
 //====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
  const TeamBackground({super.key});
@@ -130,30 +132,33 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Runda ${currentRound.toString()}', 
-          style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.08)
-        ),
-     //   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        Text(
-          'ODGADUJE DRUŻYNA:', 
-          style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.04)
-        ),
-     //   SizedBox(height: MediaQuery.of(context).size.height * 0.015),
-        Text(
-          isTeamBTurn ? teamB.name.toUpperCase() : teamA.name.toUpperCase(), 
-          style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.06)
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-        Text(
-          getEncounterMessage(), 
-         // 'Czy to ptak? Czy to samolot? Nie, to... Gracz I',
-          style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.03)
-        ),
-      ],
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Runda ${currentRound.toString()}', 
+            style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.08)
+          ),
+         SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          Text(
+            'ODGADUJE DRUŻYNA:', 
+            style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.034)
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+          Text(
+            isTeamBTurn ? teamB.name.toUpperCase() : teamA.name.toUpperCase(), 
+            style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.05)
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+          Text(
+            getEncounterMessage(), 
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.034, )
+          ),
+        ],
+      ),
     );
   }
 }
@@ -182,3 +187,40 @@ class QuestionScreenState extends State<QuestionScreen> {
   }
 }
 //====================[/QUESTION CARD SCREEN]====================
+
+class RoundStartButton extends StatelessWidget {
+  const RoundStartButton({super.key});
+
+  @override
+Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        fixedSize: WidgetStateProperty.all(Size(
+          MediaQuery.of(context).size.width * 0.6,
+          MediaQuery.of(context).size.height * 0.1,
+        )),
+        backgroundColor: WidgetStateProperty.all(AppColors.neutralColor),
+        shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(26))),
+        elevation: WidgetStateProperty.all(14.0),
+        shadowColor: WidgetStateProperty.all(Colors.black),
+      ),
+      onPressed:             () {
+                        
+                         Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                nextScreen();
+  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+               
+              },
+      child:Center(
+              child: Text(
+                'START',
+                style: AppTypography.buttonStyle.copyWith(
+                  fontSize: MediaQuery.of(context).size.height * 0.05,
+                
+              ),
+            ),
+        
+      ),
+    );
+  }
+}

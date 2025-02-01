@@ -17,12 +17,14 @@ class TeamNameTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      maxLength: 12,
       cursorColor: AppColors.textColor,
       textAlign: TextAlign.center,
       style: AppTypography.descBoldStyle.copyWith(
         fontSize:  MediaQuery.of(context).size.height * 0.03,
       ),
       decoration: InputDecoration(
+        counterText: "",
         hintText: controller.text,
       ),
       onChanged: onChanged,
@@ -116,6 +118,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
           title: Text('Wpisz nazwę gracza ${index + 1}',
           style: AppTypography.descStyle),
           content: TextField(
+            maxLength: 12,
             controller: _controller,
             decoration: InputDecoration(hintText: 'Nowe imię'),
           ),

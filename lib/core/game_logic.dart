@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
+import 'package:gadajaleostroznie/core/taboo_api.dart';
 
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
@@ -11,10 +12,12 @@ String fullEncounterMessage = '';
 String getEncounterMessage() {
   if (currentTeam.players.isEmpty) {
     return '${getRandomElement(playerEncounterList)} ${currentTeam.name}!';
+    // return 'No dalej, nie każ nam czekać wieczność ${currentTeam.name}!';
   }
 
-  int index = teamPlayerIndexes[currentTeam]!;  // Get the current player index for the team
+  int index = teamPlayerIndexes[currentTeam]!;  
   return '${getRandomElement(playerEncounterList)} ${currentTeam.players[index].username}!';
+  //  return 'No dalej, nie każ nam czekać wieczność ${currentTeam.players[index].username}!';
 }
 
 void assignCurrentPlayer() {
