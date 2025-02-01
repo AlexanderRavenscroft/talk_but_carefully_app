@@ -42,105 +42,157 @@ class GameScreen extends StatelessWidget {
                       // Team A Points
                       Positioned(
                         left: MediaQuery.of(context).size.width * 0.04,
-                        child:  TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
+                        child: TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
                       ),
 
                       // Team A Skips
                       Positioned(
                         top: MediaQuery.of(context).size.height * 0.074,
                         left: MediaQuery.of(context).size.width * 0.01,
-                        child:  TeamSkipsDisplay(teamSkips: teamA.skips,  iconFirst: true),
+                        child: TeamSkipsDisplay(teamSkips: teamA.skips, iconFirst: true),
                       ),
 
                       // TIMER 
                       Positioned(
-                        child:  TimerWidget(),
+                        child: TimerWidget(),
                       ),
 
                       // Progress Bar
                       Positioned(
                         top: MediaQuery.of(context).size.height * 0.074,
-                        child: ProgressBarWidget()
+                        child: ProgressBarWidget(),
                       ),
 
                       // Team B Points
                       Positioned(
                         right: MediaQuery.of(context).size.width * 0.04,
-                        child:   TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
+                        child: TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
                       ),
 
                       // Team B Skips
                       Positioned(
                         top: MediaQuery.of(context).size.height * 0.074,
                         right: MediaQuery.of(context).size.width * 0.01,
-                        child:  TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
+                        child: TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
                       ),
                     ],
                   ),
-               ),
+                ),
               ),
             );
           },
         ),
       ),
-      
+
       // BODY
       body: Stack(
-        alignment: Alignment.center,
         children: [
           // Background
-          Positioned.fill(
-            child: Consumer<GameToggleProvider>(
-              builder: (context, gameToggleProvider, child) {
-                return TeamBackground();
-              },
-            ),
+          Consumer<GameToggleProvider>(
+            builder: (context, gameToggleProvider, child) {
+              return TeamBackground();
+            },
           ),
 
-          // Start Button
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.66,
-            child: RoundStartButton(),
-          ),
-
-          // Main Content (Encounter or Question Screen)
           Center(
-            child: Consumer<GameToggleProvider>(
-              builder: (context, gameToggleProvider, child) {
-                return (currentScreen == Screen.encounter) 
-                  ? PlayerEncounterText() 
-                  : QuestionScreen();
-              },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Player Encounter or Question Screen
+                Consumer<GameToggleProvider>(
+                  builder: (context, gameToggleProvider, child) {
+                    return (currentScreen == Screen.encounter)
+                        ? PlayerEncounterText()
+                        : QuestionScreen();
+                  },
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+
+                // Round Start Button
+                Consumer<GameToggleProvider>(
+                  builder: (context, gameToggleProvider, child) {
+                    return (currentScreen == Screen.encounter)
+                      ? RoundStartButton()
+                      : SizedBox.shrink();
+                  },
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // Remove Points Button
+                    Consumer<GameToggleProvider>(
+                      builder: (context, gameToggleProvider, child) {
+                        return (currentScreen == Screen.question)
+                         ? PointsButton(
+                            onPressed: () {
+                               removePoints();
+                               fetchData();
+                               Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                            }, buttonIcon: Icons.remove, iconColor: AppColors.primaryColor,
+                          )
+                        : SizedBox.shrink();
+                      },
+                    ),
+                    
+                    // Add Points Button
+                    Consumer<GameToggleProvider>(
+                      builder: (context, gameToggleProvider, child) {
+                        return (currentScreen == Screen.question)
+                         ? PointsButton(
+                            onPressed: () {
+                               addSkips();
+                               fetchData();
+                               Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                            }, buttonIcon: AppIcons.arrowsCcw, iconColor: AppColors.textColor,
+                          )
+                        : SizedBox.shrink();
+                      },
+                    ),
+                    
+                    // Add Points Button
+                    Consumer<GameToggleProvider>(
+                      builder: (context, gameToggleProvider, child) {
+                        return (currentScreen == Screen.question)
+                         ? PointsButton(
+                            onPressed: () {
+                               addPoints();
+                               fetchData();
+                               Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                            }, buttonIcon: Icons.add, iconColor: AppColors.notificationColor,
+                          )
+                        : SizedBox.shrink();
+                      },
+                    ),
+                  ],
+                ),
+             
+              ],
             ),
           ),
-          
 
-          // Add Points Button
-          // Positioned(
-          //   top: 520,
-          //   child: ElevatedButton(
-          //     onPressed: () {
-          //       addPoints();
-          //       fetchData();
-          //       Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                
-          //     },
-          //     child: Icon(Icons.plus_one, size: 40),
-          //   ),
-          // ),
-
-          // // Remove Points Button
-          // Positioned(
-          //   top: 590,
-          //   child: ElevatedButton(
-          //     onPressed: () {
-          //       removePoints();
-          //       fetchData();
-          //       Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();   
-          //     },
-          //     child: Icon(Icons.exposure_minus_1_outlined, size: 40),
-          //   ),
-          // ),
+          // TYMCZASOWY KEBAB
+          Positioned(
+            bottom: MediaQuery.of(context).size.height * 0.02,
+            left:  MediaQuery.of(context).size.width * 0.35,
+            child: Consumer<GameToggleProvider>(
+              builder: (context, gameToggleProvider, child) {
+                 return (currentScreen == Screen.question)
+                    ? ElevatedButton(
+                        onPressed: () async {
+                          await fetchData();
+                          nextScreen();
+                          if (context.mounted) {
+                            Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                          }
+                        },
+                         child: Icon(Icons.kebab_dining, size: 60),
+                       )
+                     : SizedBox.shrink();
+               },
+            ),
+          ),
         ],
       ),
     );

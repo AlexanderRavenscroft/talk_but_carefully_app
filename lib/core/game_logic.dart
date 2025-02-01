@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
-import 'package:gadajaleostroznie/core/taboo_api.dart';
 
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
@@ -29,8 +28,6 @@ void assignCurrentPlayer() {
   }
 }
 
-
-
 int test = 0;
 void nextScreen() {
   // End of the round
@@ -39,32 +36,26 @@ void nextScreen() {
     currentTeam = isTeamBTurn ? teamB : teamA; 
      
   }
-
   // Start of next the round
+  test = (test >= 4) ? 1 : test + 1;
 
-test = (test >= 4) ? 1 : test + 1;
+  if (test == 4) {
+    currentRound++;
+    assignCurrentPlayer();
+  }
 
-if (test == 4) {
-  currentRound++;
-  assignCurrentPlayer();
+    currentScreen = currentScreen == Screen.encounter ? Screen.question : Screen.encounter;
 }
-  debugPrint(test.toString());
-  currentScreen = currentScreen == Screen.encounter ? Screen.question : Screen.encounter;
-}
 
-
-
-   void addPoints() {
-    
-          currentTeam.points++;
-
-          if (currentTeam.players.isNotEmpty) {
-            currentTeam.players[teamPlayerIndexes[currentTeam]!].points++; 
-            debugPrint([teamPlayerIndexes[currentTeam]!].toString());
-            for (var player in currentTeam.players) {
-              debugPrint("${player.username}: ${player.points} points");
-            }
-          }
+void addPoints() {
+  currentTeam.points++;
+  if (currentTeam.players.isNotEmpty) {
+    currentTeam.players[teamPlayerIndexes[currentTeam]!].points++; 
+    debugPrint([teamPlayerIndexes[currentTeam]!].toString());
+    for (var player in currentTeam.players) {
+      debugPrint("${player.username}: ${player.points} points");
+    }
+  }
 }
    void removePoints() {
     
@@ -77,4 +68,9 @@ if (test == 4) {
               debugPrint("${player.username}: ${player.points} points");
             }
           }
+}
+
+   void addSkips() {
+    
+          currentTeam.skips++;
 }

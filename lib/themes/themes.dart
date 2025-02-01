@@ -8,6 +8,8 @@ class AppColors{
   static const Color accentColor = Color(0xFFFFD700);
   static const Color neutralColor = Color(0xFFD9D9D9);
   static const Color notificationColor = Color(0xFF4CAF50);
+  static const Color shadowColor = Color(0xFFA0A0A0);
+  static const Color secondTextColor = Color(0xFF555555);
 }
 
 class TeamColors{
@@ -64,6 +66,8 @@ class AppIcons {
   static const IconData arrowCurved = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData ccw = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrowsCcw = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData brokenSkull = IconData(0xe94b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData skull = IconData(0xf54c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   /// Flutter icons MyFlutterApp
   /// Copyright (C) 2025 by original authors @ fluttericon.com, fontello.com
@@ -77,5 +81,9 @@ class AppIcons {
   ///         License:   SIL (http://scripts.sil.org/OFL)
   ///         Homepage:  http://www.entypo.com
   ///
+  /// * RPG Awesome, Copyright (c) 2014, Daniela Howe
+  ///         Author:    Daniela Howe & Ivan Montiel
+  ///         License:   SIL (http://scripts.sil.org/OFL)
+  ///         Homepage:  http://nagoshiashumari.github.io/Rpg-Awesome/
 }
 

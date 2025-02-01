@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'dart:math';
 import 'package:collection/collection.dart'; 
-
 Random random = Random();
 
 String title = "Ładowanie tytułu...";
@@ -63,5 +62,6 @@ Future<void> fetchData() async {
   } catch (e) {
     title = 'Error: $e';
   }
+
 }
 

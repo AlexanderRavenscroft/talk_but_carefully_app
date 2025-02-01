@@ -213,7 +213,11 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.cancel, color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036),
+                              icon: Icon(
+                                widget.players[index].username == 'Chys' ? //PERSONAL EASTER EGG HERE!
+                                Icons.baby_changing_station: Icons.cancel,
+                                color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036
+                              ),
                               onPressed: () {_removePlayer(index); playAudio(GameSounds.tapSound);},
                             ),
                           ],
