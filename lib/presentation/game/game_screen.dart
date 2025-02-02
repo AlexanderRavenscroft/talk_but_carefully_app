@@ -93,7 +93,6 @@ class GameScreen extends StatelessWidget {
               return TeamBackground();
             },
           ),
-
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -104,9 +103,10 @@ class GameScreen extends StatelessWidget {
                   builder: (context, gameToggleProvider, child) {
                     return (currentScreen == Screen.encounter)
                         ? PlayerEncounterText()
-                        : QuestionScreen();
+                        : isLoading ? CircularProgressIndicator() : QuestionScreen();
                   },
                 ),
+
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
 
                 // Round Start Button
@@ -126,11 +126,36 @@ class GameScreen extends StatelessWidget {
                       builder: (context, gameToggleProvider, child) {
                         return (currentScreen == Screen.question)
                          ? PointsButton(
-                            onPressed: () {
-                               removePoints();
-                               fetchData();
-                               Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                            }, buttonIcon: Icons.remove, iconColor: AppColors.primaryColor,
+                            onPressed: () async {
+                              if(!isLoading) {
+                                await fetchData();
+                                removePoints();
+                                if (context.mounted) {
+                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                }
+                              }
+                            },
+                          buttonIcon: Icons.remove, iconColor: AppColors.primaryColor,
+                          )
+                        : SizedBox.shrink();
+                      },
+                    ),
+                    
+                    // Add Skips Button
+                    Consumer<GameToggleProvider>(
+                      builder: (context, gameToggleProvider, child) {
+                        return (currentScreen == Screen.question)
+                         ? PointsButton(
+                            onPressed: () async {
+                              if(!isLoading) {
+                                await fetchData();
+                                addSkips();
+                                if (context.mounted) {
+                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                }
+                              }
+                            },
+                          buttonIcon: AppIcons.arrowsCcw, iconColor: AppColors.textColor,
                           )
                         : SizedBox.shrink();
                       },
@@ -141,26 +166,16 @@ class GameScreen extends StatelessWidget {
                       builder: (context, gameToggleProvider, child) {
                         return (currentScreen == Screen.question)
                          ? PointsButton(
-                            onPressed: () {
-                               addSkips();
-                               fetchData();
-                               Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                            }, buttonIcon: AppIcons.arrowsCcw, iconColor: AppColors.textColor,
-                          )
-                        : SizedBox.shrink();
-                      },
-                    ),
-                    
-                    // Add Points Button
-                    Consumer<GameToggleProvider>(
-                      builder: (context, gameToggleProvider, child) {
-                        return (currentScreen == Screen.question)
-                         ? PointsButton(
-                            onPressed: () {
-                               addPoints();
-                               fetchData();
-                               Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                            }, buttonIcon: Icons.add, iconColor: AppColors.notificationColor,
+                            onPressed: () async {
+                              if(!isLoading) {
+                                await fetchData();
+                                addPoints();
+                                if (context.mounted) {
+                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                }
+                              }
+                            },
+                          buttonIcon: Icons.add, iconColor: AppColors.notificationColor,
                           )
                         : SizedBox.shrink();
                       },
@@ -196,5 +211,7 @@ class GameScreen extends StatelessWidget {
         ],
       ),
     );
+    
   }
+  
 }

@@ -1,0 +1,21 @@
+
+void  checkResults() {
+  if(teams.any((team) => team.points >= GameSettings.aviablePoints)) {
+    gameEnd = true;
+
+    if(teams.every((team) => team.points == teamA.points ))
+    {
+      debugPrint('Tie');
+    
+    }
+    else{
+    Team winningTeam = teams
+      .where((team) => team.points >= GameSettings.aviablePoints)
+      .reduce((current, next) => current.points > next.points ? current : next);
+    debugPrint('The winning team is: ${winningTeam.name}');
+      navigatorKey.currentState?.push(
+    MaterialPageRoute(builder: (context) => GameResultsScreen()),
+  );
+    }
+  }
+}

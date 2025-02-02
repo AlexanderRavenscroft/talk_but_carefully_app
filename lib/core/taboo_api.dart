@@ -4,12 +4,15 @@ import 'package:gadajaleostroznie/core/globals.dart';
 import 'dart:math';
 import 'package:collection/collection.dart'; 
 Random random = Random();
+bool isLoading = false; 
 
 String title = "Ładowanie tytułu...";
 List forbiddenWords = ["Ładowanie słowa...", "Ładowanie słowa..."];
 String difficulty = "Ładowanie trudności...";
 
 Future<void> fetchData() async {
+  isLoading = true; // Start loading
+
   Uri url = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl'); //Default API URL
   Uri allDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl'); 
   Uri easyDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=easy'); 
@@ -27,7 +30,6 @@ Future<void> fetchData() async {
   };
 
   final setEquality = SetEquality<int>();
-
   for (Set<int> key in urlsMap.keys) {
     if (setEquality.equals(key, GameSettings.aviableDifs)) {
       url = urlsMap[key] ?? allDiffsUrl;
@@ -61,7 +63,8 @@ Future<void> fetchData() async {
       }
   } catch (e) {
     title = 'Error: $e';
+  } finally {
+    isLoading = false;
   }
-
 }
 

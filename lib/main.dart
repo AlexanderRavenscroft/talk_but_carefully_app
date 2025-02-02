@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import required for SystemChrome
 import 'package:device_preview/device_preview.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
 import 'presentation/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'core/provider.dart'; // Import your provider file
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Pass the navigation key to the app
+      navigatorKey: navigatorKey,
+      
       debugShowCheckedModeBanner: false,
       title: 'Gadaj ale Ostrożnie',
       home: SplashScreen(),

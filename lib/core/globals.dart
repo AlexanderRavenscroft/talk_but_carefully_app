@@ -2,6 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 
+//==================[GLOBAL NAVIGATION KEY]==================
+// Defining this will make easier Navigation between game and game_results_screen
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 //==================[SOUNDS]==================
 class GameSounds{
   static bool soundToggled = true;
@@ -43,6 +47,10 @@ class Team{
   Team(this.name, this.players, this.color, this.points, this.skips);
 }
 
+List<Team> teams = [
+    teamA,
+    teamB,
+];
 Team teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
 Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
 
