@@ -79,29 +79,29 @@ void addSkips() {
   currentTeam.skips++;
 }
 
-String winningTeam = teamA.name;
+Team? winningTeam = teamA;
 
 checkResults() {
   if(teams.any((team) => team.points >= GameSettings.aviablePoints)) {
     if(teamA.points > teamB.points) {
-      winningTeam = teamA.name;
+      winningTeam = teamA;
     }
     else if(teamB.points > teamA.points) {
-      winningTeam = teamB.name;
+      winningTeam = teamB;
     }
     else {
       if(teamA.skips > teamB.skips) {
-        winningTeam = teamB.name;
+        winningTeam = teamB;
       }
       else if(teamB.skips > teamA.skips) {
-        winningTeam = teamA.name;
+        winningTeam = teamA;
       }
       else {
-      winningTeam = 'REMIS';
+     winningTeam = null;
       }
     }
     navigatorKey.currentState?.push(MaterialPageRoute(builder: (context) => GameResultsScreen()));
     return true;
-
   }
+  return false;
 }

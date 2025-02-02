@@ -102,8 +102,30 @@ class GameScreen extends StatelessWidget {
                 Consumer<GameToggleProvider>(
                   builder: (context, gameToggleProvider, child) {
                     return (currentScreen == Screen.encounter)
-                        ? PlayerEncounterText()
-                        : isLoading ? CircularProgressIndicator() : QuestionScreen();
+                        ? PlayerEncounterText() : isLoading   
+                        ? SizedBox(
+                                                        height: MediaQuery.of(context).size.height * 0.5,
+                              width: MediaQuery.of(context).size.width * 0.75,
+                            child:
+                            Center(
+                              child: FractionallySizedBox(
+                                 // widthFactor: 0.75, // 50% of the parent's width
+                                   heightFactor: 0.25,
+
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: SizedBox(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.neutralColor,
+                                      strokeWidth: MediaQuery.of(context).size.height * 0.02,
+                                                         
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ) ,
+                        )
+                        : QuestionScreen();
                   },
                 ),
 

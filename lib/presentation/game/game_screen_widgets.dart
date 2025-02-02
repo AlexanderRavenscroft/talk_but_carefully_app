@@ -236,15 +236,15 @@ class QuestionScreenState extends State<QuestionScreen> {
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.41,
-                left: MediaQuery.of(context).size.width * 0.57,
+                top: MediaQuery.of(context).size.height * 0.42,
+                left: MediaQuery.of(context).size.width * 0.6,
                 child: Icon(
                   difficulty=='łatwe' 
                    ? Icons.tag_faces_rounded:
                       difficulty=='średnie'  
                       ? Icons.star_half
                       : Icons.kebab_dining,
-                  size:  MediaQuery.of(context).size.height * 0.074,
+                  size:  MediaQuery.of(context).size.height * 0.06,
                   color: AppColors.secondTextColor,
                 ),
               ),

@@ -64,7 +64,7 @@ Future<void> fetchData() async {
   } catch (e) {
     title = 'Error: $e';
   } finally {
-    isLoading = false;
+   isLoading = false;
   }
 }
 
