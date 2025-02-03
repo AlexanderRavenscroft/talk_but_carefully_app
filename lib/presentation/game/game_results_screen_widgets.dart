@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
+
+class ResultsTeamPointsDisplay extends StatelessWidget {
+  final String displayedText;
+  final Color textColor;
+  const ResultsTeamPointsDisplay({super.key, required this.displayedText, required this.textColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      displayedText,
+      style: AppTypography.descBoldStyle.copyWith(
+        fontSize: MediaQuery.of(context).size.height * 0.05,
+        color: textColor,
+      ),
+    );
+  }
+}
+
+
+
 class ResultsTeamSkipsDisplay extends StatelessWidget {
   final int teamSkips;
   final bool iconFirst;
@@ -15,13 +35,13 @@ class ResultsTeamSkipsDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     final icon = Icon(
       AppIcons.arrowCurved, 
-      size: MediaQuery.of(context).size.height * 0.03,
+      size: MediaQuery.of(context).size.height * 0.025,
     );
     final text = Text(
       teamSkips.toString(),
       style: AppTypography.descBoldStyle.copyWith(
         color: AppColors.textColor, 
-        fontSize: MediaQuery.of(context).size.height * 0.03,
+        fontSize: MediaQuery.of(context).size.height * 0.025,
       ),
     );
     
@@ -37,14 +57,11 @@ class PlayersScoreList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      child: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.2,
+    return Container(
+            height: MediaQuery.of(context).size.height * 0.21,
             width: MediaQuery.of(context).size.width * 0.74,
             decoration: BoxDecoration(
-              color: AppColors.shadowColor,
+         //    color: AppColors.shadowColor,
               borderRadius: BorderRadius.circular(16),
             ),
               child: ListView.builder(
@@ -56,36 +73,35 @@ class PlayersScoreList extends StatelessWidget {
                      children: [
                         SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                         Container(
-                         // color: Colors.blue,
+                     //   color: Colors.blue,
                           height: MediaQuery.of(context).size.height * 0.08,
                           width: MediaQuery.of(context).size.width * 0.3,
-                           child: Text(
-                            displayedTeam.players[index].username, 
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.height * 0.03,
-                            )
-                          ),
+                           child: Center(
+                             child: Text(
+                              displayedTeam.players[index].username, 
+                              textAlign: TextAlign.center,
+                              style: AppTypography.descStyle.copyWith(
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
+                              ),
+                             ),
+                           ),
                         ),
-                        SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-                        Center(
-                          child: SizedBox(
+
+                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.04,
-                            width: MediaQuery.of(context).size.width * 0.32,
+                            width: MediaQuery.of(context).size.width * 0.36,
                             child: LinearProgressIndicator(
-                              backgroundColor: Colors.black,
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(6), bottomRight: Radius.circular(6)),
+                              backgroundColor: Colors.transparent,
                               color: displayedTeam.color,
                               value: displayedTeam.players[index].points / displayedTeam.points,
                             ),
                           ),
-                        ),
-                     ],
-                   );
-                 }
-              ),
-          )
-        ],
-      ),
-    );
+                    ],
+                 );
+               }
+          ),
+        );
+
   }
 }

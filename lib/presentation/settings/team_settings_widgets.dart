@@ -214,8 +214,12 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                             ),
                             IconButton(
                               icon: Icon(
-                                widget.players[index].username == 'Chys' ? //PERSONAL EASTER EGG HERE!
-                                Icons.baby_changing_station: Icons.cancel,
+                                widget.players[index].username == 'Chys' ? 
+                                Icons.baby_changing_station 
+                                : widget.players[index].username == 'Chuj' ? 
+                                Icons.wine_bar:
+                                Icons.cancel,
+
                                 color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036
                               ),
                               onPressed: () {_removePlayer(index); playAudio(GameSounds.tapSound);},
@@ -263,7 +267,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => GameScreen()),
                   );

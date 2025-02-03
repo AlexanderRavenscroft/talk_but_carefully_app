@@ -100,7 +100,7 @@ checkResults() {
      winningTeam = null;
       }
     }
-    navigatorKey.currentState?.push(MaterialPageRoute(builder: (context) => GameResultsScreen()));
+    navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => GameResultsScreen()));
     return true;
   }
   return false;
