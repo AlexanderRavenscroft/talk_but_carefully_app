@@ -17,23 +17,18 @@ class GameSettingsScreen extends StatefulWidget {
 class GameSettingsScreenState extends State<GameSettingsScreen> {
 
 
-  @override
-void didChangeDependencies() {
-  super.didChangeDependencies();
-  if (ModalRoute.of(context)!.isCurrent) {
-    _resetVariables();
-  }
-}
-    void _resetVariables() {
+    void resetGame() {
     setState(() {
-                   teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
+                teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
           teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
          currentGameStage = 0;
       currentRound = 1;
       teamPlayerIndexes[teamA] = 0;
       teamPlayerIndexes[teamB] = 0;
-      isTeamBTurn == false;
 currentScreen = Screen.encounter;
+currentTeam = teamA;
+ isTeamBTurn = false;
+
     });
   }
 

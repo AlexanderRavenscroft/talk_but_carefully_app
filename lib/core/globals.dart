@@ -60,9 +60,8 @@ Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
 int currentRound = 1;
 
 
-int currentPlayerIndex = 0;
 enum Screen {encounter, question}
 Screen currentScreen = Screen.encounter;
-bool isTeamBTurn = false;
+ bool isTeamBTurn = false;
 Team currentTeam = teamA;
 

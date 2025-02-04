@@ -76,19 +76,33 @@ class GameResultsScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+
                         PlayersScoreList(displayedTeam: teamA),
+
                         Divider(
                           color: AppColors.shadowColor, 
                           thickness: 6, 
                         ),
-                        PlayersScoreList(displayedTeam: teamB)
+
+                        PlayersScoreList(displayedTeam: teamB),
+
+                        
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            ElevatedButton(onPressed: null, child: Text('chuj')),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+      
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
+                ResultsScreenButton(buttonIcon: Icons.arrow_back, onPressed: (){debugPrint("dada");}),
+                ResultsScreenButton(buttonIcon: Icons.abc, onPressed: (){debugPrint("dada2");}),
+              ],
+            )
           ],
         ),
       ),

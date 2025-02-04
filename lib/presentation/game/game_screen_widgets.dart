@@ -160,7 +160,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               Text(
-                isTeamBTurn ? teamB.name.toUpperCase() : teamA.name.toUpperCase(), 
+                currentTeam.name.toUpperCase(),
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.046,
@@ -335,5 +335,80 @@ class PointsButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+class GameAppBar extends StatelessWidget {
+  const GameAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<GameToggleProvider>(
+            builder: (context, gameToggleProvider, child) {
+              return Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.textColor,
+                      blurRadius: 12,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: AppBar(
+                  toolbarHeight: MediaQuery.of(context).size.height * 0.12,
+                  backgroundColor: AppColors.neutralColor,
+                  elevation: 0,
+                  automaticallyImplyLeading: false,
+                  title: SizedBox(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.12,
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        // Team A Points
+                        Positioned(
+                          left: MediaQuery.of(context).size.width * 0.04,
+                          child: TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
+                        ),
+      
+                        // Team A Skips
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.074,
+                          left: MediaQuery.of(context).size.width * 0.01,
+                          child: TeamSkipsDisplay(teamSkips: teamA.skips, iconFirst: true),
+                        ),
+      
+                        // TIMER 
+                        Positioned(
+                          child: TimerWidget(),
+                        ),
+      
+                        // Progress Bar
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.074,
+                          child: ProgressBarWidget(),
+                        ),
+      
+                        // Team B Points
+                        Positioned(
+                          right: MediaQuery.of(context).size.width * 0.04,
+                          child: TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
+                        ),
+      
+                        // Team B Skips
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.074,
+                          right: MediaQuery.of(context).size.width * 0.01,
+                          child: TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
   }
 }

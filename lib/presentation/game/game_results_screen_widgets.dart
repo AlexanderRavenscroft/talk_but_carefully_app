@@ -64,16 +64,35 @@ class PlayersScoreList extends StatelessWidget {
          //    color: AppColors.shadowColor,
               borderRadius: BorderRadius.circular(16),
             ),
-              child: ListView.builder(
+              child: 
+                     (displayedTeam.players.isEmpty) ?
+
+                                           Center(
+                                             child: Text(
+                                                                           'Nie dodano graczy!',
+                                                                           style: AppTypography.descStyle.copyWith(
+                                                                             fontSize: MediaQuery.of(context).size.height * 0.036,
+                                                                           ),
+                                                                          ),
+                                           ) 
+                             :
+                             
+                             
+                             
+                             ListView.builder(
                 itemCount: displayedTeam.players.length,
                  itemBuilder: (context, index) {
-                   return Row(
+
+                   return
+                                     
+                   
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                      children: [
-                        SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+                  //      SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                         Container(
-                     //   color: Colors.blue,
+                   //     color: Colors.blue,
                           height: MediaQuery.of(context).size.height * 0.08,
                           width: MediaQuery.of(context).size.width * 0.3,
                            child: Center(
@@ -86,22 +105,74 @@ class PlayersScoreList extends StatelessWidget {
                              ),
                            ),
                         ),
-
-                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.04,
-                            width: MediaQuery.of(context).size.width * 0.36,
-                            child: LinearProgressIndicator(
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(6), bottomRight: Radius.circular(6)),
-                              backgroundColor: Colors.transparent,
-                              color: displayedTeam.color,
-                              value: displayedTeam.players[index].points / displayedTeam.points,
-                            ),
-                          ),
+SizedBox(
+  height: MediaQuery.of(context).size.height * 0.04,
+  width: MediaQuery.of(context).size.width * 0.3,
+  child: LinearProgressIndicator(
+    borderRadius: BorderRadius.only(
+      topRight: Radius.circular(6),
+      bottomRight: Radius.circular(6),
+    ),
+    backgroundColor: Colors.transparent,
+    color: displayedTeam.color,
+    value: ( displayedTeam.points == 0)
+        ? 0
+        : displayedTeam.players[index].points / displayedTeam.points,
+  ),
+),
+SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+Text(
+                              displayedTeam.players[index].points.toString(), 
+                              textAlign: TextAlign.center,
+                              style: AppTypography.descStyle.copyWith(
+                                fontSize: MediaQuery.of(context).size.height * 0.03,
+                              ),
+                             ),
                     ],
+
                  );
                }
           ),
+
+
         );
 
+  }
+}
+
+
+class ResultsScreenButton extends StatelessWidget {
+  final IconData buttonIcon;
+  final VoidCallback onPressed;
+  const ResultsScreenButton({super.key, required this.buttonIcon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        fixedSize: WidgetStateProperty.all(
+          Size(
+            MediaQuery.of(context).size.width * 0.36,
+            MediaQuery.of(context).size.height * 0.072,
+          ),
+        ),
+        backgroundColor: WidgetStateProperty.all(AppColors.neutralColor),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        elevation: WidgetStateProperty.all(16.0),
+        shadowColor: WidgetStateProperty.all(Colors.black),
+      ),
+      onPressed: onPressed,
+      child: Center(
+        child: Icon(
+          buttonIcon,
+          color: AppColors.textColor,
+          size: MediaQuery.of(context).size.height * 0.05,
+        ),
+      ),
+    );
   }
 }
