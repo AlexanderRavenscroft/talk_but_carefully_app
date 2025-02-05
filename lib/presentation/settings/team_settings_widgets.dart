@@ -218,7 +218,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                                 Icons.baby_changing_station 
                                 : widget.players[index].username == 'Chuj' ? 
                                 Icons.wine_bar:
-                                Icons.cancel,
+                                AppIcons.remove,
 
                                 color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036
                               ),
@@ -263,7 +263,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     ),
                   ),
                 ),
-                child: Icon(Icons.add, size: MediaQuery.of(context).size.height*0.06, color: AppColors.textColor),
+                child: Icon(AppIcons.personAdd, size: MediaQuery.of(context).size.height*0.054, color: AppColors.textColor),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -290,7 +290,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     ),
                   ),
                 ),
-                child: Icon(Icons.arrow_forward, size: MediaQuery.of(context).size.height*0.06, color: AppColors.textColor),
+                child: Icon(AppIcons.arrowForward, size: MediaQuery.of(context).size.height*0.06, color: AppColors.textColor),
               ),
             ],
           ),
@@ -376,8 +376,8 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
                   size: MediaQuery.of(context).size.height * 0.05,
                   color: AppColors.textColor,
                   isToggled
-                      ? (teamAselectedIndex == index ? Icons.do_disturb : null)
-                      : (teamBselectedIndex == index ? Icons.do_disturb : null),
+                      ? (teamAselectedIndex == index ? AppIcons.alreadyTaken : null)
+                      : (teamBselectedIndex == index ? AppIcons.alreadyTaken : null),
                 ),
               ),
           );

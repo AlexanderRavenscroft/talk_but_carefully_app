@@ -13,7 +13,7 @@ void main() async {
   // Load preferences and app version concurrently
   await Future.wait([
     PreferenceService.loadPreferences(),  // Load preferences before the app starts
-    getAppVersion(),                      // Initialize app version and build number
+    AppSetup.getAppVersion(),                      // Initialize app version and build number
   ]);
 
   // Set preferred orientations
@@ -35,6 +35,7 @@ void main() async {
           ChangeNotifierProvider(create: (context) => ToggleProvider()),
           ChangeNotifierProvider(create: (context) => RefreshProvider()),
           ChangeNotifierProvider(create: (context) => GameToggleProvider()),
+          ChangeNotifierProvider(create: (context) => GamePauseProvider()),
         ],
         child: MyApp(), // Pass loaded text to the app
       ),

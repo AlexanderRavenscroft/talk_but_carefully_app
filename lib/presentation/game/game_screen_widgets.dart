@@ -29,10 +29,10 @@ class TeamBackgroundState extends State<TeamBackground> {
 class TeamPointsDisplay extends StatelessWidget {
   final int teamPoints;
   final Color teamColor;
-  
+
   const TeamPointsDisplay({
-    super.key, 
-    required this.teamPoints, 
+    super.key,
+    required this.teamPoints,
     required this.teamColor,
   });
 
@@ -41,7 +41,7 @@ class TeamPointsDisplay extends StatelessWidget {
     return Text(
       teamPoints.toString(),
       style: AppTypography.descBoldStyle.copyWith(
-        color: teamColor, 
+        color: teamColor,
         fontSize: MediaQuery.of(context).size.height * 0.06,
       ),
     );
@@ -53,27 +53,27 @@ class TeamPointsDisplay extends StatelessWidget {
 class TeamSkipsDisplay extends StatelessWidget {
   final int teamSkips;
   final bool iconFirst;
-  
+
   const TeamSkipsDisplay({
-    super.key, 
-    required this.teamSkips, 
+    super.key,
+    required this.teamSkips,
     this.iconFirst = true,
   });
 
   @override
   Widget build(BuildContext context) {
     final icon = Icon(
-      AppIcons.arrowCurved, 
+      AppIcons.arrowCurved,
       size: MediaQuery.of(context).size.height * 0.03,
     );
     final text = Text(
       teamSkips.toString(),
       style: AppTypography.descBoldStyle.copyWith(
-        color: AppColors.textColor, 
+        color: AppColors.textColor,
         fontSize: MediaQuery.of(context).size.height * 0.03,
       ),
     );
-    
+
     return Row(
       children: iconFirst ? [icon, text] : [text, icon],
     );
@@ -95,7 +95,7 @@ class TimerWidgetState extends State<TimerWidget> {
     return Text(
       "12:34",
       style: AppTypography.descBoldStyle.copyWith(
-        color: AppColors.textColor, 
+        color: AppColors.textColor,
         fontSize: MediaQuery.of(context).size.height * 0.06,
       ),
     );
@@ -115,8 +115,8 @@ class _ProgressBarWidgetState extends State<ProgressBarWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.03, 
-      width: MediaQuery.of(context).size.width * 0.5, 
+      height: MediaQuery.of(context).size.height * 0.03,
+      width: MediaQuery.of(context).size.width * 0.5,
       child: Container(
         color: AppColors.notificationColor,
       ),
@@ -144,7 +144,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Runda ${currentRound.toString()}', 
+                'Runda ${currentRound.toString()}',
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.08,
@@ -152,7 +152,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Text(
-                'ODGADUJE DRUŻYNA:', 
+                'ODGADUJE DRUŻYNA:',
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.034,
@@ -168,7 +168,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               Text(
-                getEncounterMessage(), 
+                getEncounterMessage(),
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.034,
@@ -201,7 +201,14 @@ class QuestionScreenState extends State<QuestionScreen> {
         decoration: BoxDecoration(
           color: AppColors.neutralColor,
           borderRadius: BorderRadius.circular(24),
-          boxShadow: [BoxShadow(offset: Offset(0, 10), color: AppColors.shadowColor, blurRadius: 1, spreadRadius: 2)],
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 10),
+              color: AppColors.shadowColor,
+              blurRadius: 1,
+              spreadRadius: 2,
+            ),
+          ],
         ),
         child: Center(
           child: Stack(
@@ -210,7 +217,7 @@ class QuestionScreenState extends State<QuestionScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.75,
                 child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.025),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -218,12 +225,12 @@ class QuestionScreenState extends State<QuestionScreen> {
                         title.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: AppTypography.descBoldStyle.copyWith(
-                          color: AppColors.textColor, 
+                          color: AppColors.textColor,
                           fontSize: MediaQuery.of(context).size.height * 0.04,
                         ),
                       ),
-                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                     Text(
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                      Text(
                         forbiddenWords.join('\n').toLowerCase(),
                         textAlign: TextAlign.center,
                         style: AppTypography.descBoldStyle.copyWith(
@@ -239,12 +246,12 @@ class QuestionScreenState extends State<QuestionScreen> {
                 top: MediaQuery.of(context).size.height * 0.42,
                 left: MediaQuery.of(context).size.width * 0.6,
                 child: Icon(
-                  difficulty=='łatwe' 
-                   ? Icons.tag_faces_rounded:
-                      difficulty=='średnie'  
-                      ? Icons.star_half
-                      : Icons.kebab_dining,
-                  size:  MediaQuery.of(context).size.height * 0.06,
+                  difficulty == 'łatwe'
+                      ? AppIcons.tagFaces
+                      : difficulty == 'średnie'
+                          ? AppIcons.sentimentNeutral
+                          : AppIcons.skull,
+                  size: MediaQuery.of(context).size.height * 0.06,
                   color: AppColors.secondTextColor,
                 ),
               ),
@@ -281,8 +288,8 @@ class RoundStartButton extends StatelessWidget {
         shadowColor: WidgetStateProperty.all(Colors.black),
       ),
       onPressed: () async {
-        await fetchData(); 
-        nextScreen(); 
+        await fetchData();
+        nextScreen();
         if (context.mounted) {
           Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
         }
@@ -300,12 +307,18 @@ class RoundStartButton extends StatelessWidget {
 }
 //====================[/START A ROUND BUTTON]====================
 
+//====================[POINTS BUTTON]====================
 class PointsButton extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData buttonIcon;
   final Color iconColor;
-  
-  const PointsButton({super.key, required this.onPressed, required this.buttonIcon, required this.iconColor});
+
+  const PointsButton({
+    super.key,
+    required this.onPressed,
+    required this.buttonIcon,
+    required this.iconColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -326,7 +339,15 @@ class PointsButton extends StatelessWidget {
         elevation: WidgetStateProperty.all(8.0),
         shadowColor: WidgetStateProperty.all(Colors.black),
       ),
-      onPressed: onPressed,
+      onPressed: () async {
+        if (!isLoading) {
+          await fetchData();
+          onPressed();
+          if (context.mounted) {
+            Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+          }
+        }
+      },
       child: Center(
         child: Icon(
           buttonIcon,
@@ -337,78 +358,158 @@ class PointsButton extends StatelessWidget {
     );
   }
 }
+//====================[/POINTS BUTTON]====================
 
-
+//====================[GAME APP BAR]====================
 class GameAppBar extends StatelessWidget {
   const GameAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<GameToggleProvider>(
-            builder: (context, gameToggleProvider, child) {
-              return Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.textColor,
-                      blurRadius: 12,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: AppBar(
-                  toolbarHeight: MediaQuery.of(context).size.height * 0.12,
-                  backgroundColor: AppColors.neutralColor,
-                  elevation: 0,
-                  automaticallyImplyLeading: false,
-                  title: SizedBox(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.12,
-                    child: Stack(
-                      alignment: Alignment.topCenter,
-                      children: [
-                        // Team A Points
-                        Positioned(
-                          left: MediaQuery.of(context).size.width * 0.04,
-                          child: TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
-                        ),
-      
-                        // Team A Skips
-                        Positioned(
-                          top: MediaQuery.of(context).size.height * 0.074,
-                          left: MediaQuery.of(context).size.width * 0.01,
-                          child: TeamSkipsDisplay(teamSkips: teamA.skips, iconFirst: true),
-                        ),
-      
-                        // TIMER 
-                        Positioned(
-                          child: TimerWidget(),
-                        ),
-      
-                        // Progress Bar
-                        Positioned(
-                          top: MediaQuery.of(context).size.height * 0.074,
-                          child: ProgressBarWidget(),
-                        ),
-      
-                        // Team B Points
-                        Positioned(
-                          right: MediaQuery.of(context).size.width * 0.04,
-                          child: TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
-                        ),
-      
-                        // Team B Skips
-                        Positioned(
-                          top: MediaQuery.of(context).size.height * 0.074,
-                          right: MediaQuery.of(context).size.width * 0.01,
-                          child: TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.textColor,
+            blurRadius: 12,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: AppBar(
+        toolbarHeight: MediaQuery.of(context).size.height * 0.12,
+        backgroundColor: AppColors.neutralColor,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.12,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              // Team A Points
+              Positioned(
+                left: MediaQuery.of(context).size.width * 0.04,
+                child: TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
+              ),
+
+              // Team A Skips
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.074,
+                left: MediaQuery.of(context).size.width * 0.01,
+                child: TeamSkipsDisplay(teamSkips: teamA.skips, iconFirst: true),
+              ),
+
+              // TIMER
+              Positioned(
+                child: TimerWidget(),
+              ),
+
+              // Progress Bar
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.074,
+                child: ProgressBarWidget(),
+              ),
+
+              // Team B Points
+              Positioned(
+                right: MediaQuery.of(context).size.width * 0.04,
+                child: TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
+              ),
+
+              // Team B Skips
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.074,
+                right: MediaQuery.of(context).size.width * 0.01,
+                child: TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
+//====================[/GAME APP BAR]====================
+
+//====================[PAUSE BUTTON]====================
+class PauseButton extends StatefulWidget {
+  const PauseButton({super.key});
+
+  @override
+  State<PauseButton> createState() => PauseButtonState();
+}
+
+class PauseButtonState extends State<PauseButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<GamePauseProvider>(
+      builder: (context, gamePauseProvider, child) {
+        return SizedBox(
+          width: MediaQuery.of(context).size.width * 0.3,
+          height: MediaQuery.of(context).size.height * 0.06,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(AppColors.textColor),
+              shape: WidgetStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
+                  ),
+                ),
+              ),
+              elevation: WidgetStateProperty.all(6),
+              shadowColor: WidgetStateProperty.all(Colors.black),
+            ),
+            onPressed: () {
+              context.read<GamePauseProvider>().pauseGame();
+              debugPrint(Provider.of<GamePauseProvider>(context, listen: false).isPaused.toString());
+            },
+            child: Center(
+              child: Icon(
+                gamePauseProvider.isPaused ? AppIcons.pause : AppIcons.play,
+                size: MediaQuery.of(context).size.height * 0.05,
+                color: AppColors.neutralColor,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+//====================[/PAUSE BUTTON]====================
+
+//====================[DATA LOADING INDICATOR]====================
+class DataLoadingIndicator extends StatefulWidget {
+  const DataLoadingIndicator({super.key});
+
+  @override
+  State<DataLoadingIndicator> createState() => _DataLoadingIndicatorState();
+}
+
+class _DataLoadingIndicatorState extends State<DataLoadingIndicator> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.5,
+      width: MediaQuery.of(context).size.width * 0.75,
+      child: Center(
+        child: FractionallySizedBox(
+          heightFactor: 0.25,
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: SizedBox(
+              child: CircularProgressIndicator(
+                color: AppColors.neutralColor,
+                strokeWidth: MediaQuery.of(context).size.height * 0.02,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+//====================[/DATA LOADING INDICATOR]====================

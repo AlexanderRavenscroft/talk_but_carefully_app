@@ -5,7 +5,7 @@ import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/presentation/menu/menu_widgets.dart';
 import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dart';
-
+import 'package:gadajaleostroznie/presentation/menu/menu_settings_popup.dart';
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
 
@@ -19,19 +19,19 @@ class MenuScreen extends StatelessWidget {
           // BACKGROUND SVG
           Positioned.fill(
             child: SvgPicture.asset(
-              'assets/images/background-circles.svg', 
-              fit: BoxFit.cover,         
+              'assets/images/background-circles.svg',
+              fit: BoxFit.cover,
             ),
           ),
-          
+
           // LOGO
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.22, 
+            top: MediaQuery.of(context).size.height * 0.22,
             child: Image.asset(
               'assets/images/logo.png',
               width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.2, 
-              fit: BoxFit.contain, 
+              height: MediaQuery.of(context).size.height * 0.2,
+              fit: BoxFit.contain,
             ),
           ),
 
@@ -39,12 +39,15 @@ class MenuScreen extends StatelessWidget {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.48,
             child: MenuButton(
-              buttonIcon: Icons.gamepad_rounded,
+              buttonIcon: AppIcons.gamepad,
               buttonText: "GRAJ",
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const GameSettingsScreen()
-                ));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const GameSettingsScreen(),
+                  ),
+                );
                 playAudio(GameSounds.tapSound);
               },
             ),
@@ -54,21 +57,21 @@ class MenuScreen extends StatelessWidget {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.63,
             child: MenuButton(
-              buttonIcon: Icons.text_snippet_outlined,
+              buttonIcon: AppIcons.docText,
               buttonText: "ZASADY",
               onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return RulesDialog(
-                    headingIcon: Icons.rule_sharp,
-                    headingText: "ZASADY",
-                    buttonText: "DOBRA",
-                    contentText: 'texts/rules.txt',
-                  );
-                },
-              );
-              playAudio(GameSounds.tapSound);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return RulesDialog(
+                      headingIcon: AppIcons.docText,
+                      headingText: "ZASADY",
+                      buttonText: "DOBRA",
+                      contentText: 'texts/rules.txt',
+                    );
+                  },
+                );
+                playAudio(GameSounds.tapSound);
               },
             ),
           ),
@@ -77,7 +80,7 @@ class MenuScreen extends StatelessWidget {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.78,
             child: MenuButton(
-              buttonIcon: Icons.settings_outlined,
+              buttonIcon: AppIcons.settings,
               buttonText: "USTAWIENIA",
               onPressed: () {
                 showDialog(
@@ -88,7 +91,7 @@ class MenuScreen extends StatelessWidget {
                 );
                 playAudio(GameSounds.tapSound);
               },
-            )
+            ),
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
+import 'package:gadajaleostroznie/themes/themes.dart';
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
   teamB: 0,
@@ -104,4 +105,21 @@ checkResults() {
     return true;
   }
   return false;
+}
+void resetGame() {
+  // Keep the Teams and players, reset points
+
+  // teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
+  // teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
+  for (var team in teams) {
+    team.points = 0;
+    team.skips = 0;
+  }
+  currentGameStage = 0;
+  currentRound = 1;
+  teamPlayerIndexes[teamA] = 0;
+  teamPlayerIndexes[teamB] = 0;
+  currentScreen = Screen.encounter;
+  currentTeam = teamA;
+  isTeamBTurn = false;
 }

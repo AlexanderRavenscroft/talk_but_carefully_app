@@ -5,15 +5,16 @@ import 'dart:convert';
 import 'package:package_info_plus/package_info_plus.dart';
 
 //==================[GET APP VERSION && BUILD]==================
-String appVersion = '';
-String buildNumber = '';
+class AppSetup{
+  static String appVersion = '';
+  static String buildNumber = '';
 
-Future<void> getAppVersion() async {
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    appVersion = packageInfo.version;
-    buildNumber = packageInfo.buildNumber;
+  static Future<void> getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      appVersion = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+  }
 }
-
 //==================[IMPORT .TXT FILES]==================
 Map<String, String> textFiles = {
   'texts/agreement.txt': '', 

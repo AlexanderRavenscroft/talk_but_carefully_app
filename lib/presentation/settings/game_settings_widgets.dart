@@ -268,7 +268,7 @@ class NextSettingsButton extends StatelessWidget {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
       ),
-      child: Icon(Icons.arrow_forward, size: MediaQuery.of(context).size.height * 0.05, color: AppColors.textColor),
+      child: Icon(AppIcons.arrowForward, size: MediaQuery.of(context).size.height * 0.05, color: AppColors.textColor),
     );
   }
 }

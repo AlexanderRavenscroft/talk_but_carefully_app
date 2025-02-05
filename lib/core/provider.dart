@@ -26,3 +26,14 @@ class GameToggleProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class GamePauseProvider extends ChangeNotifier {
+  bool _isPaused = false;
+
+  bool get isPaused => _isPaused;
+
+  void pauseGame() {
+    _isPaused = !_isPaused;
+    notifyListeners(); 
+  }
+}

@@ -3,6 +3,7 @@ import 'package:gadajaleostroznie/core/game_logic.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen_widgets.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
+import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dart';
 
 class GameResultsScreen extends StatelessWidget {
   const GameResultsScreen({super.key});
@@ -19,46 +20,50 @@ class GameResultsScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.74,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
-                  color: AppColors.neutralColor,
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                        offset: Offset(0, 2),
-                        color: Colors.black,
-                        blurRadius: 6,
-                        spreadRadius: 0)
-                  ]
-                ),
+                color: AppColors.neutralColor,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 2),
+                    color: Colors.black,
+                    blurRadius: 6,
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    (winningTeam == null)
-                        ? 'REMIS'
-                        : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
-                    textAlign: TextAlign.center,
-                    style: AppTypography.descBoldStyle.copyWith(
-                      height: 1,
-                      fontSize: MediaQuery.of(context).size.height * 0.05,
-                      color: winningTeam?.color ?? AppColors.textColor,
-                    ),
-                  ),
+                  WinningTeamDisplay(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ResultsTeamPointsDisplay(displayedText: teamA.points.toString(), textColor: teamA.color),
-                      ResultsTeamPointsDisplay(displayedText: ':', textColor: AppColors.textColor),
-                      ResultsTeamPointsDisplay(displayedText: teamB.points.toString(), textColor: teamB.color),
+                      ResultsTeamPointsDisplay(
+                        displayedText: teamA.points.toString(),
+                        textColor: teamA.color,
+                      ),
+                      ResultsTeamPointsDisplay(
+                        displayedText: ':',
+                        textColor: AppColors.textColor,
+                      ),
+                      ResultsTeamPointsDisplay(
+                        displayedText: teamB.points.toString(),
+                        textColor: teamB.color,
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ResultsTeamSkipsDisplay(
-                          teamSkips: teamA.skips, iconFirst: true),
+                        teamSkips: teamA.skips,
+                        iconFirst: true,
+                      ),
                       SizedBox(width: MediaQuery.of(context).size.width * 0.4),
                       ResultsTeamSkipsDisplay(
-                          teamSkips: teamB.skips, iconFirst: false),
+                        teamSkips: teamB.skips,
+                        iconFirst: false,
+                      ),
                     ],
                   ),
                   Container(
@@ -76,17 +81,13 @@ class GameResultsScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-
                         PlayersScoreList(displayedTeam: teamA),
-
                         Divider(
-                          color: AppColors.shadowColor, 
-                          thickness: 6, 
+                          color: AppColors.shadowColor,
+                          thickness: 6,
+                          height: 0,
                         ),
-
                         PlayersScoreList(displayedTeam: teamB),
-
-                        
                       ],
                     ),
                   ),
@@ -94,15 +95,24 @@ class GameResultsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-      
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
-                ResultsScreenButton(buttonIcon: Icons.arrow_back, onPressed: (){debugPrint("dada");}),
-                ResultsScreenButton(buttonIcon: Icons.abc, onPressed: (){debugPrint("dada2");}),
+                ResultsScreenButton(
+                  buttonIcon: AppIcons.arrowBack,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  GameSettingsScreen()));
+                    resetGame();
+                  },
+                ),
+                ResultsScreenButton(
+                  buttonIcon: AppIcons.hornCall,
+                  onPressed: () {
+                    debugPrint("dada2");
+                  },
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/core/game_logic.dart';
+
+class WinningTeamDisplay extends StatelessWidget {
+  const WinningTeamDisplay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+     (winningTeam == null)
+        ? 'REMIS'
+        : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
+    textAlign: TextAlign.center,
+    style: AppTypography.descBoldStyle.copyWith(
+       height: 1,
+       fontSize: MediaQuery.of(context).size.height * 0.05,
+       color: winningTeam?.color ?? AppColors.textColor,
+     ),
+   );
+  }
+}
 
 class ResultsTeamPointsDisplay extends StatelessWidget {
   final String displayedText;
   final Color textColor;
-  const ResultsTeamPointsDisplay({super.key, required this.displayedText, required this.textColor});
+
+  const ResultsTeamPointsDisplay({
+    super.key, 
+    required this.displayedText, 
+    required this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,32 +44,30 @@ class ResultsTeamPointsDisplay extends StatelessWidget {
   }
 }
 
-
-
 class ResultsTeamSkipsDisplay extends StatelessWidget {
   final int teamSkips;
   final bool iconFirst;
-  
+
   const ResultsTeamSkipsDisplay({
-    super.key, 
-    required this.teamSkips, 
+    super.key,
+    required this.teamSkips,
     this.iconFirst = true,
   });
 
   @override
   Widget build(BuildContext context) {
     final icon = Icon(
-      AppIcons.arrowCurved, 
+      AppIcons.arrowCurved,
       size: MediaQuery.of(context).size.height * 0.025,
     );
     final text = Text(
       teamSkips.toString(),
       style: AppTypography.descBoldStyle.copyWith(
-        color: AppColors.textColor, 
+        color: AppColors.textColor,
         fontSize: MediaQuery.of(context).size.height * 0.025,
       ),
     );
-    
+
     return Row(
       children: iconFirst ? [icon, text] : [text, icon],
     );
@@ -53,98 +76,92 @@ class ResultsTeamSkipsDisplay extends StatelessWidget {
 
 class PlayersScoreList extends StatelessWidget {
   final Team displayedTeam;
-  const PlayersScoreList({super.key, required this.displayedTeam});
+
+  const PlayersScoreList({
+    super.key,
+    required this.displayedTeam,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-            height: MediaQuery.of(context).size.height * 0.21,
-            width: MediaQuery.of(context).size.width * 0.74,
-            decoration: BoxDecoration(
-         //    color: AppColors.shadowColor,
-              borderRadius: BorderRadius.circular(16),
-            ),
-              child: 
-                     (displayedTeam.players.isEmpty) ?
-
-                                           Center(
-                                             child: Text(
-                                                                           'Nie dodano graczy!',
-                                                                           style: AppTypography.descStyle.copyWith(
-                                                                             fontSize: MediaQuery.of(context).size.height * 0.036,
-                                                                           ),
-                                                                          ),
-                                           ) 
-                             :
-                             
-                             
-                             
-                             ListView.builder(
-                itemCount: displayedTeam.players.length,
-                 itemBuilder: (context, index) {
-
-                   return
-                                     
-                   
-                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                     children: [
-                  //      SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-                        Container(
-                   //     color: Colors.blue,
-                          height: MediaQuery.of(context).size.height * 0.08,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                           child: Center(
-                             child: Text(
-                              displayedTeam.players[index].username, 
-                              textAlign: TextAlign.center,
-                              style: AppTypography.descStyle.copyWith(
-                                fontSize: MediaQuery.of(context).size.height * 0.03,
-                              ),
-                             ),
-                           ),
+      height: MediaQuery.of(context).size.height * 0.21,
+      width: MediaQuery.of(context).size.width * 0.74,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: (displayedTeam.players.isEmpty)
+          ? Center(
+              child: Text(
+                'Nie dodano graczy!',
+                style: AppTypography.descStyle.copyWith(
+                  fontSize: MediaQuery.of(context).size.height * 0.036,
+                ),
+              ),
+            )
+          : ListView.builder(
+              itemCount: displayedTeam.players.length,
+              itemBuilder: (context, index) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Center(
+                        child: Text(
+                          displayedTeam.players[index].username,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.descStyle.copyWith(
+                            fontSize: MediaQuery.of(context).size.height * 0.03,
+                          ),
                         ),
-SizedBox(
-  height: MediaQuery.of(context).size.height * 0.04,
-  width: MediaQuery.of(context).size.width * 0.3,
-  child: LinearProgressIndicator(
-    borderRadius: BorderRadius.only(
-      topRight: Radius.circular(6),
-      bottomRight: Radius.circular(6),
-    ),
-    backgroundColor: Colors.transparent,
-    color: displayedTeam.color,
-    value: ( displayedTeam.points == 0)
-        ? 0
-        : displayedTeam.players[index].points / displayedTeam.points,
-  ),
-),
-SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-Text(
-                              displayedTeam.players[index].points.toString(), 
-                              textAlign: TextAlign.center,
-                              style: AppTypography.descStyle.copyWith(
-                                fontSize: MediaQuery.of(context).size.height * 0.03,
-                              ),
-                             ),
-                    ],
-
-                 );
-               }
-          ),
-
-
-        );
-
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: LinearProgressIndicator(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(6),
+                          bottomRight: Radius.circular(6),
+                        ),
+                        backgroundColor: Colors.transparent,
+                        color: displayedTeam.color,
+                        value: (displayedTeam.points == 0)
+                            ? 0
+                            : displayedTeam.players[index].points /
+                                displayedTeam.points,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.03,
+                    ),
+                    Text(
+                      displayedTeam.players[index].points.toString(),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.descStyle.copyWith(
+                        fontSize: MediaQuery.of(context).size.height * 0.03,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+    );
   }
 }
-
 
 class ResultsScreenButton extends StatelessWidget {
   final IconData buttonIcon;
   final VoidCallback onPressed;
-  const ResultsScreenButton({super.key, required this.buttonIcon, required this.onPressed});
+
+  const ResultsScreenButton({
+    super.key,
+    required this.buttonIcon,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -152,8 +169,8 @@ class ResultsScreenButton extends StatelessWidget {
       style: ButtonStyle(
         fixedSize: WidgetStateProperty.all(
           Size(
-            MediaQuery.of(context).size.width * 0.36,
-            MediaQuery.of(context).size.height * 0.072,
+            MediaQuery.of(context).size.width * 0.38,
+            MediaQuery.of(context).size.height * 0.076,
           ),
         ),
         backgroundColor: WidgetStateProperty.all(AppColors.neutralColor),
@@ -170,7 +187,7 @@ class ResultsScreenButton extends StatelessWidget {
         child: Icon(
           buttonIcon,
           color: AppColors.textColor,
-          size: MediaQuery.of(context).size.height * 0.05,
+          size: MediaQuery.of(context).size.height * 0.054,
         ),
       ),
     );

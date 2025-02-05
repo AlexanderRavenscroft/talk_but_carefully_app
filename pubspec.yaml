@@ -99,7 +99,6 @@ flutter:
    - family: MyFlutterApp
      fonts:
        - asset: assets/fonts/MyFlutterApp.ttf
-       - asset: assets/fonts/MyFlutterApp2.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

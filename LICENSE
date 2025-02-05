@@ -1,0 +1,66 @@
+Flutter Icons License Information
+---------------------------------
+
+This project uses icons from the following sources. Please refer to the respective licenses for more details.
+
+1. Font Awesome 4
+   - Author: Dave Gandy
+   - License: SIL Open Font License (OFL)
+   - Homepage: http://fortawesome.github.com/Font-Awesome/
+   - License URL: http://scripts.sil.org/OFL
+
+2. Iconic
+   - Author: P.J. Onori
+   - License: SIL Open Font License (OFL)
+   - Homepage: http://somerandomdude.com/work/iconic/
+   - License URL: http://scripts.sil.org/OFL
+
+3. Material Design Icons
+   - Author: Google, Inc
+   - License: Apache 2.0
+   - Homepage: https://design.google.com/icons/
+   - License URL: https://www.apache.org/licenses/LICENSE-2.0
+
+4. Entypo
+   - Author: Daniel Bruce
+   - License: SIL Open Font License (OFL)
+   - Homepage: http://www.entypo.com
+   - License URL: http://scripts.sil.org/OFL
+
+5. Typicons
+   - Author: Stephen Hutchings
+   - License: SIL Open Font License (OFL)
+   - Homepage: http://typicons.com/
+   - License URL: http://scripts.sil.org/OFL
+
+6. RPG Awesome
+   - Author: Daniela Howe & Ivan Montiel
+   - License: SIL Open Font License (OFL)
+   - Homepage: http://nagoshiashumari.github.io/Rpg-Awesome/
+   - License URL: http://scripts.sil.org/OFL
+
+7. Font Awesome 5
+   - Author: Dave Gandy
+   - License: SIL Open Font License (OFL)
+   - Homepage: http://fortawesome.github.com/Font-Awesome/
+   - License URL: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt
+
+---
+
+SIL Open Font License (OFL)
+---------------------------
+The SIL Open Font License (OFL) is a free, libre, and open-source license specifically designed for fonts and related software. It allows the fonts to be used, studied, modified, and redistributed freely as long as they are not sold by themselves. For the full text of the license, please visit: http://scripts.sil.org/OFL
+
+Apache License 2.0
+------------------
+The Apache License 2.0 is a permissive free software license that allows users to freely use, modify, and distribute the software, provided that the original copyright notice and license terms are included. For the full text of the license, please visit: https://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+Attribution Notice
+------------------
+This project includes icons from the above-mentioned sources. All rights remain with the original authors. The licenses for these icons require that appropriate credit be given to the authors and that the license terms be included in any distribution of the project.
+
+---
+
+End of LICENSE
