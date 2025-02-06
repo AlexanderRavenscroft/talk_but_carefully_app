@@ -464,11 +464,10 @@ class PauseButtonState extends State<PauseButton> {
             ),
             onPressed: () {
               context.read<GamePauseProvider>().pauseGame();
-              debugPrint(Provider.of<GamePauseProvider>(context, listen: false).isPaused.toString());
             },
             child: Center(
               child: Icon(
-                gamePauseProvider.isPaused ? AppIcons.pause : AppIcons.play,
+                gamePauseProvider.isPaused ?AppIcons.play :  AppIcons.pause,
                 size: MediaQuery.of(context).size.height * 0.05,
                 color: AppColors.neutralColor,
               ),

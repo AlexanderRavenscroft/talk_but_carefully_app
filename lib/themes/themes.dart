@@ -90,5 +90,6 @@ class AppIcons {
   static const IconData play = Icons.play_arrow;
   static const IconData alreadyTaken = Icons.do_disturb;
   static const IconData remove = Icons.cancel;
+  static const IconData question = Icons.question_mark;
 }
 

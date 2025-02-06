@@ -115,7 +115,7 @@ class RulesDialog extends StatelessWidget {
         width: double.maxFinite,
         child: SingleChildScrollView(
           child: Text(
-            textFiles[contentText] ?? 'Ładowanie tekstu...',
+            textFiles[contentText] ?? 'Nie można wczytać tekstu',
             textAlign: TextAlign.justify,
             style: AppTypography.descStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.024,

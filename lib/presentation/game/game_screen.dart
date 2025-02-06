@@ -46,7 +46,8 @@ class GameScreen extends StatelessWidget {
             Consumer<GamePauseProvider>(
               builder: (context, gamePauseProvider, child) {
                 return gamePauseProvider.isPaused
-                    ? Consumer<GameToggleProvider>(
+                    ? PauseScreen()
+                    : Consumer<GameToggleProvider>(
                         builder: (context, gameToggleProvider, child) {
                           return Center(
                             child: Column(
@@ -103,8 +104,7 @@ class GameScreen extends StatelessWidget {
                             ),
                           );
                         },
-                      )
-                    : PauseScreen();
+                      );
               },
             ),
 

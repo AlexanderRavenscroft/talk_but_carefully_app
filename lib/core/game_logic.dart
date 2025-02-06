@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
-import 'package:gadajaleostroznie/themes/themes.dart';
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
   teamB: 0,
