@@ -71,12 +71,12 @@ class GameScreen extends StatelessWidget {
                                     : SizedBox.shrink(),
 
                                 // Points and Skips Buttons
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    // Remove Points Button
-                                    (currentScreen == Screen.question)
-                                        ? PointsButton(
+                                (currentScreen == Screen.question)
+                                    ? Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          // Remove Points Button
+                                          PointsButton(
                                             onPressed: () async {
                                               playAudio(GameSounds.wrongAnswerSound);
                                               if (!isLoading) {
@@ -89,12 +89,10 @@ class GameScreen extends StatelessWidget {
                                             },
                                             buttonIcon: AppIcons.cancel,
                                             iconColor: AppColors.primaryColor,
-                                          )
-                                        : SizedBox.shrink(),
+                                          ),
 
-                                    // Add Skips Button
-                                    (currentScreen == Screen.question)
-                                        ? PointsButton(
+                                          // Add Skips Button
+                                          PointsButton(
                                             onPressed: () async {
                                               if (!isLoading) {
                                                 if (currentTeam.skips < GameSettings.aviableSkips) {
@@ -109,12 +107,10 @@ class GameScreen extends StatelessWidget {
                                             },
                                             buttonIcon: AppIcons.arrowsCcw,
                                             iconColor: AppColors.textColor,
-                                          )
-                                        : SizedBox.shrink(),
+                                          ),
 
-                                    // Add Points Button
-                                    (currentScreen == Screen.question)
-                                        ? PointsButton(
+                                          // Add Points Button
+                                          PointsButton(
                                             onPressed: () async {
                                               if (!isLoading) {
                                                 playAudio(GameSounds.correctAnswerSound);
@@ -127,10 +123,10 @@ class GameScreen extends StatelessWidget {
                                             },
                                             buttonIcon: AppIcons.ok,
                                             iconColor: AppColors.notificationColor,
-                                          )
-                                        : SizedBox.shrink(),
-                                  ],
-                                ),
+                                          ),
+                                        ],
+                                      )
+                                    : SizedBox.shrink(),
                               ],
                             ),
                           );

@@ -16,7 +16,7 @@ class ToggleProvider extends ChangeNotifier {
 /// Refresh team_settings_screen when color is choosen
 class RefreshProvider extends ChangeNotifier {
   void refreshPage() {
-    notifyListeners(); // Notify widgets that the page needs to rebuild
+    notifyListeners(); 
   }
 }
 
@@ -27,6 +27,7 @@ class GameToggleProvider extends ChangeNotifier {
   }
 }
 
+/// Update screen after game pause occurs
 class GamePauseProvider extends ChangeNotifier {
   bool _isPaused = false;
 

@@ -3,6 +3,7 @@ import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
+
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
   teamB: 0,
@@ -12,12 +13,10 @@ String fullEncounterMessage = '';
 String getEncounterMessage() {
   if (currentTeam.players.isEmpty) {
     return '${getRandomElement(playerEncounterList)} ${currentTeam.name}!';
-    // return 'No dalej, nie każ nam czekać wieczność ${currentTeam.name}!';
   }
 
   int index = teamPlayerIndexes[currentTeam]!;  
   return '${getRandomElement(playerEncounterList)} ${currentTeam.players[index].username}!';
-  //  return 'No dalej, nie każ nam czekać wieczność ${currentTeam.players[index].username}!';
 }
 
 void assignCurrentPlayer() {
@@ -29,13 +28,20 @@ void assignCurrentPlayer() {
   }
 }
 
+enum Screen {encounter, question}
+Screen currentScreen = Screen.encounter;
+
+bool isTeamBTurn = false;
+Team currentTeam = teamA;
+
 int currentGameStage = 0;
+int currentRound = 1;
+
 void nextScreen() {
   // Half of the round
   if(currentScreen == Screen.question) {
     isTeamBTurn = !isTeamBTurn; 
-    currentTeam = isTeamBTurn ? teamB : teamA; 
-     
+    currentTeam = isTeamBTurn ? teamB : teamA;
   }
 
   currentGameStage = (currentGameStage >= 4) ? 1 : currentGameStage + 1;
@@ -54,10 +60,10 @@ void nextScreen() {
       assignCurrentPlayer();
     }
   }
-  
   currentScreen = currentScreen == Screen.encounter ? Screen.question : Screen.encounter;
 }
 
+// POINTS BUTTONS FUNCTIONS
 void addPoints() {
   currentTeam.points++;
   if (currentTeam.players.isNotEmpty) {
@@ -80,8 +86,8 @@ void addSkips() {
     currentTeam.skips++;
 }
 
+// END OF THE GAME
 Team? winningTeam = teamA;
-
 checkResults() {
   if(teams.any((team) => team.points >= GameSettings.aviablePoints)) {
     if(teamA.points > teamB.points) {
@@ -107,15 +113,20 @@ checkResults() {
   }
   return false;
 }
-void resetGame() {
-  // Keep the Teams and players, reset points
 
-  // teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
-  // teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
+// RESET GAME
+void resetGame() {
+  // Keep the Teams and players, reset and screen
   for (var team in teams) {
     team.points = 0;
     team.skips = 0;
   }
+  for (Team team in teams) {
+    for (Player player in team.players) {
+      player.points = 0;
+    }
+  }
+
   currentGameStage = 0;
   currentRound = 1;
   teamPlayerIndexes[teamA] = 0;

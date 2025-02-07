@@ -7,6 +7,79 @@ import 'package:gadajaleostroznie/core/game_logic.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/core/provider.dart';
 import 'package:provider/provider.dart';
+
+//====================[GAME APP BAR]====================
+class GameAppBar extends StatelessWidget {
+  const GameAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.textColor,
+            blurRadius: 12,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: AppBar(
+        toolbarHeight: MediaQuery.of(context).size.height * 0.12,
+        backgroundColor: AppColors.neutralColor,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.12,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              // Team A Points
+              Positioned(
+                left: MediaQuery.of(context).size.width * 0.04,
+                child: TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
+              ),
+
+              // Team A Skips
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.074,
+                left: MediaQuery.of(context).size.width * 0.01,
+                child: TeamSkipsDisplay(teamSkips: teamA.skips, iconFirst: true),
+              ),
+
+              // TIMER
+              Positioned(
+                child: TimerWidget(),
+              ),
+
+              // Progress Bar
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.074,
+                child: ProgressBarWidget(),
+              ),
+
+              // Team B Points
+              Positioned(
+                right: MediaQuery.of(context).size.width * 0.04,
+                child: TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
+              ),
+
+              // Team B Skips
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.074,
+                right: MediaQuery.of(context).size.width * 0.01,
+                child: TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+//====================[/GAME APP BAR]====================
+
 //====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
   const TeamBackground({super.key});
@@ -73,7 +146,6 @@ class TeamSkipsDisplay extends StatelessWidget {
         fontSize: MediaQuery.of(context).size.height * 0.03,
       ),
     );
-
     return Row(
       children: iconFirst ? [icon, text] : [text, icon],
     );
@@ -352,127 +424,6 @@ class PointsButton extends StatelessWidget {
   }
 }
 //====================[/POINTS BUTTON]====================
-
-//====================[GAME APP BAR]====================
-class GameAppBar extends StatelessWidget {
-  const GameAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textColor,
-            blurRadius: 12,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.12,
-        backgroundColor: AppColors.neutralColor,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        title: SizedBox(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.12,
-          child: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              // Team A Points
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.04,
-                child: TeamPointsDisplay(teamPoints: teamA.points, teamColor: teamA.color),
-              ),
-
-              // Team A Skips
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.074,
-                left: MediaQuery.of(context).size.width * 0.01,
-                child: TeamSkipsDisplay(teamSkips: teamA.skips, iconFirst: true),
-              ),
-
-              // TIMER
-              Positioned(
-                child: TimerWidget(),
-              ),
-
-              // Progress Bar
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.074,
-                child: ProgressBarWidget(),
-              ),
-
-              // Team B Points
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.04,
-                child: TeamPointsDisplay(teamPoints: teamB.points, teamColor: teamB.color),
-              ),
-
-              // Team B Skips
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.074,
-                right: MediaQuery.of(context).size.width * 0.01,
-                child: TeamSkipsDisplay(teamSkips: teamB.skips, iconFirst: false),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-//====================[/GAME APP BAR]====================
-
-//====================[PAUSE BUTTON]====================
-class PauseButton extends StatefulWidget {
-  const PauseButton({super.key});
-
-  @override
-  State<PauseButton> createState() => PauseButtonState();
-}
-
-class PauseButtonState extends State<PauseButton> {
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<GamePauseProvider>(
-      builder: (context, gamePauseProvider, child) {
-        return SizedBox(
-          width: MediaQuery.of(context).size.width * 0.3,
-          height: MediaQuery.of(context).size.height * 0.06,
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(AppColors.textColor),
-              shape: WidgetStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                  ),
-                ),
-              ),
-              elevation: WidgetStateProperty.all(6),
-              shadowColor: WidgetStateProperty.all(Colors.black),
-            ),
-            onPressed: () {
-              context.read<GamePauseProvider>().pauseGame();
-              playAudio(GameSounds.tapSound);
-            },
-            child: Center(
-              child: Icon(
-                gamePauseProvider.isPaused ?AppIcons.play :  AppIcons.pause,
-                size: MediaQuery.of(context).size.height * 0.05,
-                color: AppColors.neutralColor,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-//====================[/PAUSE BUTTON]====================
 
 //====================[DATA LOADING INDICATOR]====================
 class DataLoadingIndicator extends StatefulWidget {

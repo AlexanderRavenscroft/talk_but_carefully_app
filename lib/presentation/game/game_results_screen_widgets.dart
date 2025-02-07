@@ -3,32 +3,35 @@ import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
 
+//====================[WINNING TEAM DISPLAY]====================
 class WinningTeamDisplay extends StatelessWidget {
   const WinningTeamDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-     (winningTeam == null)
-        ? 'REMIS'
-        : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
-    textAlign: TextAlign.center,
-    style: AppTypography.descBoldStyle.copyWith(
-       height: 1,
-       fontSize: MediaQuery.of(context).size.height * 0.05,
-       color: winningTeam?.color ?? AppColors.textColor,
-     ),
-   );
+      (winningTeam == null)
+          ? 'REMIS'
+          : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
+      textAlign: TextAlign.center,
+      style: AppTypography.descBoldStyle.copyWith(
+        height: 1,
+        fontSize: MediaQuery.of(context).size.height * 0.05,
+        color: winningTeam?.color ?? AppColors.textColor,
+      ),
+    );
   }
 }
+//====================[/WINNING TEAM DISPLAY]====================
 
+//====================[RESULTS TEAM POINTS DISPLAY]====================
 class ResultsTeamPointsDisplay extends StatelessWidget {
   final String displayedText;
   final Color textColor;
 
   const ResultsTeamPointsDisplay({
-    super.key, 
-    required this.displayedText, 
+    super.key,
+    required this.displayedText,
     required this.textColor,
   });
 
@@ -43,7 +46,9 @@ class ResultsTeamPointsDisplay extends StatelessWidget {
     );
   }
 }
+//====================[/RESULTS TEAM POINTS DISPLAY]====================
 
+//====================[RESULTS TEAM SKIPS DISPLAY]====================
 class ResultsTeamSkipsDisplay extends StatelessWidget {
   final int teamSkips;
   final bool iconFirst;
@@ -73,7 +78,9 @@ class ResultsTeamSkipsDisplay extends StatelessWidget {
     );
   }
 }
+//====================[/RESULTS TEAM SKIPS DISPLAY]====================
 
+//====================[PLAYERS SCORE LIST]====================
 class PlayersScoreList extends StatelessWidget {
   final Team displayedTeam;
 
@@ -106,6 +113,7 @@ class PlayersScoreList extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    // Player Name
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.08,
                       width: MediaQuery.of(context).size.width * 0.3,
@@ -119,6 +127,8 @@ class PlayersScoreList extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    // Player Progress Bar
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                       width: MediaQuery.of(context).size.width * 0.3,
@@ -131,10 +141,11 @@ class PlayersScoreList extends StatelessWidget {
                         color: displayedTeam.color,
                         value: (displayedTeam.points == 0)
                             ? 0
-                            : displayedTeam.players[index].points /
-                                displayedTeam.points,
+                            : displayedTeam.players[index].points / displayedTeam.points,
                       ),
                     ),
+
+                    // Player Points
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
@@ -152,7 +163,9 @@ class PlayersScoreList extends StatelessWidget {
     );
   }
 }
+//====================[/PLAYERS SCORE LIST]====================
 
+//====================[RESULTS SCREEN BUTTON]====================
 class ResultsScreenButton extends StatelessWidget {
   final IconData buttonIcon;
   final VoidCallback onPressed;
@@ -193,3 +206,4 @@ class ResultsScreenButton extends StatelessWidget {
     );
   }
 }
+//====================[/RESULTS SCREEN BUTTON]====================

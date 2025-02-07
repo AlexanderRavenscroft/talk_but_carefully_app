@@ -8,6 +8,56 @@ import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dar
 import 'package:gadajaleostroznie/core/provider.dart';
 import 'package:provider/provider.dart';
 
+//====================[PAUSE BUTTON]====================
+class PauseButton extends StatefulWidget {
+  const PauseButton({super.key});
+
+  @override
+  State<PauseButton> createState() => PauseButtonState();
+}
+
+class PauseButtonState extends State<PauseButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<GamePauseProvider>(
+      builder: (context, gamePauseProvider, child) {
+        return SizedBox(
+          width: MediaQuery.of(context).size.width * 0.3,
+          height: MediaQuery.of(context).size.height * 0.06,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(AppColors.textColor),
+              shape: WidgetStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
+                  ),
+                ),
+              ),
+              elevation: WidgetStateProperty.all(6),
+              shadowColor: WidgetStateProperty.all(Colors.black),
+            ),
+            onPressed: () {
+              context.read<GamePauseProvider>().pauseGame();
+              playAudio(GameSounds.tapSound);
+            },
+            child: Center(
+              child: Icon(
+                gamePauseProvider.isPaused ? AppIcons.play :  AppIcons.pause,
+                size: MediaQuery.of(context).size.height * 0.05,
+                color: AppColors.neutralColor,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+//====================[/PAUSE BUTTON]====================
+
+//====================[PAUSE SCREEN]====================
 class PauseScreen extends StatefulWidget {
   const PauseScreen({super.key});
 
@@ -21,6 +71,16 @@ class PauseScreenState extends State<PauseScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Text(
+          'PAUZA',
+          style: AppTypography.descBoldStyle.copyWith(
+            fontSize: MediaQuery.of(context).size.height * 0.1,
+          ),
+        ),
+
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
+        // Sound Toggle Button
         PauseSettingsButton(
           settingsButtonText: 'DŹWIĘK',
           settingsButtonIcon: GameSounds.soundToggled ? AppIcons.soundON : AppIcons.soundOFF,
@@ -30,14 +90,17 @@ class PauseScreenState extends State<PauseScreen> {
               PreferenceService.savePreference('soundToggled', GameSounds.soundToggled);
             });
             playAudio(GameSounds.optionSwitchSound);
-           },
+          },
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+
+        // Game Guide Button
         PauseSettingsButton(
           settingsButtonText: 'JAK GRAĆ',
           settingsButtonIcon: AppIcons.question,
           settingsButtonPress: () {
-                       showDialog(
+            showDialog(
               context: context,
               builder: (BuildContext context) {
                 return GameGuideDialog(
@@ -48,9 +111,12 @@ class PauseScreenState extends State<PauseScreen> {
               },
             );
             playAudio(GameSounds.optionSwitchSound);
-           },
+          },
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+
+        // Rules Button
         PauseSettingsButton(
           settingsButtonText: 'ZASADY',
           settingsButtonIcon: AppIcons.docText,
@@ -67,27 +133,29 @@ class PauseScreenState extends State<PauseScreen> {
               },
             );
             playAudio(GameSounds.optionSwitchSound);
-           },
+          },
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
 
- PauseSettingsButton(
-              settingsButtonText: 'WYJDŻ',
-              settingsButtonIcon: AppIcons.arrowBack,
-              settingsButtonPress: () {
-              resetGame();
-              Navigator.pop(context, MaterialPageRoute(builder: (context) =>  GameSettingsScreen()));
-                            context.read<GamePauseProvider>().pauseGame();
-                playAudio(GameSounds.tapSound);
-               },
-            ),
-
-      ]
+        // Exit Button
+        PauseSettingsButton(
+          settingsButtonText: 'WYJDŻ',
+          settingsButtonIcon: AppIcons.arrowBack,
+          settingsButtonPress: () {
+            resetGame();
+            Navigator.pop(context, MaterialPageRoute(builder: (context) => GameSettingsScreen()));
+            context.read<GamePauseProvider>().pauseGame();
+            playAudio(GameSounds.tapSound);
+          },
+        ),
+      ],
     );
   }
 }
-//====================[MENU BUTTON]====================
-//====================[SETTINGS BUTTONS]====================
+//====================[/PAUSE SCREEN]====================
+
+//====================[PAUSE SETTINGS BUTTON]====================
 class PauseSettingsButton extends StatelessWidget {
   final VoidCallback settingsButtonPress;
   final IconData settingsButtonIcon;
@@ -108,7 +176,7 @@ class PauseSettingsButton extends StatelessWidget {
         fixedSize: WidgetStateProperty.all(
           Size(
             MediaQuery.of(context).size.width * 0.8,
-            MediaQuery.of(context).size.height * 0.08,
+            MediaQuery.of(context).size.height * 0.1,
           ),
         ),
         backgroundColor: WidgetStateProperty.all(AppColors.neutralColor),
@@ -128,22 +196,23 @@ class PauseSettingsButton extends StatelessWidget {
           Text(
             settingsButtonText,
             style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.04,
-            )
+              fontSize: MediaQuery.of(context).size.height * 0.046,
+            ),
           ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.02),
           Icon(
             settingsButtonIcon,
             color: AppColors.textColor,
-            size: (MediaQuery.of(context).size.width + MediaQuery.of(context).size.height) * 0.03,
+            size: MediaQuery.of(context).size.height * 0.046,
           ),
         ],
       ),
     );
   }
 }
-//====================[/SETTINGS BUTTONS]====================
-//====================[RULES POPUP]====================
+//====================[/PAUSE SETTINGS BUTTON]====================
+
+//====================[GAME GUIDE DIALOG]====================
 class GameGuideDialog extends StatelessWidget {
   final IconData headingIcon;
   final String headingText;
@@ -184,26 +253,25 @@ class GameGuideDialog extends StatelessWidget {
         ],
       ),
 
+      // Content: Game Guide Image and Text
       content: SizedBox(
         width: double.maxFinite,
         child: SingleChildScrollView(
           child: Column(
-            spacing: 4,
             children: [
               Image.asset('assets/images/game-guide-pl.png'),
               Center(
-
-                  child:  Text(
-                          'RODZAJE PYTAŃ:',
-                          textAlign: TextAlign.justify,
-                          style: AppTypography.descBoldStyle.copyWith(
-                            fontSize: MediaQuery.of(context).size.height * 0.034,
-                          ),
+                child: Text(
+                  'RODZAJE PYTAŃ:',
+                  textAlign: TextAlign.justify,
+                  style: AppTypography.descBoldStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.height * 0.034,
                   ),
+                ),
               ),
-             GameGuideText(difIcon: AppIcons.tagFaces, difName: 'ŁATWE'),
-             GameGuideText(difIcon: AppIcons.sentimentNeutral, difName: 'ŚREDNIE'),
-             GameGuideText(difIcon: AppIcons.skull, difName: 'TRUDNE'),
+              GameGuideText(difIcon: AppIcons.tagFaces, difName: 'ŁATWE'),
+              GameGuideText(difIcon: AppIcons.sentimentNeutral, difName: 'ŚREDNIE'),
+              GameGuideText(difIcon: AppIcons.skull, difName: 'TRUDNE'),
             ],
           ),
         ),
@@ -246,42 +314,46 @@ class GameGuideDialog extends StatelessWidget {
     );
   }
 }
-//====================[/RULES POPUP]====================
+//====================[/GAME GUIDE DIALOG]====================
 
+//====================[GAME GUIDE TEXT]====================
 class GameGuideText extends StatelessWidget {
   final IconData difIcon;
   final String difName;
-  const GameGuideText({super.key, required this.difIcon, required this.difName});
+
+  const GameGuideText({
+    super.key,
+    required this.difIcon,
+    required this.difName,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                    Icon(
-                      difIcon,
-                      size: MediaQuery.of(context).size.height * 0.046,
-                    ),
-                   SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                  Text(
-                    ' - ',
-                    style: AppTypography.descBoldStyle.copyWith(
-                      fontSize: MediaQuery.of(context).size.height * 0.03,
-                    ),
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-
-                    Expanded(
-                      child: Text(
-                        difName,
-                        style: AppTypography.descBoldStyle.copyWith(
-                          fontSize: MediaQuery.of(context).size.height * 0.03,
-                        ),
-                      ),
-                    ),
-
-                ],
-              );
+      children: [
+        Icon(
+          difIcon,
+          size: MediaQuery.of(context).size.height * 0.046,
+        ),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+        Text(
+          ' - ',
+          style: AppTypography.descBoldStyle.copyWith(
+            fontSize: MediaQuery.of(context).size.height * 0.03,
+          ),
+        ),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+        Expanded(
+          child: Text(
+            difName,
+            style: AppTypography.descBoldStyle.copyWith(
+              fontSize: MediaQuery.of(context).size.height * 0.03,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
-
+//====================[/GAME GUIDE TEXT]====================

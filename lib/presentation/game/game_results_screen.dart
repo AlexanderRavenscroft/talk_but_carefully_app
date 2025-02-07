@@ -6,6 +6,7 @@ import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dart';
 
+//====================[GAME RESULTS SCREEN]====================
 class GameResultsScreen extends StatelessWidget {
   const GameResultsScreen({super.key});
 
@@ -19,6 +20,7 @@ class GameResultsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Main Results Container
               Container(
                 height: MediaQuery.of(context).size.height * 0.74,
                 width: MediaQuery.of(context).size.width * 0.9,
@@ -37,7 +39,10 @@ class GameResultsScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // Winning Team Display
                     WinningTeamDisplay(),
+
+                    // Team Points Display
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -55,6 +60,8 @@ class GameResultsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+
+                    // Team Skips Display
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -69,6 +76,8 @@ class GameResultsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+
+                    // Players Score List Container
                     Container(
                       height: MediaQuery.of(context).size.height * 0.46,
                       width: MediaQuery.of(context).size.width * 0.75,
@@ -84,12 +93,17 @@ class GameResultsScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          // Team A Players Score List
                           PlayersScoreList(displayedTeam: teamA),
+
+                          // Divider between Team A and Team B
                           Divider(
                             color: AppColors.shadowColor,
                             thickness: 6,
                             height: 0,
                           ),
+
+                          // Team B Players Score List
                           PlayersScoreList(displayedTeam: teamB),
                         ],
                       ),
@@ -97,18 +111,25 @@ class GameResultsScreen extends StatelessWidget {
                   ],
                 ),
               ),
+
+              // Spacing between main container and buttons
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+
+              // Bottom Buttons Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // Back to Settings Button
                   ResultsScreenButton(
                     buttonIcon: AppIcons.arrowBack,
                     onPressed: () {
-                      Navigator.pop(context, MaterialPageRoute(builder: (context) =>  GameSettingsScreen()));
+                      Navigator.pop(context, MaterialPageRoute(builder: (context) => GameSettingsScreen()));
                       playAudio(GameSounds.tapSound);
                       resetGame();
                     },
                   ),
+
+                  // Victory Horn Button
                   ResultsScreenButton(
                     buttonIcon: AppIcons.hornCall,
                     onPressed: () => playAudio(GameSounds.victoryHornSound),
@@ -122,3 +143,4 @@ class GameResultsScreen extends StatelessWidget {
     );
   }
 }
+//====================[/GAME RESULTS SCREEN]====================
