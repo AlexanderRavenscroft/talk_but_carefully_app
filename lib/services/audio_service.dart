@@ -1,11 +1,27 @@
 // Audio manager for whole app. Edit the actual sounds in core/globals.dart
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gadajaleostroznie/core/globals.dart';
+//==================[SOUNDS]==================
+class GameSounds{
+  static bool soundToggled = true;
+
+  static const String tapSound = "sounds/button-press.mp3";
+  static const String optionChoiceSound = "sounds/option-choice.mp3";
+  static const String optionSwitchSound = "sounds/option-switch.mp3";
+
+  static const String wrongAnswerSound = "sounds/wrong-answer.mp3";
+  static const String skipAnswerSound = "sounds/skip-answer.mp3";
+  static const String correctAnswerSound = "sounds/correct-answer.mp3";
+
+  static const String timerTickingSound = "sounds/timer-ticking.mp3";
+
+  static const String winningSound = "sounds/winning.mp3";
+  static const String victoryHornSound = "sounds/horn.mp3";
+}
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
-  final Duration _spamPreventionDelay = Duration(milliseconds: 200); // Adjust the delay duration here
+  final Duration _spamPreventionDelay = Duration(milliseconds: 300); // Adjust the delay duration here 200
   DateTime? _lastPlayTime; // Tracks the last play time
 
   // Centralized method to play audio only if soundToggled is true

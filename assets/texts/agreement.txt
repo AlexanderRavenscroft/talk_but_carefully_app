@@ -1,7 +1,7 @@
 Witaj, szalony użytkowniku! Zanim zaczniesz grać w moją wspaniałą grę, proszę, zapoznaj się z poniższymi warunkami. Pamiętaj, że nie przeczytanie tego dokumentu nie zwalnia Cię z odpowiedzialności za twoje ewentualne wybuchy śmiechu lub niezręczne sytuacje. Możesz je zaakceptować, bądź po prostu zagrać. Twoja decyzja!
 
 1. Co to za aplikacja?
-„Gadaj ale ostrożnie” to aplikacja, która pomoże Ci dobrze się bawić w gronie przyjaciół, krępując ich do granic możliwości. Gra jest podobna do znanej aplikacji eTabu – chociaż... może trochę bardziej szalona. W zasadzie, to taka gra, która zmusza Cię do mówienia rzeczy, które w normalnych warunkach nie miałyby prawa wyjść z twoich ust. Ale to przecież tylko gra, prawda?
+„Gadaj ale ostrożnie” to aplikacja, która pomoże Ci dobrze się bawić w gronie przyjaciół, krępując ich do granic możliwości.
 
 2. Kto za tym stoi?
 Aplikację stworzyła jedna osoba – tak, jedna! Więc jeśli coś nie działa, to też tylko jedna osoba jest za to odpowiedzialna. Może się zdarzyć, że jakaś funkcja nie zadziała zgodnie z planem, ale hej, przynajmniej możesz narzekać tylko na jedną osobę. To ja – twój niezawodny twórca!
@@ -10,26 +10,22 @@ Aplikację stworzyła jedna osoba – tak, jedna! Więc jeśli coś nie działa,
 3. Warunki korzystania
 Używaj z głową: Gra jest przeznaczona do rozrywki. Jeśli czujesz, że nie masz ochoty na żadne kompromitujące sytuacje, to spokojnie – nie musisz w nią grać.
 Kto gra, ten nie narzeka: Grasz? To nie krępuj się i daj się ponieść chwili. Ale pamiętaj – zachowaj odrobinę ostrożności, bo jak się wygłupisz, potem już tego nie odkręcisz.
-Nie bądź kłamcą!: W trakcie gry będziesz musiał mówić rzeczy, które są totalnie absurdalne. Nie próbuj się wykręcać – nie ma miejsca na oszustwa (przynajmniej w tej grze). Bądź szczery… albo przynajmniej udawaj!
 
 4. Licencja i własność intelektualna
 Aplikacja to moje dzieło – od pierwszego kodu po każdy najmniejszy przycisk. To oznacza, że jest moją własnością i nie życzę sobie, żeby ktoś ją kopiował, sprzedawał, przerabiał czy robił z nią cokolwiek innego bez mojej wyraźnej zgody. 
-Serio, doceniam Twoją kreatywność, ale jeśli chcesz coś z nią zrobić, po prostu zapytaj. Nie chcę być tym twórcą, który musi ścigać nielegalne klony swojej gry – wszyscy mamy ważniejsze rzeczy do roboty, prawda?
+Serio, doceniam Twoją kreatywność, ale jeśli chcesz coś z nią zrobić, po prostu zapytaj. 
 Pamiętaj: korzystasz z tej aplikacji w ramach licencji, która jest osobista, niewyłączna i nieprzenoszalna. Nie oznacza to, że możesz robić z nią, co Ci się żywnie podoba – baw się, ale nie kombinuj!
 
-5. Współodpowiedzialność za zabawę
-Grając w „Gadaj ale ostrożnie”, wszyscy uczestnicy biorą odpowiedzialność za swoje decyzje – tak, nawet jeśli na przykład wpadniesz w pułapkę i powiesz coś, czego nie chciałeś. Wiesz, jak to jest – albo się bawisz, albo potem masz za swoje. A jeśli coś pójdzie nie tak, po prostu zrób jakąś „twórczą” wymówkę.
+5. Ograniczenie odpowiedzialności
+Wiem, że to może zabrzmieć nudno, ale muszę to powiedzieć: nie odpowiadam za Twoje wybryki, niechciane pomyłki w czasie gry ani wszelkie inne zdarzenia wynikłe z jej użytkowania. Gra ma na celu tylko i wyłącznie dobrą zabawę (i lekki stres). Więc jeśli coś pójdzie nie tak… to po prostu bądźmy szczerzy, nie bierz tego na serio!
 
-6. Ograniczenie odpowiedzialności
-Wiemy, że to może zabrzmieć nudno, ale musimy to powiedzieć: nie odpowiadam za Twoje wybryki, niechciane pomyłki w czasie gry ani wszelkie inne zdarzenia wynikłe z jej użytkowania. Gra ma na celu tylko i wyłącznie dobrą zabawę (i lekki stres). Więc jeśli coś pójdzie nie tak… to po prostu bądźmy szczerzy, nie bierz tego na serio!
+6. Dane osobowe
+Twoje dane? Jakie dane? Aplikacja nie pobiera żadnych danych osobowych oraz nie korzysta z niepotrzebnych uprawnień np. takich jak lokalizacja.
 
-7. Dane osobowe
-Twoje dane? Tylko te absolutnie niezbędne do działania aplikacji. Zatem, nie musisz się martwić – Twoje dane są w pełni bezpieczne, chyba że zdecydujesz się ujawniać je w grze, co… no cóż, Twoja sprawa.
-
-8. Zmiany w regulaminie
+7. Zmiany w regulaminie
 Zastrzegam sobie prawo do zmiany tego regulaminu w dowolnym momencie. Ale hej, nie bądź zły, to tylko odświeżenie. Na pewno nie zmieni się nic, co sprawiłoby, że nagle Twoje życie stanie się gorsze.
 
-9. Podsumowanie
+8. Podsumowanie
 Wszystko, co tu przeczytałeś, jest po to, byś czuł się bezpiecznie i wiedział, czego się spodziewać, bawiąc się w gronie przyjaciół. Graj odpowiedzialnie, nie bierz siebie za poważnie, a i tak wszyscy będą się świetnie bawić!
 
 Zaczynaj gadać – tylko ostrożnie!

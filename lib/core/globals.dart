@@ -6,17 +6,7 @@ import 'package:gadajaleostroznie/themes/themes.dart';
 // Defining this will make easier Navigation between game and game_results_screen
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-//==================[SOUNDS]==================
-class GameSounds{
-  static bool soundToggled = true;
 
-  static const String tapSound = "sounds/button-press.mp3";
-  static const String optionChoiceSound = "sounds/option-choice.mp3";
-  static const String optionSwitchSound = "sounds/option-switch.mp3";
-
-  static const String correctAnswerSound = "sounds/correct-answer.mp3";
-  static const String wrongAnswerSound = "sounds/wrong-answer.mp3";
-}
 
 //==================[GAME SETTINGS VARIABLES]==================  
 class GameSettings{

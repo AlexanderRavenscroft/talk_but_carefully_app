@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
@@ -58,7 +57,6 @@ class SettingsMenuState extends State<SettingsMenu> {
                   GameSounds.soundToggled = !GameSounds.soundToggled;
                   PreferenceService.savePreference('soundToggled', GameSounds.soundToggled);
                 });
-                playAudio(GameSounds.optionSwitchSound);
               },
               settingsButtonIcon: GameSounds.soundToggled ? AppIcons.soundON : AppIcons.soundOFF,
             ),
@@ -82,7 +80,6 @@ class SettingsMenuState extends State<SettingsMenu> {
                     );
                   },
                 );
-                playAudio(GameSounds.optionSwitchSound);
               },
               settingsButtonIcon: AppIcons.docText,
             ),
@@ -106,7 +103,6 @@ class SettingsMenuState extends State<SettingsMenu> {
                     );
                   },
                 );
-                playAudio(GameSounds.optionSwitchSound);
               },
               settingsButtonIcon: AppIcons.hood,
             ),

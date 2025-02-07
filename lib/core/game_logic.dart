@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
   teamB: 0,
@@ -76,7 +77,7 @@ void removePoints() {
 }
 
 void addSkips() {
-  currentTeam.skips++;
+    currentTeam.skips++;
 }
 
 Team? winningTeam = teamA;
@@ -100,6 +101,7 @@ checkResults() {
      winningTeam = null;
       }
     }
+    playAudio(GameSounds.winningSound);
     navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => GameResultsScreen()));
     return true;
   }

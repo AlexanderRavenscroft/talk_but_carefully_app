@@ -147,7 +147,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     widget.players[index] = Player(_controller.text, 0);
                   });
                   Navigator.pop(context);
-                  playAudio(GameSounds.optionSwitchSound);
+                  playAudio(GameSounds.tapSound);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:isToggled ? teamB.color : teamA.color,

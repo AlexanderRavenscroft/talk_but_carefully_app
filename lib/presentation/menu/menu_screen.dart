@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/core/globals.dart';
-import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/presentation/menu/menu_widgets.dart';
 import 'package:gadajaleostroznie/presentation/settings/game_settings_screen.dart';
 import 'package:gadajaleostroznie/presentation/menu/menu_settings_popup.dart';
@@ -48,7 +46,6 @@ class MenuScreen extends StatelessWidget {
                     builder: (context) => const GameSettingsScreen(),
                   ),
                 );
-                playAudio(GameSounds.tapSound);
               },
             ),
           ),
@@ -71,7 +68,6 @@ class MenuScreen extends StatelessWidget {
                     );
                   },
                 );
-                playAudio(GameSounds.tapSound);
               },
             ),
           ),
@@ -89,7 +85,6 @@ class MenuScreen extends StatelessWidget {
                     return SettingsMenu();
                   },
                 );
-                playAudio(GameSounds.tapSound);
               },
             ),
           ),

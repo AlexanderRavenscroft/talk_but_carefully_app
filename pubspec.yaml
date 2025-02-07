@@ -58,18 +58,29 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
+  # IMAGES
     - assets/images/background-circles.svg
-    - assets/images/background-squares.svg
     - assets/images/logo.png
+    - assets/images/game-guide-pl.png
+  # SOUNDS
     - assets/sounds/button-press.mp3
     - assets/sounds/option-choice.mp3
     - assets/sounds/correct-answer.mp3
+
     - assets/sounds/wrong-answer.mp3
+    - assets/sounds/skip-answer.mp3
     - assets/sounds/option-switch.mp3
+
+    - assets/sounds/timer-ticking.mp3
+
+    - assets/sounds/winning.mp3
+    - assets/sounds/horn.mp3
+  # TEXT FILES
     - assets/texts/authors.txt
     - assets/texts/rules.txt
     - assets/texts/agreement.txt
     - assets/texts/playerEncounterMessages.json
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

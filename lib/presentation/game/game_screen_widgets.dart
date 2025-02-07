@@ -4,9 +4,9 @@ import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/taboo_api.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/core/provider.dart';
 import 'package:provider/provider.dart';
-
 //====================[TEAM COLOR BACKGROUND]====================
 class TeamBackground extends StatefulWidget {
   const TeamBackground({super.key});
@@ -288,11 +288,12 @@ class RoundStartButton extends StatelessWidget {
         shadowColor: WidgetStateProperty.all(Colors.black),
       ),
       onPressed: () async {
+        playAudio(GameSounds.tapSound);
         await fetchData();
         nextScreen();
         if (context.mounted) {
           Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-        }
+        }    
       },
       child: Center(
         child: Text(
@@ -339,15 +340,7 @@ class PointsButton extends StatelessWidget {
         elevation: WidgetStateProperty.all(8.0),
         shadowColor: WidgetStateProperty.all(Colors.black),
       ),
-      onPressed: () async {
-        if (!isLoading) {
-          await fetchData();
-          onPressed();
-          if (context.mounted) {
-            Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-          }
-        }
-      },
+      onPressed: onPressed,
       child: Center(
         child: Icon(
           buttonIcon,
@@ -464,6 +457,7 @@ class PauseButtonState extends State<PauseButton> {
             ),
             onPressed: () {
               context.read<GamePauseProvider>().pauseGame();
+              playAudio(GameSounds.tapSound);
             },
             child: Center(
               child: Icon(

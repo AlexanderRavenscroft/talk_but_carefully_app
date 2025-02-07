@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 
@@ -42,7 +41,10 @@ class MenuButton extends StatelessWidget {
         elevation: WidgetStateProperty.all(10.0),
         shadowColor: WidgetStateProperty.all(Colors.black),
       ),
-      onPressed: onPressed,
+      onPressed: () {
+        onPressed();
+        playAudio(GameSounds.tapSound);
+      },
       child: Row(
         children: [
           Icon(
@@ -198,7 +200,10 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: settingsButtonPress,
+      onPressed: () {
+        settingsButtonPress();
+        playAudio(GameSounds.optionSwitchSound);
+      },
       style: ButtonStyle(
         fixedSize: WidgetStateProperty.all(
           Size(

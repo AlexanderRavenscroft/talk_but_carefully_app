@@ -1,6 +1,6 @@
 // Setup the shared_prefrences to keep value of soundToggled even after app close
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gadajaleostroznie/core/globals.dart'; // Access global variables
+import 'package:gadajaleostroznie/services/audio_service.dart';
 
 class PreferenceService {
   // Load all preferences into global variables

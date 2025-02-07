@@ -7,7 +7,9 @@ import 'package:gadajaleostroznie/core/provider.dart';
 import 'package:gadajaleostroznie/core/taboo_api.dart';
 import 'package:gadajaleostroznie/presentation/game/game_screen_widgets.dart';
 import 'package:gadajaleostroznie/presentation/game/pause_screen.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
 
+//====================[GAME SCREEN]====================
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
 
@@ -75,7 +77,16 @@ class GameScreen extends StatelessWidget {
                                     // Remove Points Button
                                     (currentScreen == Screen.question)
                                         ? PointsButton(
-                                            onPressed: () => removePoints(),
+                                            onPressed: () async {
+                                              playAudio(GameSounds.wrongAnswerSound);
+                                              if (!isLoading) {
+                                                removePoints();
+                                                await fetchData();
+                                                if (context.mounted) {
+                                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                                }
+                                              }
+                                            },
                                             buttonIcon: AppIcons.cancel,
                                             iconColor: AppColors.primaryColor,
                                           )
@@ -84,7 +95,18 @@ class GameScreen extends StatelessWidget {
                                     // Add Skips Button
                                     (currentScreen == Screen.question)
                                         ? PointsButton(
-                                            onPressed: () => addSkips(),
+                                            onPressed: () async {
+                                              if (!isLoading) {
+                                                if (currentTeam.skips < GameSettings.aviableSkips) {
+                                                  addSkips();
+                                                  playAudio(GameSounds.skipAnswerSound);
+                                                  await fetchData();
+                                                }
+                                                if (context.mounted) {
+                                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                                }
+                                              }
+                                            },
                                             buttonIcon: AppIcons.arrowsCcw,
                                             iconColor: AppColors.textColor,
                                           )
@@ -93,7 +115,16 @@ class GameScreen extends StatelessWidget {
                                     // Add Points Button
                                     (currentScreen == Screen.question)
                                         ? PointsButton(
-                                            onPressed: () => addPoints(),
+                                            onPressed: () async {
+                                              if (!isLoading) {
+                                                playAudio(GameSounds.correctAnswerSound);
+                                                addPoints();
+                                                await fetchData();
+                                                if (context.mounted) {
+                                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                                }
+                                              }
+                                            },
                                             buttonIcon: AppIcons.ok,
                                             iconColor: AppColors.notificationColor,
                                           )
@@ -135,3 +166,4 @@ class GameScreen extends StatelessWidget {
     );
   }
 }
+//====================[/GAME SCREEN]====================
