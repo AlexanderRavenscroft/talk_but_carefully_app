@@ -13,7 +13,7 @@ class GameSounds{
   static const String skipAnswerSound = "sounds/skip-answer.mp3";
   static const String correctAnswerSound = "sounds/correct-answer.mp3";
 
-  static const String timerTickingSound = "sounds/timer-ticking.mp3";
+  static const String roundOver = "sounds/end-of-round.mp3";
 
   static const String winningSound = "sounds/winning.mp3";
   static const String victoryHornSound = "sounds/horn.mp3";
@@ -21,7 +21,7 @@ class GameSounds{
 
 class AudioService {
   final AudioPlayer _audioPlayer = AudioPlayer();
-  final Duration _spamPreventionDelay = Duration(milliseconds: 300); // Adjust the delay duration here 200
+  final Duration _spamPreventionDelay = Duration(milliseconds: 100); // Adjust the delay duration here 200
   DateTime? _lastPlayTime; // Tracks the last play time
 
   // Centralized method to play audio only if soundToggled is true
@@ -57,3 +57,4 @@ final AudioService audioService = AudioService();
 Future<void> playAudio(String sound) async {
   await audioService.playSound(sound);
 }
+

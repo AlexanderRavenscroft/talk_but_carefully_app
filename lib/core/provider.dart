@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
 ///  Refresh WHOLE team_settings_screen when switch is toggled
@@ -42,47 +43,59 @@ class GamePauseProvider extends ChangeNotifier {
   }
 }
 
+
 class TimerProvider extends ChangeNotifier {
+
   int _timeLeft = GameSettings.aviableTime;
+
   Timer? _timer; 
   int get timeLeft => _timeLeft;
+
 
   void setTimeLeft(int newTime) {
     _timeLeft = newTime;
     notifyListeners();
   }
-void startTimer() {
-    cancelTimer();
 
-  _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-    if (_timeLeft > 0) {
-      _timeLeft--;
-    } 
-    else {
-      timer.cancel();
-      _timer = null; // Clear timer reference
+  void startTimer() {
+   // stopTimer();
 
-      // Ensure context is valid before accessing it
-      if (navigatorKey.currentContext != null) {
-        final gameToggleProvider = Provider.of<GameToggleProvider>(
-          navigatorKey.currentContext!,
-          listen: false,
-        );
-        gameToggleProvider.toggleTurns();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_timeLeft > 0) {
+        _timeLeft--;
+      } 
+      else {
+        timer.cancel();
+        _timer = null; // Clear timer reference
+
+        // Ensure context is valid before accessing it
+        if (navigatorKey.currentContext != null) {
+          final gameToggleProvider = Provider.of<GameToggleProvider>(
+            navigatorKey.currentContext!,
+            listen: false,
+          );
+          gameToggleProvider.toggleTurns();
+        }
+        if(!teams.any((team) => team.points >= GameSettings.aviablePoints)) {
+          playAudio(GameSounds.roundOver);
+        }
+        nextScreen();
       }
 
-      nextScreen();
-    }
+      if (hasListeners) {
+        notifyListeners();
+      }
+    });
+  }
 
-    // Only notify listeners if the provider is still in use
-    if (hasListeners) {
-      notifyListeners();
+  void stopTimer({bool reset = true}) {
+    if(reset) {
+      resetTimer();
     }
-  });
-}
-void cancelTimer() {
-  _timer?.cancel();
-  _timer = null;
-  _timeLeft = GameSettings.aviableTime;
-}
+    _timer?.cancel();
+  }
+
+  void resetTimer() {
+    _timeLeft = GameSettings.aviableTime;
+  }
 }

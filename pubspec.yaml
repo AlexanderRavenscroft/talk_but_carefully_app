@@ -71,7 +71,7 @@ flutter:
     - assets/sounds/skip-answer.mp3
     - assets/sounds/option-switch.mp3
 
-    - assets/sounds/timer-ticking.mp3
+    - assets/sounds/end-of-round.mp3
 
     - assets/sounds/winning.mp3
     - assets/sounds/horn.mp3

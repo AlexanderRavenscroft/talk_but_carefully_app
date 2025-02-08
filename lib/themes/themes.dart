@@ -69,27 +69,34 @@ class AppIcons {
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
 
+  // Game Icons
   static const IconData ok = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData cancel = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrowCurved = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData settings = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrowsCcw = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData docText = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pause = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData tagFaces = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sentimentNeutral = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData play = Icons.play_arrow;
+
+  // Main Menu Icons
+  static const IconData gamepad = IconData(0xf11b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData docText = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData settings = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData soundON = Icons.volume_up;
+  static const IconData soundOFF = Icons.volume_off;
+  static const IconData hood = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData question = Icons.help_outline_sharp;
+
+  // Other screens Icons
   static const IconData arrowForward = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrowBack = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData personAdd = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hood = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hornCall = IconData(0xea04, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData gamepad = IconData(0xf11b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData skull = IconData(0xf54c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData soundON = Icons.volume_up;
-  static const IconData soundOFF = Icons.volume_off;
-  static const IconData play = Icons.play_arrow;
   static const IconData alreadyTaken = Icons.do_disturb;
   static const IconData remove = Icons.cancel;
-  static const IconData question = Icons.help_outline_sharp;
+  static const IconData hornCall = IconData(0xea04, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  
+  // Difficulty Icons
+  static const IconData easyDiff = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData mediumDiff = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData hardDiff = Icons.sentiment_dissatisfied_outlined;
 }
 

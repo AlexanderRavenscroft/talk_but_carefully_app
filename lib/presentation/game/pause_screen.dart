@@ -44,11 +44,12 @@ class PauseButtonState extends State<PauseButton> {
                   
                   context.read<GamePauseProvider>().pauseGame();
                   playAudio(GameSounds.tapSound);
-                //               if (timerProvider.isPaused) {
-                //   timerProvider.resumeTimer(); // Resume the timer
-                // } else {
-                //   timerProvider.pauseTimer(); // Pause the timer
-                // }
+
+                  if(gamePauseProvider.isPaused) {
+                    timerProvider.stopTimer(reset: false);
+                  } else {
+                    timerProvider.startTimer();
+                  }
                 },
                 child: Center(
                   child: Icon(
@@ -279,9 +280,9 @@ class GameGuideDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              GameGuideText(difIcon: AppIcons.tagFaces, difName: 'ŁATWE'),
-              GameGuideText(difIcon: AppIcons.sentimentNeutral, difName: 'ŚREDNIE'),
-              GameGuideText(difIcon: AppIcons.skull, difName: 'TRUDNE'),
+              GameGuideText(difIcon: AppIcons.easyDiff, difName: 'ŁATWE'),
+              GameGuideText(difIcon: AppIcons.mediumDiff, difName: 'ŚREDNIE'),
+              GameGuideText(difIcon: AppIcons.hardDiff, difName: 'TRUDNE'),
             ],
           ),
         ),

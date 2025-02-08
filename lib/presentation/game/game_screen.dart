@@ -17,147 +17,117 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      child: Scaffold(
-        // APPBAR
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.12),
-          child: Consumer<GameToggleProvider>(
-            builder: (context, gameToggleProvider, child) {
-              return GameAppBar();
-            },
-          ),
-        ),
-
-        // BODY
-        body: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            // Background
-            Consumer<GameToggleProvider>(
-              builder: (context, gameToggleProvider, child) {
-                return TeamBackground();
-              },
+      child: Consumer<GameToggleProvider>(
+        builder: (context, gameToggleProvider, child) {
+          return Scaffold(
+            // APPBAR
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.12),
+              child: GameAppBar(),
             ),
-
-            // Pause Button
-            Positioned(
-              child: PauseButton(),
-            ),
-
-            // Main Content or Pause Screen
-            Consumer<GamePauseProvider>(
-              builder: (context, gamePauseProvider, child) {
-                return gamePauseProvider.isPaused
-                    ? PauseScreen()
-                    : Consumer<GameToggleProvider>(
-                        builder: (context, gameToggleProvider, child) {
-                          return Center(
+          
+            // BODY
+            body: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                // Background
+                TeamBackground(),
+          
+                // Pause Button
+                if (currentScreen == Screen.question)
+                  Positioned(
+                    child: PauseButton(),
+                  ),
+          
+                // Main Content or Pause Screen
+                Consumer<GamePauseProvider>(
+                  builder: (context, gamePauseProvider, child) {
+                    return gamePauseProvider.isPaused
+                        ? PauseScreen()
+                        : Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 // Player Encounter or Question Screen
-                                (currentScreen == Screen.encounter)
-                                    ? PlayerEncounterText()
-                                    : isLoading
-                                        ? DataLoadingIndicator()
-                                        : QuestionScreen(),
+                                if (currentScreen == Screen.encounter)
+                                  PlayerEncounterText()
+                                else if (isLoading)
+                                  DataLoadingIndicator()
+                                else
+                                  QuestionScreen(),
 
                                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
 
                                 // Round Start Button
-                                (currentScreen == Screen.encounter)
-                                    ? RoundStartButton()
-                                    : SizedBox.shrink(),
+                                if (currentScreen == Screen.encounter)
+                                  RoundStartButton(),
 
                                 // Points and Skips Buttons
-                                (currentScreen == Screen.question)
-                                    ? Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          // Remove Points Button
-                                          PointsButton(
-                                            onPressed: () async {
-                                              playAudio(GameSounds.wrongAnswerSound);
-                                              if (!isLoading) {
-                                                removePoints();
-                                                await fetchData();
-                                                if (context.mounted) {
-                                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                                                }
-                                              }
-                                            },
-                                            buttonIcon: AppIcons.cancel,
-                                            iconColor: AppColors.primaryColor,
-                                          ),
+                                if (currentScreen == Screen.question)
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      // Remove Points Button
+                                      PointsButton(
+                                        onPressed: () async {
+                                          playAudio(GameSounds.wrongAnswerSound);
+                                          if (!isLoading) {
+                                            removePoints();
+                                            await fetchData();
+                                            if (context.mounted) {
+                                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                            }
+                                          }
+                                        },
+                                        buttonIcon: AppIcons.cancel,
+                                        iconColor: AppColors.primaryColor,
+                                      ),
 
-                                          // Add Skips Button
-                                          PointsButton(
-                                            onPressed: () async {
-                                              if (!isLoading) {
-                                                if (currentTeam.skips < GameSettings.aviableSkips) {
-                                                  addSkips();
-                                                  playAudio(GameSounds.skipAnswerSound);
-                                                  await fetchData();
-                                                }
-                                                if (context.mounted) {
-                                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                                                }
-                                              }
-                                            },
-                                            buttonIcon: AppIcons.arrowsCcw,
-                                            iconColor: AppColors.textColor,
-                                          ),
+                                      // Add Skips Button
+                                      PointsButton(
+                                        onPressed: () async {
+                                          if (!isLoading) {
+                                            if (currentTeam.skips < GameSettings.aviableSkips) {
+                                              addSkips();
+                                              playAudio(GameSounds.skipAnswerSound);
+                                              await fetchData();
+                                            }
+                                            if (context.mounted) {
+                                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                            }
+                                          }
+                                        },
+                                        buttonIcon: AppIcons.arrowsCcw,
+                                        iconColor: AppColors.textColor,
+                                      ),
 
-                                          // Add Points Button
-                                          PointsButton(
-                                            onPressed: () async {
-                                              if (!isLoading) {
-                                                playAudio(GameSounds.correctAnswerSound);
-                                                addPoints();
-                                                await fetchData();
-                                                if (context.mounted) {
-                                                  Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                                                }
-                                              }
-                                            },
-                                            buttonIcon: AppIcons.ok,
-                                            iconColor: AppColors.notificationColor,
-                                          ),
-                                        ],
-                                      )
-                                    : SizedBox.shrink(),
+                                      // Add Points Button
+                                      PointsButton(
+                                        onPressed: () async {
+                                          if (!isLoading) {
+                                            playAudio(GameSounds.correctAnswerSound);
+                                            addPoints();
+                                            await fetchData();
+                                            if (context.mounted) {
+                                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                            }
+                                          }
+                                        },
+                                        buttonIcon: AppIcons.ok,
+                                        iconColor: AppColors.notificationColor,
+                                      ),
+                                    ],
+                                  ),
                               ],
                             ),
                           );
-                        },
-                      );
-              },
+                  },
+                ),
+              ],
             ),
-
-            // TYMCZASOWY KEBAB
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.02,
-              left: MediaQuery.of(context).size.width * 0.35,
-              child: Consumer<GameToggleProvider>(
-                builder: (context, gameToggleProvider, child) {
-                  return (currentScreen == Screen.question)
-                      ? ElevatedButton(
-                          onPressed: () async {
-                            await fetchData();
-                            nextScreen();
-                            if (context.mounted) {
-                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                            }
-                          },
-                          child: Icon(Icons.kebab_dining, size: 60),
-                        )
-                      : SizedBox.shrink();
-                },
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

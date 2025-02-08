@@ -168,11 +168,12 @@ class TimerWidgetState extends State<TimerWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _timerProvider = Provider.of<TimerProvider>(context, listen: false);
+   
   }
 
   @override
   void dispose() {
-    _timerProvider.cancelTimer(); // Use stored reference to cancel the timer
+    _timerProvider.stopTimer(reset: true); // Use stored reference to cancel the timer
     super.dispose();
   }
 
@@ -205,12 +206,19 @@ class ProgressBarWidget extends StatefulWidget {
 class _ProgressBarWidgetState extends State<ProgressBarWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.03,
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: Container(
-        color: AppColors.notificationColor,
-      ),
+    return Consumer<TimerProvider>(
+      builder: (context, timerProvider, child) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: LinearProgressIndicator(
+            backgroundColor: AppColors.shadowColor,
+            color: AppColors.notificationColor,
+            value: timerProvider.timeLeft / GameSettings.aviableTime,
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+          )
+        );
+      }
     );
   }
 }
@@ -338,10 +346,10 @@ class QuestionScreenState extends State<QuestionScreen> {
                 left: MediaQuery.of(context).size.width * 0.6,
                 child: Icon(
                   difficulty == 'łatwe'
-                      ? AppIcons.tagFaces
+                      ? AppIcons.easyDiff
                       : difficulty == 'średnie'
-                          ? AppIcons.sentimentNeutral
-                          : AppIcons.skull,
+                          ? AppIcons.mediumDiff
+                          : AppIcons.hardDiff,
                   size: MediaQuery.of(context).size.height * 0.06,
                   color: AppColors.secondTextColor,
                 ),
@@ -383,6 +391,7 @@ class RoundStartButton extends StatelessWidget {
         await fetchData();
         nextScreen();
         if (context.mounted) {
+          Provider.of<TimerProvider>(context, listen: false).setTimeLeft(GameSettings.aviableTime);
           Provider.of<TimerProvider>(context, listen: false).startTimer();
           Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
         }    

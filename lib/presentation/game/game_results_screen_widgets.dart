@@ -9,16 +9,35 @@ class WinningTeamDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      (winningTeam == null)
-          ? 'REMIS'
-          : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
-      textAlign: TextAlign.center,
-      style: AppTypography.descBoldStyle.copyWith(
-        height: 1,
-        fontSize: MediaQuery.of(context).size.height * 0.05,
-        color: winningTeam?.color ?? AppColors.textColor,
-      ),
+    return  Stack(
+      children: [
+        Text(
+            (winningTeam == null)
+                ? 'REMIS'
+                : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(
+              height: 1,
+              fontSize: MediaQuery.of(context).size.height * 0.05,
+           //   color: winningTeam?.color ?? AppColors.textColor,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 4
+              ..color = AppColors.textColor,
+            ),
+          ),
+          Text(
+            (winningTeam == null)
+                ? 'REMIS'
+                : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
+            textAlign: TextAlign.center,
+            style: AppTypography.descBoldStyle.copyWith(
+              height: 1,
+              fontSize: MediaQuery.of(context).size.height * 0.05,
+              color: winningTeam?.color ?? AppColors.textColor,
+            ),
+          ),
+      ],
     );
   }
 }
@@ -37,12 +56,26 @@ class ResultsTeamPointsDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      displayedText,
-      style: AppTypography.descBoldStyle.copyWith(
-        fontSize: MediaQuery.of(context).size.height * 0.05,
-        color: textColor,
-      ),
+    return Stack(
+      children: [
+        Text(
+          displayedText,
+          style: AppTypography.descBoldStyle.copyWith(
+            fontSize: MediaQuery.of(context).size.height * 0.05,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 2
+              ..color = AppColors.textColor,
+          ),
+        ),
+                Text(
+          displayedText,
+          style: AppTypography.descBoldStyle.copyWith(
+            fontSize: MediaQuery.of(context).size.height * 0.05,
+            color: textColor,
+          ),
+        ),
+      ],
     );
   }
 }
