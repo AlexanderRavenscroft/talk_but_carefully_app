@@ -300,6 +300,10 @@ class PlayerListScreenState extends State<PlayerListScreen> {
   }
 }
 
+// Default colorPikcer option choice for each team
+int teamAselectedIndex = 0; 
+int teamBselectedIndex = 1;
+
 // Widget for selecting team colors
 class ColorPickerWidget extends StatefulWidget {
   const ColorPickerWidget({super.key});
@@ -316,9 +320,6 @@ class ColorPickerWidgetState extends State<ColorPickerWidget> {
     TeamColors.teamPurpleColor,
     TeamColors.teamYellowColor,
   ];
-  // Default colorPikcer option choice for each team
-  int teamAselectedIndex = 0; 
-  int teamBselectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
-
+import 'package:gadajaleostroznie/core/provider.dart';
+import 'package:provider/provider.dart';
 //====================[DIF SELECTION]====================
 class DifSelection extends StatefulWidget {
   const DifSelection({super.key});
@@ -113,23 +114,29 @@ class TimeSelectionState extends State<TimeSelection> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(timeSelectionList.length, (index) {
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              if (selectedIndex != index) {
-                selectedIndex = index;
-                GameSettings.aviableTime = _getTimeInSeconds(timeSelectionList[index]);
-              }
-            });
-            playAudio(GameSounds.optionChoiceSound);
-          },
-          child: Text(
-            timeSelectionList[index],
-            style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.036,
-              color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
-            ),
-          ),
+
+        return Consumer<TimerProvider>(
+          builder: (context, timerProvider, child) {
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (selectedIndex != index) {
+                    selectedIndex = index;
+                    GameSettings.aviableTime = _getTimeInSeconds(timeSelectionList[index]);
+                    timerProvider.setTimeLeft(GameSettings.aviableTime);
+                  }
+                });
+                playAudio(GameSounds.optionChoiceSound);
+              },
+              child: Text(
+                timeSelectionList[index],
+                style: AppTypography.descBoldStyle.copyWith(
+                  fontSize: MediaQuery.of(context).size.height * 0.036,
+                  color: selectedIndex == index ? AppColors.primaryColor : AppColors.textColor,
+                ),
+              ),
+            );
+          }
         );
       }),
     );

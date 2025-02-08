@@ -162,14 +162,33 @@ class TimerWidget extends StatefulWidget {
 }
 
 class TimerWidgetState extends State<TimerWidget> {
+  late TimerProvider _timerProvider; // Store reference
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _timerProvider = Provider.of<TimerProvider>(context, listen: false);
+  }
+
+  @override
+  void dispose() {
+    _timerProvider.cancelTimer(); // Use stored reference to cancel the timer
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "12:34",
-      style: AppTypography.descBoldStyle.copyWith(
-        color: AppColors.textColor,
-        fontSize: MediaQuery.of(context).size.height * 0.06,
-      ),
+    return Consumer<TimerProvider>(
+      builder: (context, timerProvider, child) {
+        return Text(
+          '${(timerProvider.timeLeft ~/ 60)}:${(timerProvider.timeLeft % 60).toString().padLeft(2, '0')}',
+          style: AppTypography.descBoldStyle.copyWith(
+            color: AppColors.textColor,
+            fontSize: MediaQuery.of(context).size.height * 0.06,
+          ),
+        );
+      }
     );
   }
 }
@@ -364,6 +383,7 @@ class RoundStartButton extends StatelessWidget {
         await fetchData();
         nextScreen();
         if (context.mounted) {
+          Provider.of<TimerProvider>(context, listen: false).startTimer();
           Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
         }    
       },

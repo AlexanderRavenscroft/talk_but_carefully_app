@@ -3,7 +3,6 @@ import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
-
 Map<Team, int> teamPlayerIndexes = {
   teamA: 0,
   teamB: 0,

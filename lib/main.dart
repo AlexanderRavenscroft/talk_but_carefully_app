@@ -29,13 +29,14 @@ void main() async {
   
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ToggleProvider()),
           ChangeNotifierProvider(create: (context) => RefreshProvider()),
           ChangeNotifierProvider(create: (context) => GameToggleProvider()),
           ChangeNotifierProvider(create: (context) => GamePauseProvider()),
+          ChangeNotifierProvider(create: (context) => TimerProvider()),
         ],
         child: MyApp(), // Pass loaded text to the app
       ),

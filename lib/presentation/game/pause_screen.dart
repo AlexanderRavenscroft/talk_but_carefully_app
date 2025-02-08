@@ -21,35 +21,45 @@ class PauseButtonState extends State<PauseButton> {
   Widget build(BuildContext context) {
     return Consumer<GamePauseProvider>(
       builder: (context, gamePauseProvider, child) {
-        return SizedBox(
-          width: MediaQuery.of(context).size.width * 0.3,
-          height: MediaQuery.of(context).size.height * 0.06,
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(AppColors.textColor),
-              shape: WidgetStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
+        return Consumer<TimerProvider>(
+          builder: (context, timerProvider, child) {
+            return SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.06,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(AppColors.textColor),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      ),
+                    ),
+                  ),
+                  elevation: WidgetStateProperty.all(6),
+                  shadowColor: WidgetStateProperty.all(Colors.black),
+                ),
+                onPressed: () {
+                  
+                  context.read<GamePauseProvider>().pauseGame();
+                  playAudio(GameSounds.tapSound);
+                //               if (timerProvider.isPaused) {
+                //   timerProvider.resumeTimer(); // Resume the timer
+                // } else {
+                //   timerProvider.pauseTimer(); // Pause the timer
+                // }
+                },
+                child: Center(
+                  child: Icon(
+                    gamePauseProvider.isPaused ? AppIcons.play :  AppIcons.pause,
+                    size: MediaQuery.of(context).size.height * 0.05,
+                    color: AppColors.neutralColor,
                   ),
                 ),
               ),
-              elevation: WidgetStateProperty.all(6),
-              shadowColor: WidgetStateProperty.all(Colors.black),
-            ),
-            onPressed: () {
-              context.read<GamePauseProvider>().pauseGame();
-              playAudio(GameSounds.tapSound);
-            },
-            child: Center(
-              child: Icon(
-                gamePauseProvider.isPaused ? AppIcons.play :  AppIcons.pause,
-                size: MediaQuery.of(context).size.height * 0.05,
-                color: AppColors.neutralColor,
-              ),
-            ),
-          ),
+            );
+          }
         );
       },
     );
