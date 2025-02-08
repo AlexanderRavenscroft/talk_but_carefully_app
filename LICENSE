@@ -1,66 +1,128 @@
-Flutter Icons License Information
----------------------------------
+LICENSE File for Project Assets
+--------------------------------
 
-This project uses icons from the following sources. Please refer to the respective licenses for more details.
-
-1. Font Awesome 4
-   - Author: Dave Gandy
-   - License: SIL Open Font License (OFL)
-   - Homepage: http://fortawesome.github.com/Font-Awesome/
-   - License URL: http://scripts.sil.org/OFL
-
-2. Iconic
-   - Author: P.J. Onori
-   - License: SIL Open Font License (OFL)
-   - Homepage: http://somerandomdude.com/work/iconic/
-   - License URL: http://scripts.sil.org/OFL
-
-3. Material Design Icons
-   - Author: Google, Inc
-   - License: Apache 2.0
-   - Homepage: https://design.google.com/icons/
-   - License URL: https://www.apache.org/licenses/LICENSE-2.0
-
-4. Entypo
-   - Author: Daniel Bruce
-   - License: SIL Open Font License (OFL)
-   - Homepage: http://www.entypo.com
-   - License URL: http://scripts.sil.org/OFL
-
-5. Typicons
-   - Author: Stephen Hutchings
-   - License: SIL Open Font License (OFL)
-   - Homepage: http://typicons.com/
-   - License URL: http://scripts.sil.org/OFL
-
-6. RPG Awesome
-   - Author: Daniela Howe & Ivan Montiel
-   - License: SIL Open Font License (OFL)
-   - Homepage: http://nagoshiashumari.github.io/Rpg-Awesome/
-   - License URL: http://scripts.sil.org/OFL
-
-7. Font Awesome 5
-   - Author: Dave Gandy
-   - License: SIL Open Font License (OFL)
-   - Homepage: http://fortawesome.github.com/Font-Awesome/
-   - License URL: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt
+This project uses the following third-party assets. Please refer to the respective licenses for more details.
 
 ---
 
-SIL Open Font License (OFL)
----------------------------
+### 1. Icons
+The icons used in this project are derived from the following sources:
+
+#### Font Awesome 4
+- **Author**: Dave Gandy
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: http://fortawesome.github.com/Font-Awesome/
+- **License URL**: http://scripts.sil.org/OFL
+
+#### Iconic
+- **Author**: P.J. Onori
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: http://somerandomdude.com/work/iconic/
+- **License URL**: http://scripts.sil.org/OFL
+
+#### Material Design Icons
+- **Author**: Google, Inc
+- **License**: Apache 2.0
+- **Homepage**: https://design.google.com/icons/
+- **License URL**: https://www.apache.org/licenses/LICENSE-2.0
+
+#### Entypo
+- **Author**: Daniel Bruce
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: http://www.entypo.com
+- **License URL**: http://scripts.sil.org/OFL
+
+#### Typicons
+- **Author**: Stephen Hutchings
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: http://typicons.com/
+- **License URL**: http://scripts.sil.org/OFL
+
+#### RPG Awesome
+- **Author**: Daniela Howe & Ivan Montiel
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: http://nagoshiashumari.github.io/Rpg-Awesome/
+- **License URL**: http://scripts.sil.org/OFL
+
+---
+
+### 2. Fonts
+The following fonts are used in this project:
+
+#### Bangers
+- **Author**: Vernon Adams
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: https://fonts.google.com/specimen/Bangers
+- **License URL**: http://scripts.sil.org/OFL
+
+#### Poppins
+- **Author**: Indian Type Foundry
+- **License**: SIL Open Font License (OFL)
+- **Homepage**: https://fonts.google.com/specimen/Poppins
+- **License URL**: http://scripts.sil.org/OFL
+
+---
+
+### 3. SVG Backgrounds
+The SVG backgrounds used in this project are from SVGBackgrounds.com.
+
+#### SVGBackgrounds.com
+- **Author**: Visiwig LLC
+- **License**: SVGBackgrounds.com License Agreement
+- **Homepage**: https://www.svgbackgrounds.com/
+- **License URL**: https://www.svgbackgrounds.com/license/
+
+##### Terms of Use:
+- The SVGs must be combined with other original design work and not used as-is.
+- Attribution is required for Free Graphics (see below).
+- Redistribution, resale, or use in automated systems is prohibited.
+
+##### Attribution (for Free Graphics):
+SVGs by SVGBackgrounds.com (https://www.svgbackgrounds.com/)
+
+---
+
+### 4. Sounds
+The sounds used in this project are from Pixabay.
+
+#### Pixabay
+- **License**: Pixabay License
+- **Homepage**: https://pixabay.com/
+- **License URL**: https://pixabay.com/service/license/
+
+##### Terms of Use:
+- Sounds can be used for free for personal and commercial purposes without attribution.
+- Redistribution or resale of the sounds as standalone files is prohibited.
+
+---
+
+### License Texts
+Below are the full license texts for the licenses mentioned above.
+
+---
+
+#### SIL Open Font License (OFL)
 The SIL Open Font License (OFL) is a free, libre, and open-source license specifically designed for fonts and related software. It allows the fonts to be used, studied, modified, and redistributed freely as long as they are not sold by themselves. For the full text of the license, please visit: http://scripts.sil.org/OFL
 
-Apache License 2.0
-------------------
-The Apache License 2.0 is a permissive free software license that allows users to freely use, modify, and distribute the software, provided that the original copyright notice and license terms are included. For the full text of the license, please visit: https://www.apache.org/licenses/LICENSE-2.0
+---
+
+#### Apache License 2.0
+The Apache License 2.0 is a permissive free software license written by the Apache Software Foundation. It allows users to freely use, modify, and distribute the software, provided that the original copyright notice and license text are included. For the full text of the license, please visit: https://www.apache.org/licenses/LICENSE-2.0
 
 ---
 
-Attribution Notice
-------------------
-This project includes icons from the above-mentioned sources. All rights remain with the original authors. The licenses for these icons require that appropriate credit be given to the authors and that the license terms be included in any distribution of the project.
+#### SVGBackgrounds.com License Agreement
+The SVGBackgrounds.com License Agreement governs the use of SVG backgrounds provided by SVGBackgrounds.com. For the full text of the license, please visit: https://www.svgbackgrounds.com/license/
 
 ---
 
-End of LICENSE
+#### Pixabay License
+The Pixabay License allows free use of sounds, images, and videos for personal and commercial purposes without attribution. Redistribution or resale of the assets as standalone files is prohibited. For the full text of the license, please visit: https://pixabay.com/service/license/
+
+---
+
+### Notes
+- This project does not earn any money and is for non-commercial use only.
+- All assets are used in compliance with their respective licenses.
+- Attribution is provided in this file and in the `themes.dart` file of the project.
+

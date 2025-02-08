@@ -109,13 +109,13 @@ class PauseScreenState extends State<PauseScreen> {
         // Game Guide Button
         PauseSettingsButton(
           settingsButtonText: 'JAK GRAĆ',
-          settingsButtonIcon: AppIcons.question,
+          settingsButtonIcon: AppIcons.guide,
           settingsButtonPress: () {
             showDialog(
               context: context,
               builder: (BuildContext context) {
                 return GameGuideDialog(
-                  headingIcon: AppIcons.question,
+                  headingIcon: AppIcons.guide,
                   headingText: "LEGENDA",
                   buttonText: "ROZUMIEM",
                 );

@@ -96,7 +96,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                   barrierColor: Colors.black.withValues(alpha: 0.3), // Remove double-dialog stacking background problem
                   builder: (BuildContext context) {
                     return RulesDialog(
-                      headingIcon: AppIcons.hood,
+                      headingIcon: AppIcons.authors,
                       headingText: "AUTORZY",
                       buttonText: "FAJNIE",
                       contentText: 'texts/authors.txt',
@@ -104,7 +104,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                   },
                 );
               },
-              settingsButtonIcon: AppIcons.hood,
+              settingsButtonIcon: AppIcons.authors,
             ),
 
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),

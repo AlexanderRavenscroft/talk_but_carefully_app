@@ -103,13 +103,15 @@ flutter:
    - family: Bangers
      fonts:
        - asset: assets/fonts/Bangers-Regular.ttf
-   - family: SF Pro Display
+
+   - family: Poppins
      fonts:
-       - asset: assets/fonts/SFPRODISPLAYREGULAR.OTF
-       - asset: assets/fonts/SFPRODISPLAYBOLD.OTF
+       - asset: assets/fonts/Poppins-Regular.ttf
+       
    - family: MyFlutterApp
      fonts:
        - asset: assets/fonts/MyFlutterApp.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

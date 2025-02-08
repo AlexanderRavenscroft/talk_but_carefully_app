@@ -1,11 +1,10 @@
-//This file uses icons from multiple sources, licensed under the following:
-// - Font Awesome 4: SIL Open Font License (http://scripts.sil.org/OFL)
-// - Iconic: SIL Open Font License (http://scripts.sil.org/OFL)
-// - Material Design Icons: Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
-// - Entypo: SIL Open Font License (http://scripts.sil.org/OFL)
-// - Typicons: SIL Open Font License (http://scripts.sil.org/OFL)
-// - RPG Awesome: SIL Open Font License (http://scripts.sil.org/OFL)
-// - Font Awesome 5: SIL Open Font License (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
+// Icons used in this project are derived from the following sources:
+// - Font Awesome 4 (http://fortawesome.github.com/Font-Awesome/)
+// - Iconic (http://somerandomdude.com/work/iconic/)
+// - Material Design Icons (https://design.google.com/icons/)
+// - Entypo (http://www.entypo.com)
+// - Typicons (http://typicons.com/)
+// - RPG Awesome (http://nagoshiashumari.github.io/Rpg-Awesome/)
 
 import 'package:flutter/material.dart';
 //==================[COLORS]==================
@@ -30,7 +29,7 @@ class TeamColors{
 //==================[TYPOGRAPHY]==================
 class AppTypography {
   static const String primaryFont = 'Bangers';
-  static const String secondaryFont = 'SF Pro Display';
+  static const String secondaryFont = 'Poppins Bold';
 
   static const TextStyle headingStyle = TextStyle(
     fontFamily: primaryFont,
@@ -75,28 +74,29 @@ class AppIcons {
   static const IconData arrowCurved = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrowsCcw = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pause = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData play = Icons.play_arrow;
+  static const IconData play = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   // Main Menu Icons
   static const IconData gamepad = IconData(0xf11b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData docText = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData settings = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData soundON = Icons.volume_up;
-  static const IconData soundOFF = Icons.volume_off;
-  static const IconData hood = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData question = Icons.help_outline_sharp;
+  static const IconData soundON = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData soundOFF = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData authors = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData guide = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData github = IconData(0xf09b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   // Other screens Icons
   static const IconData arrowForward = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrowBack = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData personAdd = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData alreadyTaken = Icons.do_disturb;
-  static const IconData remove = Icons.cancel;
+  static const IconData alreadyTaken = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData remove = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData hornCall = IconData(0xea04, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   
   // Difficulty Icons
   static const IconData easyDiff = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mediumDiff = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hardDiff = Icons.sentiment_dissatisfied_outlined;
+  static const IconData hardDiff = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
 
