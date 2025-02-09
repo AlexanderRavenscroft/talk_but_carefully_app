@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import required for SystemChrome
+import 'package:flutter/services.dart'; 
 import 'package:device_preview/device_preview.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/core/app_info.dart';
 import 'presentation/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
-import 'core/provider.dart'; // Import your provider file
+import 'core/provider.dart'; 
 import 'services/preference_service.dart';
 import 'package:gadajaleostroznie/core/setup.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter bindings are initialized
 
   // Load preferences and app version concurrently
   await Future.wait([
-    PreferenceService.loadPreferences(),  // Load preferences before the app starts
-    AppSetup.getAppVersion(),                      // Initialize app version and build number
+    PreferenceService.loadPreferences(),    
+    AppSetup.getAppVersion(),               
   ]);
 
   // Set preferred orientations
@@ -29,7 +31,7 @@ void main() async {
   
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ToggleProvider()),
@@ -38,7 +40,7 @@ void main() async {
           ChangeNotifierProvider(create: (context) => GamePauseProvider()),
           ChangeNotifierProvider(create: (context) => TimerProvider()),
         ],
-        child: MyApp(), // Pass loaded text to the app
+        child: MyApp(), 
       ),
     ),
   );

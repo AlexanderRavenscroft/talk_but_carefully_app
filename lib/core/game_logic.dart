@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
-import 'package:gadajaleostroznie/core/setup.dart';
 import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 Map<Team, int> teamPlayerIndexes = {
@@ -8,15 +7,6 @@ Map<Team, int> teamPlayerIndexes = {
   teamB: 0,
 };
 
-String fullEncounterMessage = '';
-String getEncounterMessage() {
-  if (currentTeam.players.isEmpty) {
-    return '${getRandomElement(playerEncounterList)} ${currentTeam.name}!';
-  }
-
-  int index = teamPlayerIndexes[currentTeam]!;  
-  return '${getRandomElement(playerEncounterList)} ${currentTeam.players[index].username}!';
-}
 
 void assignCurrentPlayer() {
   if (teamA.players.isNotEmpty) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/core/setup.dart';
+import 'package:gadajaleostroznie/core/app_info.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
 import 'package:gadajaleostroznie/presentation/menu/menu_widgets.dart';

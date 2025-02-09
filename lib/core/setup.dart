@@ -2,19 +2,9 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'dart:convert';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:gadajaleostroznie/core/game_logic.dart';
 
-//==================[GET APP VERSION && BUILD]==================
-class AppSetup{
-  static String appVersion = '';
-  static String buildNumber = '';
 
-  static Future<void> getAppVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-      appVersion = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-  }
-}
 //==================[IMPORT .TXT FILES]==================
 Map<String, String> textFiles = {
   'texts/agreement.txt': '', 
@@ -40,5 +30,15 @@ String getRandomElement(List<String> list) {
   final random = Random();
   int randomIndex = random.nextInt(list.length);
   return list[randomIndex]; 
+}
+
+String fullEncounterMessage = '';
+String getEncounterMessage() {
+  if (currentTeam.players.isEmpty) {
+    return '${getRandomElement(playerEncounterList)} ${currentTeam.name}!';
+  }
+
+  int index = teamPlayerIndexes[currentTeam]!;  
+  return '${getRandomElement(playerEncounterList)} ${currentTeam.players[index].username}!';
 }
 

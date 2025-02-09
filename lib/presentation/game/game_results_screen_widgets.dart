@@ -16,15 +16,19 @@ class WinningTeamDisplay extends StatelessWidget {
                 ? 'REMIS'
                 : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
             textAlign: TextAlign.center,
-            style: AppTypography.descBoldStyle.copyWith(
-              height: 1,
-              fontSize: MediaQuery.of(context).size.height * 0.05,
-           //   color: winningTeam?.color ?? AppColors.textColor,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 4
-              ..color = AppColors.textColor,
-            ),
+            style:  (winningTeam == null)
+              ? AppTypography.descBoldStyle.copyWith(
+                  height: 1,
+                  fontSize: MediaQuery.of(context).size.height * 0.05,
+                )
+              : AppTypography.descBoldStyle.copyWith(
+                  height: 1,
+                  fontSize: MediaQuery.of(context).size.height * 0.05,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 4
+                    ..color = AppColors.textColor,
+                ),
           ),
           Text(
             (winningTeam == null)
