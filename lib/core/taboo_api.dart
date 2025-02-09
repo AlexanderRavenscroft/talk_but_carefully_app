@@ -1,24 +1,29 @@
+// Fetches game questions from API. All API logic is here.
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'dart:math';
 import 'package:collection/collection.dart'; 
+
+//====================[API FETCHING]====================
 Random random = Random();
-bool isLoading = false; 
+bool isLoading = false; // If loading, return a Progress Indicator in game_screen
 
 String title = "Ładowanie tytułu...";
 List forbiddenWords = ["Ładowanie słowa...", "Ładowanie słowa..."];
 String difficulty = "Ładowanie trudności...";
 
-Future<void> fetchData() async {
-  isLoading = true; // Start loading
 
+Future<void> fetchData() async {
+  isLoading = true; 
+  // All needed URLs
   Uri url = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl'); //Default API URL
   Uri allDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl'); 
   Uri easyDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=easy'); 
   Uri mediumDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=medium'); 
   Uri hardDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=hard'); 
 
+  // All possible diff combinations
   Map<Set<int>, Uri> urlsMap = {
     {0, 1, 2}: allDiffsUrl,
     {0}: easyDiffsUrl,
@@ -29,6 +34,7 @@ Future<void> fetchData() async {
     {1, 2}: random.nextBool() ? mediumDiffsUrl : hardDiffsUrl,
   };
 
+  // Use Equality to map specif URL based on diff.
   final setEquality = SetEquality<int>();
   for (Set<int> key in urlsMap.keys) {
     if (setEquality.equals(key, GameSettings.aviableDifs)) {
@@ -37,6 +43,7 @@ Future<void> fetchData() async {
     }
   }
 
+  // Begin fetching
   try {
     final response = await http.get(url);
     if (response.statusCode == 200) {
@@ -45,7 +52,9 @@ Future<void> fetchData() async {
       title = data['title']; // Access properties inside 'data'
       forbiddenWords = data['forbiddenWords'];
       difficulty = data['difficulty'];
-      switch (difficulty) {   //Translate difficulty to polish
+
+    // Translate difficulty to polish lang
+      switch (difficulty) {   
         case('easy'):
           difficulty = 'łatwe';
           break;
@@ -64,7 +73,7 @@ Future<void> fetchData() async {
   } catch (e) {
     title = 'Error: $e';
   } finally {
-   isLoading = false;
+   isLoading = false; // Stop loading, return data instead of progress indicator
   }
 }
-
+//====================[/API FETCHING]====================

@@ -13,3 +13,4 @@ class AppSetup{
       buildNumber = packageInfo.buildNumber;
   }
 }
+//==================[/GET APP VERSION && BUILD]==================

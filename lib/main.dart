@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/app_info.dart';
-import 'presentation/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
-import 'core/provider.dart'; 
+import 'core/providers/ui_providers.dart'; 
 import 'services/preference_service.dart';
-import 'package:gadajaleostroznie/core/setup.dart';
+import 'package:gadajaleostroznie/core/text_and_encounter_manager.dart';
+import 'package:gadajaleostroznie/core/providers/timer_provider.dart';
+import 'package:gadajaleostroznie/presentation/screens/menu/menu_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter bindings are initialized
@@ -31,7 +32,7 @@ void main() async {
   
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ToggleProvider()),
@@ -53,11 +54,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // Pass the navigation key to the app
-      navigatorKey: navigatorKey,
+      navigatorKey: NavigationService.navigatorKey,
       
       debugShowCheckedModeBanner: false,
       title: 'Gadaj ale Ostrożnie',
-      home: SplashScreen(),
+      home: MenuScreen(),
       builder: (context, child) {
         return LayoutBuilder(
           builder: (context, constraints) {

@@ -1,11 +1,16 @@
+// This file tores global instances of `Game`, `Team`, `Player` classes. 
+// As well as Navigator Key.
+// Imported across the app for shared state.
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 
-//==================[GLOBAL NAVIGATION KEY]==================
-// Defining this will make easier Navigation between game and game_results_screen
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+//==================[NAVIGATION SERVICE]==================
+class NavigationService {
+  // Defining this will make easier Navigation between game and game_results_screen
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+}
 
-//==================[GAME SETTINGS VARIABLES]==================  
+//==================[GAME SETTINGS]==================  
 class GameSettings{
   // Default game settings selection (Must match the defualt selectedIndex)
   static Set<int> aviableDifs = {0};           
@@ -14,9 +19,9 @@ class GameSettings{
   static int aviablePoints = 20;        
 }
 
-//==================[Team SETTINGS VARIABLES]==================
+//==================[PLAYER AND TEAM CLASSES]==================
 class Player{
-  String username;
+  final String username;
   int points;
 
   Player(this.username, this.points);
@@ -24,7 +29,7 @@ class Player{
 
 class Team{
   String name;
-  List<Player> players;
+  final List<Player> players;
   Color color;
   int points;
   int skips;
@@ -32,10 +37,7 @@ class Team{
   Team(this.name, this.players, this.color, this.points, this.skips);
 }
 
-List<Team> teams = [
-    teamA,
-    teamB,
-];
-
-Team teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
-Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
+//=====================[TEAMS]=====================
+final Team teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
+final Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
+final List<Team> teams = [teamA, teamB];

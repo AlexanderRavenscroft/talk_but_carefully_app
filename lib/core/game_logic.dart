@@ -1,12 +1,11 @@
+// Handles game logic, including point calculation and win/loss conditions.
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
-import 'package:gadajaleostroznie/presentation/game/game_results_screen.dart';
+import 'package:gadajaleostroznie/presentation/screens/game/game_results_screen.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
-Map<Team, int> teamPlayerIndexes = {
-  teamA: 0,
-  teamB: 0,
-};
 
+//==================[ASIGN PLAYERS && SCREENS]==================
+Map<Team, int> teamPlayerIndexes = {teamA: 0, teamB: 0};
 
 void assignCurrentPlayer() {
   if (teamA.players.isNotEmpty) {
@@ -52,15 +51,11 @@ void nextScreen() {
   currentScreen = currentScreen == Screen.encounter ? Screen.question : Screen.encounter;
 }
 
-// POINTS BUTTONS FUNCTIONS
+//==================[POINTS BUTTONS FUNCTIONS]==================
 void addPoints() {
   currentTeam.points++;
   if (currentTeam.players.isNotEmpty) {
     currentTeam.players[teamPlayerIndexes[currentTeam]!].points++; 
-    debugPrint([teamPlayerIndexes[currentTeam]!].toString());
-    for (var player in currentTeam.players) {
-      debugPrint("${player.username}: ${player.points} points");
-    }
   }
 }
 
@@ -75,8 +70,9 @@ void addSkips() {
     currentTeam.skips++;
 }
 
-// END OF THE GAME
+//==================[END OF THE GAME]==================
 Team? winningTeam = teamA;
+
 checkResults() {
   if(teams.any((team) => team.points >= GameSettings.aviablePoints)) {
     if(teamA.points > teamB.points) {
@@ -97,7 +93,7 @@ checkResults() {
       }
     }
     playAudio(GameSounds.winningSound);
-    navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => GameResultsScreen()));
+    NavigationService.navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => GameResultsScreen()));
     return true;
   }
   return false;
@@ -106,7 +102,7 @@ checkResults() {
 // RESET GAME
 void resetGame() {
   // Keep the Teams and players, reset and screen
-  for (var team in teams) {
+  for (var team in teams) {    
     team.points = 0;
     team.skips = 0;
   }
