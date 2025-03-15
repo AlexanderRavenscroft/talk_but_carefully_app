@@ -13,14 +13,20 @@
     "language": "język",
     "@language": {},
   
-    "agree": "zgoda",
-    "@agree": {},
+    "agreement": "zgoda",
+    "@agreement": {},
   
+    "agree": "zgadzam się",
+    "@agree": {},
+
     "license": "licencja",
     "@license": {},
   
-    "authors": "autorzy",
+    "authors": "authors",
     "@authors": {},
+
+    "cool": "cool",
+    "@cool": {},
   
     "appVersion": "wersja aplikacji",
     "@appVersion": {},

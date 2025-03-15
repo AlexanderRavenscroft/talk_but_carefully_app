@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/presentation/widgets/menu/menu_widgets.dart';
 import 'package:gadajaleostroznie/presentation/screens/game_settings/game_settings_screen.dart';
@@ -41,7 +42,7 @@ class MenuScreen extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.48,
             child: MenuButton(
               buttonIcon: AppIcons.gamepad,
-              buttonText: AppLocalizations.of(context)!.play.toUpperCase(),
+              buttonText: AppLocalizations.of(context)!.play.toUpper(),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -58,15 +59,15 @@ class MenuScreen extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.63,
             child: MenuButton(
               buttonIcon: AppIcons.docText,
-              buttonText: AppLocalizations.of(context)!.rules.toUpperCase(),
+              buttonText: AppLocalizations.of(context)!.rules.toUpper(),
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return RulesDialog(
                       headingIcon: AppIcons.docText,
-                      headingText: AppLocalizations.of(context)!.rules.toUpperCase(),
-                      buttonText: AppLocalizations.of(context)!.okay.toUpperCase(),
+                      headingText: AppLocalizations.of(context)!.rules.toUpper(),
+                      buttonText: AppLocalizations.of(context)!.okay.toUpper(),
                       contentText: 'texts/rules.txt',
                     );
                   },
@@ -80,7 +81,7 @@ class MenuScreen extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.78,
             child: MenuButton(
               buttonIcon: AppIcons.settings,
-              buttonText: AppLocalizations.of(context)!.settings.toUpperCase(),
+              buttonText: AppLocalizations.of(context)!.settings.toUpper(),
               onPressed: () {
                 showDialog(
                   context: context,

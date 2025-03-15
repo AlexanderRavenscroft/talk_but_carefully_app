@@ -5,7 +5,9 @@ import 'package:gadajaleostroznie/core/app_info.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
 import 'package:gadajaleostroznie/presentation/widgets/menu/menu_widgets.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[SETTINGS POPUP]====================
 class SettingsMenu extends StatefulWidget {
@@ -16,11 +18,11 @@ class SettingsMenu extends StatefulWidget {
 }
 
 class SettingsMenuState extends State<SettingsMenu> {
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.neutralColor,
-
       // Title Row with settings icon and text
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,9 +33,11 @@ class SettingsMenuState extends State<SettingsMenu> {
             color: AppColors.textColor,
             size: MediaQuery.of(context).size.height * 0.042,
           ),
+          
           SizedBox(width: MediaQuery.of(context).size.height * 0.01),
+
           Text(
-            "USTAWIENIA",
+            AppLocalizations.of(context)!.settings.toUpper(),
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.04,
@@ -43,94 +47,80 @@ class SettingsMenuState extends State<SettingsMenu> {
       ),
 
       // Content: Settings options
-      content: SizedBox(
+      content:  SizedBox(
         width: double.maxFinite,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Sound section
-            SettingsText(settingsTextString: "Dźwięk:"),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-
-            SettingsButton(
-              settingsButtonPress: () {
+            // GAME SOUND
+            _buildSettingsOption(
+              title: AppLocalizations.of(context)!.sound.capitalize(),
+              onPressed: () {
                 setState(() {
                   GameSounds.soundToggled = !GameSounds.soundToggled;
                   PreferenceService.savePreference('soundToggled', GameSounds.soundToggled);
                 });
               },
-              settingsButtonIcon: GameSounds.soundToggled ? AppIcons.soundON : AppIcons.soundOFF,
+              icon: GameSounds.soundToggled ? AppIcons.soundON : AppIcons.soundOFF,
             ),
 
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            // GAME LANGUAGE
+            _buildSettingsOption(
+              title: AppLocalizations.of(context)!.language.capitalize(),
+              onPressed: () {
+                if (Provider.of<LocaleProvider>(context, listen: false).locale == Locale('pl')) {
+                  Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('en'));
+                } else {
+                  Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('pl'));
+                }
+              },
+              icon: Icons.flag,
+            ),
 
-            SettingsText(settingsTextString: "Lang"),
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                        SettingsButton(
-                          settingsButtonPress: () {
-                            if(Provider.of<LocaleProvider>(context, listen: false).locale == Locale('pl')) {
-                              Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('en'));
-                            } else {
-                              Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('pl'));
-                            }
-                            
-                          },
-                          settingsButtonIcon: Icons.flag,
-                        ),
-
-
-            // License & Agreement section
-            SettingsText(settingsTextString: "Zgoda & Licencja:"),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-
-
-            SettingsButton(
-              settingsButtonPress: () {
+            // LICENSE & AGREEMENT
+            _buildSettingsOption(
+              title: "${AppLocalizations.of(context)!.agreement.capitalize()} & ${AppLocalizations.of(context)!.license.capitalize()}",
+              onPressed: () {
                 showDialog(
                   context: context,
-                  barrierColor: Colors.black.withValues(alpha: 0.3), // Remove double-dialog stacking background problem
+                  barrierColor: Colors.black.withValues(alpha: 0.3),
                   builder: (BuildContext context) {
                     return RulesDialog(
                       headingIcon: AppIcons.docText,
-                      headingText: "REGULAMIN",
-                      buttonText: "ZGADZAM SIĘ",
+                      headingText: AppLocalizations.of(context)!.agreement.toUpper(),
+                      buttonText: AppLocalizations.of(context)!.agree.toUpper(),
                       contentText: 'texts/agreement.txt',
                     );
                   },
                 );
               },
-              settingsButtonIcon: AppIcons.docText,
+              icon: AppIcons.docText,
             ),
 
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-
-            // Authors section
-            SettingsText(settingsTextString: "Autorzy:"),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            SettingsButton(
-              settingsButtonPress: () {
+            // AUTHORS
+            _buildSettingsOption(
+              title: AppLocalizations.of(context)!.authors.capitalize(),
+              onPressed: () {
                 showDialog(
                   context: context,
-                  barrierColor: Colors.black.withValues(alpha: 0.3), // Remove double-dialog stacking background problem
+                  barrierColor: Colors.black.withValues(alpha: 0.3),
                   builder: (BuildContext context) {
                     return RulesDialog(
                       headingIcon: AppIcons.authors,
-                      headingText: "AUTORZY",
-                      buttonText: "FAJNIE",
+                      headingText: AppLocalizations.of(context)!.authors.toUpper(),
+                      buttonText: AppLocalizations.of(context)!.cool.toUpper(),
                       contentText: 'texts/authors.txt',
                     );
                   },
                 );
               },
-              settingsButtonIcon: AppIcons.authors,
+              icon: AppIcons.authors,
             ),
 
-         //   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-
-            // App version and build number
+            // APP VERSION & BUILD NUMBER
             Text(
-              "Wersja aplikacji: ${AppSetup.appVersion} \nKompilacja: ${AppSetup.buildNumber}",
+              "${AppLocalizations.of(context)!.appVersion.capitalize()}: ${AppSetup.appVersion} \n${AppLocalizations.of(context)!.build.capitalize()}: ${AppSetup.buildNumber}",
               style: AppTypography.descBoldStyle.copyWith(
                 fontSize: MediaQuery.of(context).size.height * 0.02,
               ),
@@ -165,13 +155,31 @@ class SettingsMenuState extends State<SettingsMenu> {
             playAudio(GameSounds.tapSound);
           },
           child: Text(
-            "POWRÓT",
+            AppLocalizations.of(context)!.back.toUpper(),
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.042,
             ),
           ),
         ),
+      ],
+    );
+  }
+  
+  Widget _buildSettingsOption({
+    required String title,
+    required VoidCallback onPressed,
+    required IconData icon,
+    }) {
+    return Column(
+      children: [
+        SettingsText(settingsTextString: title),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+        SettingsButton(
+          settingsButtonPress: onPressed,
+          settingsButtonIcon: icon,
+        ),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
       ],
     );
   }
