@@ -4,6 +4,7 @@ import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/presentation/widgets/menu/menu_widgets.dart';
 import 'package:gadajaleostroznie/presentation/screens/game_settings/game_settings_screen.dart';
 import 'package:gadajaleostroznie/presentation/screens/menu/menu_settings_popup.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[MENU SCREEN]====================
 class MenuScreen extends StatelessWidget {
@@ -40,7 +41,7 @@ class MenuScreen extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.48,
             child: MenuButton(
               buttonIcon: AppIcons.gamepad,
-              buttonText: "GRAJ",
+              buttonText: AppLocalizations.of(context)!.play.toUpperCase(),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -57,15 +58,15 @@ class MenuScreen extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.63,
             child: MenuButton(
               buttonIcon: AppIcons.docText,
-              buttonText: "ZASADY",
+              buttonText: AppLocalizations.of(context)!.rules.toUpperCase(),
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return RulesDialog(
                       headingIcon: AppIcons.docText,
-                      headingText: "ZASADY",
-                      buttonText: "DOBRA",
+                      headingText: AppLocalizations.of(context)!.rules.toUpperCase(),
+                      buttonText: AppLocalizations.of(context)!.okay.toUpperCase(),
                       contentText: 'texts/rules.txt',
                     );
                   },
@@ -79,7 +80,7 @@ class MenuScreen extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.78,
             child: MenuButton(
               buttonIcon: AppIcons.settings,
-              buttonText: "USTAWIENIA",
+              buttonText: AppLocalizations.of(context)!.settings.toUpperCase(),
               onPressed: () {
                 showDialog(
                   context: context,

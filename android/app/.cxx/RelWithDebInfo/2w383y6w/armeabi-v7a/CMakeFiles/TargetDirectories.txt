@@ -1,0 +1,2 @@
+D:/MojeProgramowanie/gadajaleostroznie/android/app/.cxx/RelWithDebInfo/2w383y6w/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/MojeProgramowanie/gadajaleostroznie/android/app/.cxx/RelWithDebInfo/2w383y6w/armeabi-v7a/CMakeFiles/rebuild_cache.dir

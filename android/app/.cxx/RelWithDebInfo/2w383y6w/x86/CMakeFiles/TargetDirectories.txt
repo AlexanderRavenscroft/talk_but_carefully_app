@@ -1,0 +1,2 @@
+D:/MojeProgramowanie/gadajaleostroznie/android/app/.cxx/RelWithDebInfo/2w383y6w/x86/CMakeFiles/edit_cache.dir
+D:/MojeProgramowanie/gadajaleostroznie/android/app/.cxx/RelWithDebInfo/2w383y6w/x86/CMakeFiles/rebuild_cache.dir

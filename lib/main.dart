@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; 
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/app_info.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
+import 'package:gadajaleostroznie/l10n/l10n.dart';
 import 'package:provider/provider.dart';
 import 'core/providers/ui_providers.dart'; 
 import 'services/preference_service.dart';
@@ -40,6 +44,7 @@ void main() async {
           ChangeNotifierProvider(create: (context) => GameToggleProvider()),
           ChangeNotifierProvider(create: (context) => GamePauseProvider()),
           ChangeNotifierProvider(create: (context) => TimerProvider()),
+          ChangeNotifierProvider(create: (context) => LocaleProvider()),
         ],
         child: MyApp(), 
       ),
@@ -53,10 +58,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
       // Pass the navigation key to the app
       navigatorKey: NavigationService.navigatorKey,
+    
+      // Setup languages
+      supportedLocales: L10n.all,
+      locale: Provider.of<LocaleProvider>(context, listen: true).locale,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
       
-      debugShowCheckedModeBanner: false,
       title: 'Gadaj ale Ostrożnie',
       home: MenuScreen(),
       builder: (context, child) {

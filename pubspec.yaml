@@ -28,10 +28,15 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter:
+    sdk: flutter 
+
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+
   http: ^1.2.2
   collection: ^1.2.2
-  flutter:
-    sdk: flutter
   provider: ^6.0.0
   flutter_svg: ^2.0.4
   audioplayers: ^6.1.0
@@ -41,6 +46,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   device_preview: ^1.2.0
   package_info_plus: ^8.1.3
+  
+
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +65,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
+      
   assets:
   # IMAGES
     - assets/images/background-circles.svg
@@ -123,3 +132,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"

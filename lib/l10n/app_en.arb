@@ -1,0 +1,105 @@
+{
+    "@@locale": "en",
+  
+    "play": "play",
+    "@play": {},
+  
+    "settings": "settings",
+    "@settings": {},
+  
+    "sound": "sound",
+    "@sound": {},
+  
+    "language": "language",
+    "@language": {},
+  
+    "agree": "agree",
+    "@agree": {},
+  
+    "license": "license",
+    "@license": {},
+  
+    "authors": "authors",
+    "@authors": {},
+  
+    "appVersion": "app version",
+    "@appVersion": {},
+  
+    "build": "build",
+    "@build": {},
+  
+    "back": "back",
+    "@back": {},
+  
+    "questions": "questions",
+    "@questions": {},
+  
+    "easy": "easy",
+    "@easy": {},
+  
+    "medium": "medium",
+    "@medium": {},
+  
+    "hard": "hard",
+    "@hard": {},
+  
+    "availableSkips": "available skips",
+    "@availableSkips": {},
+  
+    "timeLimit": "time limit",
+    "@timeLimit": {},
+  
+    "player": "player",
+    "@player": {},
+  
+    "enterPlayerName": "enter player name",
+    "@enterPlayerName": {},
+  
+    "cancel": "cancel",
+    "@cancel": {},
+  
+    "save": "save",
+    "@save": {},
+  
+    "round": "round",
+    "@round": {},
+  
+    "guessingTeam": "guessing team",
+    "@guessingTeam": {},
+  
+    "team": "team",
+    "@team": {},
+  
+    "start": "start",
+    "@start": {},
+  
+    "pause": "pause",
+    "@pause": {},
+  
+    "howToPlay": "how to play",
+    "@howToPlay": {},
+  
+    "rules": "rules",
+    "@rules": {},
+  
+    "exit": "exit",
+    "@exit": {},
+  
+    "okay": "okay",
+    "@okay": {},
+  
+    "legend": "legend",
+    "@legend": {},
+  
+    "questionTypes": "question types",
+    "@questionTypes": {},
+  
+    "understand": "understand",
+    "@understand": {},
+  
+    "wins": "wins",
+    "@wins": {},
+  
+    "noPlayersAdded": "no players added",
+    "@noPlayersAdded": {}
+  }

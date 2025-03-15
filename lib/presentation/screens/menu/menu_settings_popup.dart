@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/app_info.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
 import 'package:gadajaleostroznie/presentation/widgets/menu/menu_widgets.dart';
+import 'package:provider/provider.dart';
 
 //====================[SETTINGS POPUP]====================
 class SettingsMenu extends StatefulWidget {
@@ -63,9 +65,26 @@ class SettingsMenuState extends State<SettingsMenu> {
 
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
+            SettingsText(settingsTextString: "Lang"),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                        SettingsButton(
+                          settingsButtonPress: () {
+                            if(Provider.of<LocaleProvider>(context, listen: false).locale == Locale('pl')) {
+                              Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('en'));
+                            } else {
+                              Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('pl'));
+                            }
+                            
+                          },
+                          settingsButtonIcon: Icons.flag,
+                        ),
+
+
             // License & Agreement section
             SettingsText(settingsTextString: "Zgoda & Licencja:"),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
+
             SettingsButton(
               settingsButtonPress: () {
                 showDialog(
@@ -107,7 +126,7 @@ class SettingsMenuState extends State<SettingsMenu> {
               settingsButtonIcon: AppIcons.authors,
             ),
 
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+         //   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
             // App version and build number
             Text(
