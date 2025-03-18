@@ -69,11 +69,8 @@ class SettingsMenuState extends State<SettingsMenu> {
             _buildSettingsOption(
               title: AppLocalizations.of(context)!.language.capitalize(),
               onPressed: () {
-                if (Provider.of<LocaleProvider>(context, listen: false).locale == Locale('pl')) {
-                  Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('en'));
-                } else {
-                  Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale('pl'));
-                }
+                final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+                localeProvider.setLocale(localeProvider.locale.languageCode == 'pl' ? Locale('en') : Locale('pl'));
               },
               icon: Icons.flag,
             ),
@@ -90,7 +87,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                       headingIcon: AppIcons.docText,
                       headingText: AppLocalizations.of(context)!.agreement.toUpper(),
                       buttonText: AppLocalizations.of(context)!.agree.toUpper(),
-                      contentText: 'texts/agreement.txt',
+                      contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/rules.txt',
                     );
                   },
                 );
@@ -100,7 +97,7 @@ class SettingsMenuState extends State<SettingsMenu> {
 
             // AUTHORS
             _buildSettingsOption(
-              title: AppLocalizations.of(context)!.authors.capitalize(),
+              title: AppLocalizations.of(context)!.creator.capitalize(),
               onPressed: () {
                 showDialog(
                   context: context,
@@ -108,9 +105,9 @@ class SettingsMenuState extends State<SettingsMenu> {
                   builder: (BuildContext context) {
                     return RulesDialog(
                       headingIcon: AppIcons.authors,
-                      headingText: AppLocalizations.of(context)!.authors.toUpper(),
+                      headingText: AppLocalizations.of(context)!.creator.toUpper(),
                       buttonText: AppLocalizations.of(context)!.cool.toUpper(),
-                      contentText: 'texts/authors.txt',
+                      contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/creator.txt',
                     );
                   },
                 );

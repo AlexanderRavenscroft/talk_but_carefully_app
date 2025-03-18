@@ -1,111 +1,41 @@
 {
-    "@@locale": "pl",
-  
-    "play": "graj",
-    "@play": {},
-  
-    "settings": "ustawienia",
-    "@settings": {},
-  
-    "sound": "dźwięk",
-    "@sound": {},
-  
-    "language": "język",
-    "@language": {},
-  
-    "agreement": "zgoda",
-    "@agreement": {},
-  
-    "agree": "zgadzam się",
-    "@agree": {},
-
-    "license": "licencja",
-    "@license": {},
-  
-    "authors": "authors",
-    "@authors": {},
-
-    "cool": "cool",
-    "@cool": {},
-  
-    "appVersion": "wersja aplikacji",
-    "@appVersion": {},
-  
-    "build": "kompilacja",
-    "@build": {},
-  
-    "back": "powrót",
-    "@back": {},
-  
-    "questions": "pytania",
-    "@questions": {},
-  
-    "easy": "łatwe",
-    "@easy": {},
-  
-    "medium": "średnie",
-    "@medium": {},
-  
-    "hard": "trudne",
-    "@hard": {},
-  
-    "availableSkips": "dostępne pominięcia",
-    "@availableSkips": {},
-  
-    "timeLimit": "limit czasu",
-    "@timeLimit": {},
-  
-    "player": "gracz",
-    "@player": {},
-  
-    "enterPlayerName": "wpisz nazwę gracza",
-    "@enterPlayerName": {},
-  
-    "cancel": "anuluj",
-    "@cancel": {},
-  
-    "save": "zapisz",
-    "@save": {},
-  
-    "round": "runda",
-    "@round": {},
-  
-    "guessingTeam": "odgaduje drużyna",
-    "@guessingTeam": {},
-  
-    "team": "drużyna",
-    "@team": {},
-  
-    "start": "start",
-    "@start": {},
-  
-    "pause": "pauza",
-    "@pause": {},
-  
-    "howToPlay": "jak grać",
-    "@howToPlay": {},
-  
-    "rules": "zasady",
-    "@rules": {},
-  
-    "exit": "wyjdź",
-    "@exit": {},
-  
-    "okay": "dobra",
-    "@okay": {},
-  
-    "legend": "legenda",
-    "@legend": {},
-  
-    "questionTypes": "rodzaje pytań",
-    "@questionTypes": {},
-  
-    "understand": "rozumiem",
-    "@understand": {},
-  
-    "wins": "wygrywają",
-    "@wins": {},
-  
-    "noPlayersAdded": "nie dodano graczy",
-    "@noPlayersAdded": {}
-  }
+  "@@locale": "pl",
+  "agree": "zgadzam się",
+  "agreement": "zgoda",
+  "appVersion": "wersja aplikacji",
+  "availableSkips": "dostępne pominięcia",
+  "back": "powrót",
+  "build": "kompilacja",
+  "cancel": "anuluj",
+  "cool": "fajnie",
+  "creator": "twórca",
+  "easy": "łatwe",
+  "enterPlayerName": "wpisz nazwę gracza",
+  "exit": "wyjdź",
+  "guessingTeam": "odgaduje drużyna",
+  "hard": "trudne",
+  "howToPlay": "jak grać",
+  "language": "język",
+  "legend": "legenda",
+  "license": "licencja",
+  "medium": "średnie",
+  "newName": "nowe imię",
+  "noPlayersAdded": "nie dodano graczy",
+  "okay": "dobra",
+  "pause": "pauza",
+  "play": "graj",
+  "player": "gracz",
+  "pointsToWin": "punkty do wygranej",
+  "questionTypes": "rodzaje pytań",
+  "questions": "pytania",
+  "round": "runda",
+  "rules": "zasady",
+  "save": "zapisz",
+  "settings": "ustawienia",
+  "sound": "dźwięk",
+  "start": "start",
+  "team": "drużyna",
+  "timeLimit": "limit czasu",
+  "understand": "rozumiem",
+  "wins": "wygrywają"
+}

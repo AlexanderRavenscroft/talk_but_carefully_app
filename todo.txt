@@ -1,0 +1,2 @@
+Update icon,
+Change EN translation for could not load text

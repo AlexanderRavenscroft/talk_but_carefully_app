@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gadajaleostroznie/core/globals.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/presentation/widgets/game_settings/game_settings_widgets.dart';
 import 'package:gadajaleostroznie/presentation/screens/game_settings/team_settings_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[GAME SETTINGS SCREEN]====================
 class GameSettingsScreen extends StatefulWidget {
@@ -13,15 +18,20 @@ class GameSettingsScreen extends StatefulWidget {
 }
 
 class GameSettingsScreenState extends State<GameSettingsScreen> {
+
   @override
   Widget build(BuildContext context) {
+    // Translate team names correctly
+    teamA.name = '${AppLocalizations.of(context)!.team.capitalize()} I';
+    teamB.name = '${AppLocalizations.of(context)!.team.capitalize()} II';
+
     return Scaffold(
       // APPBAR
       appBar: AppBar(
         backgroundColor: AppColors.accentColor,
         toolbarHeight: MediaQuery.of(context).size.height * 0.08,
         title: Image.asset(
-          'assets/images/logo.png',
+          'assets/images/game/logo_${Provider.of<LocaleProvider>(context).locale.languageCode}.png',
           height: MediaQuery.of(context).size.height * 0.07,
           width: MediaQuery.of(context).size.width * 0.4,
         ),
@@ -45,7 +55,7 @@ class GameSettingsScreenState extends State<GameSettingsScreen> {
           // Background SVG
           Positioned.fill(
             child: SvgPicture.asset(
-              'assets/images/background-circles.svg',
+              'assets/images/game/background_circles.svg',
               fit: BoxFit.cover,
             ),
           ),
@@ -54,7 +64,7 @@ class GameSettingsScreenState extends State<GameSettingsScreen> {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.05,
             child: OptionsSelectionContainer(
-              optionsText: "PYTANIA",
+              optionsText: AppLocalizations.of(context)!.questions.toUpper(),
               selectionWidget: DifSelection(),
             ),
           ),
@@ -63,7 +73,7 @@ class GameSettingsScreenState extends State<GameSettingsScreen> {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.23,
             child: OptionsSelectionContainer(
-              optionsText: "DOSTĘPNE POMINIĘCIA",
+              optionsText: AppLocalizations.of(context)!.availableSkips.toUpper(),
               selectionWidget: SkipSelection(),
             ),
           ),
@@ -72,7 +82,7 @@ class GameSettingsScreenState extends State<GameSettingsScreen> {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.41,
             child: OptionsSelectionContainer(
-              optionsText: "CZAS RUNDY",
+              optionsText: AppLocalizations.of(context)!.timeLimit.toUpper(),
               selectionWidget: TimeSelection(),
             ),
           ),
@@ -81,7 +91,7 @@ class GameSettingsScreenState extends State<GameSettingsScreen> {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.59,
             child: OptionsSelectionContainer(
-              optionsText: "LIMIT",
+              optionsText: AppLocalizations.of(context)!.pointsToWin.toUpper(),
               selectionWidget: PointsSelection(),
             ),
           ),

@@ -1,0 +1,3 @@
+Hi! I am Alexander Ravenscroft, a passionate Flutter mobile app developer from Poland.
+I am 19 years old and have been programming for over three years. While I’m still at the beginning of my journey in mobile app development, I love building elegant, cross-platform applications that provide seamless user experiences. I enjoy taking on new challenges and turning ideas into functional apps.When I’m not coding, you’ll probably find me exploring UI/UX design trends, hitting the gym or sailing.
+Let’s connect and create something amazing together!

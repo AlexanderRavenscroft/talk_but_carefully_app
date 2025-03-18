@@ -32,8 +32,8 @@ void main() async {
   // Load all text files concurrently using Future.wait
   await Future.wait(textFiles.keys.map((path) => loadText(path)));
   await loadEncounterMessages();
+
   // Once everything is done, run the app
-  
   runApp(
     DevicePreview(
       enabled: false,
@@ -73,8 +73,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      
-      title: 'Gadaj ale Ostrożnie',
+      title: 'Talk, but Carefully',
       home: MenuScreen(),
       builder: (context, child) {
         return LayoutBuilder(

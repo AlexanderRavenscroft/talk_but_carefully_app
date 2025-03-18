@@ -4,6 +4,7 @@ import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/core/providers/timer_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[DIF SELECTION]====================
 class DifSelection extends StatefulWidget {
@@ -14,10 +15,15 @@ class DifSelection extends StatefulWidget {
 }
 
 class DifSelectionState extends State<DifSelection> {
-  final List<String> difSelectionList = ["łatwe", "średnie", "trudne"];
 
   @override
   Widget build(BuildContext context) {
+    List<String> difSelectionList = [
+      AppLocalizations.of(context)!.easy,
+      AppLocalizations.of(context)!.medium,
+      AppLocalizations.of(context)!.hard,
+    ];
+    
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,

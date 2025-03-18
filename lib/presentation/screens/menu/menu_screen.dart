@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
 import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/presentation/widgets/menu/menu_widgets.dart';
 import 'package:gadajaleostroznie/presentation/screens/game_settings/game_settings_screen.dart';
 import 'package:gadajaleostroznie/presentation/screens/menu/menu_settings_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 //====================[MENU SCREEN]====================
 class MenuScreen extends StatelessWidget {
@@ -21,7 +23,7 @@ class MenuScreen extends StatelessWidget {
           // BACKGROUND SVG
           Positioned.fill(
             child: SvgPicture.asset(
-              'assets/images/background-circles.svg',
+              'assets/images/game/background_circles.svg',
               fit: BoxFit.cover,
             ),
           ),
@@ -30,7 +32,7 @@ class MenuScreen extends StatelessWidget {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.22,
             child: Image.asset(
-              'assets/images/logo.png',
+              'assets/images/game/logo_${Provider.of<LocaleProvider>(context).locale.languageCode}.png',
               width: MediaQuery.of(context).size.width * 0.9,
               height: MediaQuery.of(context).size.height * 0.2,
               fit: BoxFit.contain,
@@ -68,7 +70,7 @@ class MenuScreen extends StatelessWidget {
                       headingIcon: AppIcons.docText,
                       headingText: AppLocalizations.of(context)!.rules.toUpper(),
                       buttonText: AppLocalizations.of(context)!.okay.toUpper(),
-                      contentText: 'texts/rules.txt',
+                      contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/rules.txt',
                     );
                   },
                 );

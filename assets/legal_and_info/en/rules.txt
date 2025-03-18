@@ -1,0 +1,9 @@
+The game is played in two teams competing for points. The first team to reach the point limit wins!
+
+One person from the guessing team becomes the describer. Their task is to guide their teammates toward guessing a specific word or phrase displayed on the screen.
+
+While describing, certain forbidden words cannot be used. These words are listed below the main term and must be avoided at all costs! Each team has a limited time to guess as many terms as possible.
+
+The team earns a point for every correctly guessed word. Warning – if the describer uses a forbidden word, they lose a point!
+
+A selected player from the opposing team monitors to ensure no forbidden words are spoken.

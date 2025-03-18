@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
@@ -141,7 +142,7 @@ class PauseScreenState extends State<PauseScreen> {
                   headingIcon: AppIcons.docText,
                   headingText: "ZASADY",
                   buttonText: "DOBRA",
-                  contentText: 'texts/rules.txt',
+                  contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/rules.txt',
                 );
               },
             );
@@ -272,7 +273,7 @@ class GameGuideDialog extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset('assets/images/game-guide-pl.png'),
+              Image.asset('assets/images/game/game_guide_pl.png'),
               Center(
                 child: Text(
                   'RODZAJE PYTAŃ:',

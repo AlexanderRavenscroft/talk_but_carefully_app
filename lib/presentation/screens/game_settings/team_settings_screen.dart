@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/presentation/widgets/game_settings/team_settings_widgets.dart';
@@ -32,7 +33,7 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
         shadowColor: Colors.transparent,
         toolbarHeight: (MediaQuery.of(context).size.height) * 0.08,
         title: Image.asset(
-          'assets/images/logo.png',
+          'assets/images/game/logo_${Provider.of<LocaleProvider>(context).locale.languageCode}.png',
           height: (MediaQuery.of(context).size.height) * 0.07,
           width: (MediaQuery.of(context).size.width) * 0.4,
         ),
@@ -118,13 +119,13 @@ class TeamSettingsScreenState extends State<TeamSettingsScreen> {
           // Player List
           Positioned.fill(
             top: (MediaQuery.of(context).size.height) * 0.14,
-            child:  PlayerListScreen(players: isToggled ? teamB.players : teamA.players),
+            child: PlayerListScreen(players: isToggled ? teamB.players : teamA.players),
           ),
 
           // Team Color Picker
           Align(
             alignment: Alignment.centerRight,
-            child:  ColorPickerWidget(),
+            child: ColorPickerWidget(),
           ),
         ],
       ),

@@ -6,9 +6,12 @@ import 'package:gadajaleostroznie/core/game_logic.dart';
 
 //==================[IMPORT .TXT FILES]==================
 Map<String, String> textFiles = {
-  'texts/agreement.txt': '', 
-  'texts/authors.txt': '',   
-  'texts/rules.txt': '',    
+  'legal_and_info/en/agreement.txt': '', 
+  'legal_and_info/en/creator.txt': '',   
+  'legal_and_info/en/rules.txt': '',   
+  'legal_and_info/pl/agreement.txt': '', 
+  'legal_and_info/pl/creator.txt': '',   
+  'legal_and_info/pl/rules.txt': '',     
 };
 
 Future<void> loadText(String path) async {
@@ -22,7 +25,9 @@ Future<void> loadText(String path) async {
 List<String> playerEncounterList = []; // Load .json files
 
 Future<void> loadEncounterMessages() async {
-  final String content = await rootBundle.loadString('assets/texts/playerEncounterMessages.json');
+  String content = await rootBundle.loadString('assets/legal_and_info/en/encounter_messages.json');
+  playerEncounterList = List<String>.from(json.decode(content));
+  content = await rootBundle.loadString('assets/legal_and_info/pl/encounter_messages.json');
   playerEncounterList = List<String>.from(json.decode(content));
 }
 

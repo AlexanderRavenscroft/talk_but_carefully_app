@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/text_and_encounter_manager.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
+import 'package:provider/provider.dart';
 
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {
@@ -117,7 +119,8 @@ class RulesDialog extends StatelessWidget {
         width: double.maxFinite,
         child: SingleChildScrollView(
           child: Text(
-            textFiles[contentText] ?? 'Nie można wczytać tekstu',
+          textFiles[contentText] ?? 
+            (Provider.of<LocaleProvider>(context).locale.languageCode == 'pl' ? 'Nie udało się wczytać tekstu' : 'Could not load text'),
             textAlign: TextAlign.justify,
             style: AppTypography.descStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.024,
@@ -164,8 +167,6 @@ class RulesDialog extends StatelessWidget {
   }
 }
 //====================[/RULES POPUP]====================
-
-
 
 //====================[SETTINGS TEXT LABELS]====================
 class SettingsText extends StatelessWidget {

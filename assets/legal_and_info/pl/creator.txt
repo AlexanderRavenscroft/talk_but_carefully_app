@@ -1,0 +1,4 @@
+Cześć! Jestem Alexander Ravenscroft, pasjonat Flutter i twórca aplikacji mobilnych z Polski.
+Mam 19 lat i programuję od ponad trzech lat. Choć dopiero rozpoczynam swoją przygodę z tworzeniem aplikacji mobilnych, uwielbiam budować eleganckie, wieloplatformowe aplikacje, które zapewniają płynne i intuicyjne doświadczenia użytkownikom. Lubię podejmować nowe wyzwania i zamieniać pomysły w działające aplikacje.
+Kiedy nie koduję, prawdopodobnie eksploruję trendy w UI/UX, ćwiczę na siłowni albo żegluję.
+Połączmy siły i stwórzmy coś niesamowitego!

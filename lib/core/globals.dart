@@ -38,6 +38,6 @@ class Team{
 }
 
 //=====================[TEAMS]=====================
-final Team teamA = Team("Drużyna I", [], TeamColors.teamRedColor, 0, 0);
-final Team teamB = Team("Drużyna II", [], TeamColors.teamBlueColor, 0, 0);
+final Team teamA = Team("Team I", [], TeamColors.teamRedColor, 0, 0);
+final Team teamB = Team("Team II", [], TeamColors.teamBlueColor, 0, 0);
 final List<Team> teams = [teamA, teamB];

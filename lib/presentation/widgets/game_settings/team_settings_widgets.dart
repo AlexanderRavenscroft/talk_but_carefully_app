@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:provider/provider.dart';
 import 'package:gadajaleostroznie/core/providers/ui_providers.dart';
 import 'package:gadajaleostroznie/presentation/screens/game/game_screen.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[TeamNameTextArea]====================
 class TeamNameTextArea extends StatelessWidget {
@@ -33,7 +36,6 @@ class TeamNameTextArea extends StatelessWidget {
 }
 //====================[/TeamNameTextArea]====================
 
-
 //====================[ColorBG]====================
 class ColorBG extends StatefulWidget {
   const ColorBG({super.key});
@@ -56,7 +58,6 @@ class ColorBGState extends State<ColorBG> {
   }
 }
 //====================[/ColorBG]====================
-
 
 //====================[TeamSwitch]====================
 class TeamSwitch extends StatefulWidget {
@@ -94,7 +95,6 @@ class TeamSwitchState extends State<TeamSwitch> {
 }
 //====================[/TeamSwitch]====================
 
-
 //====================[PlayerListScreen]====================
 class PlayerListScreen extends StatefulWidget {
   const PlayerListScreen({super.key, required this.players});
@@ -109,7 +109,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
 
   void _addPlayer() {
     setState(() {
-      widget.players.add(Player('Gracz ${widget.players.length + 1}', 0));
+      widget.players.add(Player('${AppLocalizations.of(context)!.player.capitalize()} ${widget.players.length + 1}', 0));
     });
   }
 
@@ -120,11 +120,17 @@ class PlayerListScreenState extends State<PlayerListScreen> {
       builder: (BuildContext context) {
         bool isToggled = context.watch<ToggleProvider>().isToggled;
         return AlertDialog(
-          title: Text('Wpisz nazwę gracza ${index + 1}', style: AppTypography.descStyle),
+          title:  
+          Text(
+            Provider.of<LocaleProvider>(context).locale.languageCode=='en' 
+              ? 'Enter player ${index + 1} name'
+              : 'Wpisz imię gracza ${index + 1}',
+            style: AppTypography.descStyle,
+          ),
           content: TextField(
             maxLength: 12,
             controller: _controller,
-            decoration: InputDecoration(hintText: 'Nowe imię'),
+            decoration: InputDecoration(hintText: AppLocalizations.of(context)!.newName.capitalize()),
           ),
           actions: [
             Row(
@@ -140,7 +146,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))), 
                   ),
                   child: Text(
-                    'Anuluj',
+                    AppLocalizations.of(context)!.cancel.capitalize(),
                     style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.02),
                   ),
                 ),
@@ -159,7 +165,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
                   ),
                   child: Text(
-                    'Zapisz',
+                    AppLocalizations.of(context)!.save.capitalize(),
                     style: AppTypography.descBoldStyle.copyWith(fontSize: MediaQuery.of(context).size.height * 0.02),
                   ),
                 ),
@@ -217,6 +223,7 @@ class PlayerListScreenState extends State<PlayerListScreen> {
                             ),
                             IconButton(
                               icon: Icon(
+                                // Personal easter egg here
                                 widget.players[index].username == 'Chys' ? Icons.baby_changing_station : 
                                 widget.players[index].username == 'Chuj' ? Icons.wine_bar : AppIcons.remove,
                                 color: AppColors.textColor, size: MediaQuery.of(context).size.height * 0.036,
@@ -299,7 +306,6 @@ class PlayerListScreenState extends State<PlayerListScreen> {
   }
 }
 //====================[/PlayerListScreen]====================
-
 
 //====================[ColorPickerWidget]====================
 int teamAselectedIndex = 0; 

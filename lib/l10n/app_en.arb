@@ -1,111 +1,41 @@
 {
-    "@@locale": "en",
-  
-    "play": "play",
-    "@play": {},
-  
-    "settings": "settings",
-    "@settings": {},
-  
-    "sound": "sound",
-    "@sound": {},
-  
-    "language": "language",
-    "@language": {},
-  
-    "agreement": "agreement",
-    "@agreement": {},
-
-    "agree": "i agree",
-    "@agree": {},
-  
-    "license": "license",
-    "@license": {},
-  
-    "authors": "authors",
-    "@authors": {},
-
-    "cool": "cool",
-    "@cool": {},
-  
-    "appVersion": "app version",
-    "@appVersion": {},
-  
-    "build": "build",
-    "@build": {},
-  
-    "back": "back",
-    "@back": {},
-  
-    "questions": "questions",
-    "@questions": {},
-  
-    "easy": "easy",
-    "@easy": {},
-  
-    "medium": "medium",
-    "@medium": {},
-  
-    "hard": "hard",
-    "@hard": {},
-  
-    "availableSkips": "available skips",
-    "@availableSkips": {},
-  
-    "timeLimit": "time limit",
-    "@timeLimit": {},
-  
-    "player": "player",
-    "@player": {},
-  
-    "enterPlayerName": "enter player name",
-    "@enterPlayerName": {},
-  
-    "cancel": "cancel",
-    "@cancel": {},
-  
-    "save": "save",
-    "@save": {},
-  
-    "round": "round",
-    "@round": {},
-  
-    "guessingTeam": "guessing team",
-    "@guessingTeam": {},
-  
-    "team": "team",
-    "@team": {},
-  
-    "start": "start",
-    "@start": {},
-  
-    "pause": "pause",
-    "@pause": {},
-  
-    "howToPlay": "how to play",
-    "@howToPlay": {},
-  
-    "rules": "rules",
-    "@rules": {},
-  
-    "exit": "exit",
-    "@exit": {},
-  
-    "okay": "okay",
-    "@okay": {},
-  
-    "legend": "legend",
-    "@legend": {},
-  
-    "questionTypes": "question types",
-    "@questionTypes": {},
-  
-    "understand": "understand",
-    "@understand": {},
-  
-    "wins": "wins",
-    "@wins": {},
-  
-    "noPlayersAdded": "no players added",
-    "@noPlayersAdded": {}
-  }
+  "@@locale": "en",
+  "agree": "i agree",
+  "agreement": "agreement",
+  "appVersion": "app version",
+  "availableSkips": "available skips",
+  "back": "back",
+  "build": "build",
+  "cancel": "cancel",
+  "cool": "cool",
+  "creator": "creator",
+  "easy": "easy",
+  "enterPlayerName": "enter player name",
+  "exit": "exit",
+  "guessingTeam": "guessing team",
+  "hard": "hard",
+  "howToPlay": "how to play",
+  "language": "language",
+  "legend": "legend",
+  "license": "license",
+  "medium": "medium",
+  "newName": "new player name",
+  "noPlayersAdded": "no players added",
+  "okay": "okay",
+  "pause": "pause",
+  "play": "play",
+  "player": "player",
+  "pointsToWin": "points to win",
+  "questionTypes": "question types",
+  "questions": "questions",
+  "round": "round",
+  "rules": "rules",
+  "save": "save",
+  "settings": "settings",
+  "sound": "sound",
+  "start": "start",
+  "team": "team",
+  "timeLimit": "time limit",
+  "understand": "understand",
+  "wins": "wins"
+}
