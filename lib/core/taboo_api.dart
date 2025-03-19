@@ -9,19 +9,19 @@ import 'package:collection/collection.dart';
 Random random = Random();
 bool isLoading = false; // If loading, return a Progress Indicator in game_screen
 
-String title = "Ładowanie tytułu...";
-List forbiddenWords = ["Ładowanie słowa...", "Ładowanie słowa..."];
-String difficulty = "Ładowanie trudności...";
+String title = "Loading title...";
+List forbiddenWords = ["loading word", "loading word"];
+String difficulty = "Loading difficulty...";
 
 
-Future<void> fetchData() async {
+Future<void> fetchData(String languageCode) async {
   isLoading = true; 
   // All needed URLs
-  Uri url = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl'); //Default API URL
-  Uri allDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl'); 
-  Uri easyDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=easy'); 
-  Uri mediumDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=medium'); 
-  Uri hardDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=pl&difficulty=hard'); 
+  Uri url = Uri.parse('https://taboocardsapi.com/api/cards/random?language=$languageCode'); //Default API URL
+  Uri allDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=$languageCode'); 
+  Uri easyDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=$languageCode&difficulty=easy'); 
+  Uri mediumDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=$languageCode&difficulty=medium'); 
+  Uri hardDiffsUrl = Uri.parse('https://taboocardsapi.com/api/cards/random?language=$languageCode&difficulty=hard'); 
 
   // All possible diff combinations
   Map<Set<int>, Uri> urlsMap = {
@@ -53,20 +53,6 @@ Future<void> fetchData() async {
       forbiddenWords = data['forbiddenWords'];
       difficulty = data['difficulty'];
 
-    // Translate difficulty to polish lang
-      switch (difficulty) {   
-        case('easy'):
-          difficulty = 'łatwe';
-          break;
-
-        case('medium'):
-          difficulty = 'średnie';
-          break;
-
-        case('hard'):
-          difficulty = 'trudne';
-          break;
-      }
     } else {
       title = 'Failed to load data';
       }

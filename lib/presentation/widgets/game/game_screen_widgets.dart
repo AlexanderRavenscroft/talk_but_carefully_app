@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
-import 'package:gadajaleostroznie/core/text_and_encounter_manager.dart';
+import 'package:gadajaleostroznie/core/text_and_encounter.dart';
 import 'package:gadajaleostroznie/core/taboo_api.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/core/providers/ui_providers.dart';
 import 'package:gadajaleostroznie/core/providers/timer_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[GAME APP BAR]====================
 class GameAppBar extends StatelessWidget {
@@ -243,7 +246,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Runda ${currentRound.toString()}',
+                '${AppLocalizations.of(context)!.round.capitalize()} ${currentRound.toString()}',
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.08,
@@ -251,7 +254,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Text(
-                'ODGADUJE DRUŻYNA:',
+                '${AppLocalizations.of(context)!.guessingTeam.toUpper()}:',
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.034,
@@ -267,7 +270,7 @@ class PlayerEncounterTextState extends State<PlayerEncounterText> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               Text(
-                getEncounterMessage(),
+                getEncounterMessage(context),
                 textAlign: TextAlign.center,
                 style: AppTypography.descBoldStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.height * 0.034,
@@ -345,9 +348,9 @@ class QuestionScreenState extends State<QuestionScreen> {
                 top: MediaQuery.of(context).size.height * 0.42,
                 left: MediaQuery.of(context).size.width * 0.6,
                 child: Icon(
-                  difficulty == 'łatwe'
+                  difficulty == 'easy'
                       ? AppIcons.easyDiff
-                      : difficulty == 'średnie'
+                      : difficulty == 'medium'
                           ? AppIcons.mediumDiff
                           : AppIcons.hardDiff,
                   size: MediaQuery.of(context).size.height * 0.06,
@@ -388,7 +391,7 @@ class RoundStartButton extends StatelessWidget {
       ),
       onPressed: () async {
         playAudio(GameSounds.tapSound);
-        await fetchData();
+        await fetchData(Provider.of<LocaleProvider>(context, listen: false).locale.languageCode);
         nextScreen();
         if (context.mounted) {
           Provider.of<TimerProvider>(context, listen: false).setTimeLeft(GameSettings.aviableTime);
@@ -398,7 +401,7 @@ class RoundStartButton extends StatelessWidget {
       },
       child: Center(
         child: Text(
-          'START',
+          AppLocalizations.of(context)!.start.capitalize(),
           style: AppTypography.buttonStyle.copyWith(
             fontSize: MediaQuery.of(context).size.height * 0.05,
           ),

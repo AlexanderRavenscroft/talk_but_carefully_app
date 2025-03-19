@@ -10,7 +10,7 @@ import 'package:gadajaleostroznie/l10n/l10n.dart';
 import 'package:provider/provider.dart';
 import 'core/providers/ui_providers.dart'; 
 import 'services/preference_service.dart';
-import 'package:gadajaleostroznie/core/text_and_encounter_manager.dart';
+import 'package:gadajaleostroznie/core/text_and_encounter.dart';
 import 'package:gadajaleostroznie/core/providers/timer_provider.dart';
 import 'package:gadajaleostroznie/presentation/screens/menu/menu_screen.dart';
 
@@ -30,7 +30,7 @@ void main() async {
   ]);
 
   // Load all text files concurrently using Future.wait
-  await Future.wait(textFiles.keys.map((path) => loadText(path)));
+  await Future.wait(textFiles.keys.map((path) => loadTextFiles()));
   await loadEncounterMessages();
 
   // Once everything is done, run the app

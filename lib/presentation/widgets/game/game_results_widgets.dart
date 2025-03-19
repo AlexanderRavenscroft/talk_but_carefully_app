@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[WINNING TEAM DISPLAY]====================
 class WinningTeamDisplay extends StatelessWidget {
@@ -13,8 +15,8 @@ class WinningTeamDisplay extends StatelessWidget {
       children: [
         Text(
        (winningTeam == null)
-          ? 'REMIS'
-          : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
+          ? AppLocalizations.of(context)!.draw.toUpper()
+          : '${winningTeam?.name.toUpperCase()}\n${AppLocalizations.of(context)!.wins.toUpper()}',
        textAlign: TextAlign.center,
        style:  (winningTeam == null)
          ? AppTypography.descBoldStyle.copyWith(
@@ -32,8 +34,8 @@ class WinningTeamDisplay extends StatelessWidget {
           ),
           Text(
             (winningTeam == null)
-                ? 'REMIS'
-                : '${winningTeam?.name.toUpperCase()}\nWYGRYWAJĄ',
+              ? AppLocalizations.of(context)!.draw.toUpper()
+              :'${winningTeam?.name.toUpperCase()}\n${AppLocalizations.of(context)!.wins.toUpper()}',
             textAlign: TextAlign.center,
             style: AppTypography.descBoldStyle.copyWith(
               height: 1,
@@ -137,7 +139,7 @@ class PlayersScoreList extends StatelessWidget {
       child: (displayedTeam.players.isEmpty)
         ? Center(
             child: Text(
-              'Nie dodano graczy!',
+              AppLocalizations.of(context)!.noPlayersAdded.capitalize(),
                style: AppTypography.descStyle.copyWith(
                  fontSize: MediaQuery.of(context).size.height * 0.036,
               ),

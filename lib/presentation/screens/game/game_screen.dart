@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
+import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
@@ -43,85 +44,85 @@ class GameScreen extends StatelessWidget {
                 Consumer<GamePauseProvider>(
                   builder: (context, gamePauseProvider, child) {
                     return gamePauseProvider.isPaused
-                        ? PauseScreen()
-                        : Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                // Player Encounter or Question Screen
-                                if (currentScreen == Screen.encounter)
-                                  PlayerEncounterText()
-                                else if (isLoading)
-                                  DataLoadingIndicator()
-                                else
-                                  QuestionScreen(),
+                      ?PauseScreen()
+                      :Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Player Encounter or Question Screen
+                            if (currentScreen == Screen.encounter)
+                              PlayerEncounterText()
+                            else if (isLoading)
+                              DataLoadingIndicator()
+                            else
+                              QuestionScreen(),
 
-                                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
 
-                                // Round Start Button
-                                if (currentScreen == Screen.encounter)
-                                  RoundStartButton(),
+                            // Round Start Button
+                            if (currentScreen == Screen.encounter)
+                              RoundStartButton(),
 
-                                // Points and Skips Buttons
-                                if (currentScreen == Screen.question)
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      // Remove Points Button
-                                      PointsButton(
-                                        onPressed: () async {
-                                          playAudio(GameSounds.wrongAnswerSound);
-                                          if (!isLoading) {
-                                            removePoints();
-                                            await fetchData();
-                                            if (context.mounted) {
-                                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                                            }
-                                          }
-                                        },
-                                        buttonIcon: AppIcons.cancel,
-                                        iconColor: AppColors.primaryColor,
-                                      ),
-
-                                      // Add Skips Button
-                                      PointsButton(
-                                        onPressed: () async {
-                                          if (!isLoading) {
-                                            if (currentTeam.skips < GameSettings.aviableSkips) {
-                                              addSkips();
-                                              playAudio(GameSounds.skipAnswerSound);
-                                              await fetchData();
-                                            }
-                                            if (context.mounted) {
-                                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                                            }
-                                          }
-                                        },
-                                        buttonIcon: AppIcons.arrowsCcw,
-                                        iconColor: AppColors.textColor,
-                                      ),
-
-                                      // Add Points Button
-                                      PointsButton(
-                                        onPressed: () async {
-                                          if (!isLoading) {
-                                            playAudio(GameSounds.correctAnswerSound);
-                                            addPoints();
-                                            await fetchData();
-                                            if (context.mounted) {
-                                              Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
-                                            }
-                                          }
-                                        },
-                                        buttonIcon: AppIcons.ok,
-                                        iconColor: AppColors.notificationColor,
-                                      ),
-                                    ],
+                            // Points and Skips Buttons
+                            if (currentScreen == Screen.question)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  // Remove Points Button
+                                  PointsButton(
+                                    onPressed: () async {
+                                      playAudio(GameSounds.wrongAnswerSound);
+                                      if (!isLoading) {
+                                        removePoints();
+                                        await fetchData(Provider.of<LocaleProvider>(context, listen: false).locale.languageCode);
+                                        if (context.mounted) {
+                                          Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                        }
+                                      }
+                                    },
+                                    buttonIcon: AppIcons.cancel,
+                                    iconColor: AppColors.primaryColor,
                                   ),
-                              ],
-                            ),
-                          );
+
+                                  // Add Skips Button
+                                  PointsButton(
+                                    onPressed: () async {
+                                      if (!isLoading) {
+                                        if (currentTeam.skips < GameSettings.aviableSkips) {
+                                          addSkips();
+                                          playAudio(GameSounds.skipAnswerSound);
+                                          await fetchData(Provider.of<LocaleProvider>(context, listen: false).locale.languageCode);
+                                        }
+                                        if (context.mounted) {
+                                          Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                        }
+                                      }
+                                    },
+                                    buttonIcon: AppIcons.arrowsCcw,
+                                    iconColor: AppColors.textColor,
+                                  ),
+
+                                  // Add Points Button
+                                  PointsButton(
+                                    onPressed: () async {
+                                      if (!isLoading) {
+                                        playAudio(GameSounds.correctAnswerSound);
+                                        addPoints();
+                                        await fetchData(Provider.of<LocaleProvider>(context, listen: false).locale.languageCode);
+                                        if (context.mounted) {
+                                          Provider.of<GameToggleProvider>(context, listen: false).toggleTurns();
+                                        }
+                                      }
+                                    },
+                                    buttonIcon: AppIcons.ok,
+                                    iconColor: AppColors.notificationColor,
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      );
                   },
                 ),
               ],

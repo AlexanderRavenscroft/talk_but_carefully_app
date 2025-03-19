@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
-import 'package:gadajaleostroznie/core/text_and_encounter_manager.dart';
+import 'package:gadajaleostroznie/core/text_and_encounter.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[MENU BUTTON]====================
 class MenuButton extends StatelessWidget {
@@ -119,8 +119,7 @@ class RulesDialog extends StatelessWidget {
         width: double.maxFinite,
         child: SingleChildScrollView(
           child: Text(
-          textFiles[contentText] ?? 
-            (Provider.of<LocaleProvider>(context).locale.languageCode == 'pl' ? 'Nie udało się wczytać tekstu' : 'Could not load text'),
+          textFiles[contentText] ?? AppLocalizations.of(context)!.faildToLoadText.capitalize(),
             textAlign: TextAlign.justify,
             style: AppTypography.descStyle.copyWith(
               fontSize: MediaQuery.of(context).size.height * 0.024,

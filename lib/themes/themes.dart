@@ -82,7 +82,8 @@ class AppIcons {
   static const IconData settings = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData soundON = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData soundOFF = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData authors = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData creator = IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData language = Icons.language;
   static const IconData guide = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData github = IconData(0xf09b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 

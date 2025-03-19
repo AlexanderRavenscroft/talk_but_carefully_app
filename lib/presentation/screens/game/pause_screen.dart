@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gadajaleostroznie/core/game_logic.dart';
 import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
+import 'package:gadajaleostroznie/l10n/lang_fix.dart';
 import 'package:gadajaleostroznie/themes/themes.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
 import 'package:gadajaleostroznie/services/preference_service.dart';
@@ -9,6 +10,7 @@ import 'package:gadajaleostroznie/presentation/screens/game_settings/game_settin
 import 'package:gadajaleostroznie/core/providers/ui_providers.dart';
 import 'package:provider/provider.dart';
 import 'package:gadajaleostroznie/core/providers/timer_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //====================[PAUSE BUTTON]====================
 class PauseButton extends StatefulWidget {
@@ -28,6 +30,8 @@ class PauseButtonState extends State<PauseButton> {
             return SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
               height: MediaQuery.of(context).size.height * 0.06,
+
+              // Pause button
               child: ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(AppColors.textColor),
@@ -43,16 +47,16 @@ class PauseButtonState extends State<PauseButton> {
                   shadowColor: WidgetStateProperty.all(Colors.black),
                 ),
                 onPressed: () {
-                  
                   context.read<GamePauseProvider>().pauseGame();
                   playAudio(GameSounds.tapSound);
-
                   if(gamePauseProvider.isPaused) {
                     timerProvider.stopTimer(reset: false);
                   } else {
                     timerProvider.startTimer();
                   }
                 },
+
+                // Pause Icon
                 child: Center(
                   child: Icon(
                     gamePauseProvider.isPaused ? AppIcons.play :  AppIcons.pause,
@@ -86,9 +90,9 @@ class PauseScreenState extends State<PauseScreen> {
       children: [
         // Pause Header
         Text(
-          'PAUZA',
+          AppLocalizations.of(context)!.pause.toUpper(),
           style: AppTypography.descBoldStyle.copyWith(
-            fontSize: MediaQuery.of(context).size.height * 0.1,
+            fontSize: MediaQuery.of(context).size.height * 0.08,
           ),
         ),
 
@@ -96,7 +100,7 @@ class PauseScreenState extends State<PauseScreen> {
 
         // Sound Toggle Button
         PauseSettingsButton(
-          settingsButtonText: 'DŹWIĘK',
+          settingsButtonText: AppLocalizations.of(context)!.sound.toUpper(),
           settingsButtonIcon: GameSounds.soundToggled ? AppIcons.soundON : AppIcons.soundOFF,
           settingsButtonPress: () {
             setState(() {
@@ -111,7 +115,7 @@ class PauseScreenState extends State<PauseScreen> {
 
         // Game Guide Button
         PauseSettingsButton(
-          settingsButtonText: 'JAK GRAĆ',
+          settingsButtonText: AppLocalizations.of(context)!.howToPlay.toUpper(),
           settingsButtonIcon: AppIcons.guide,
           settingsButtonPress: () {
             showDialog(
@@ -119,8 +123,8 @@ class PauseScreenState extends State<PauseScreen> {
               builder: (BuildContext context) {
                 return GameGuideDialog(
                   headingIcon: AppIcons.guide,
-                  headingText: "LEGENDA",
-                  buttonText: "ROZUMIEM",
+                  headingText: AppLocalizations.of(context)!.legend.toUpper(),
+                  buttonText: AppLocalizations.of(context)!.understand.toUpper(),
                 );
               },
             );
@@ -132,7 +136,7 @@ class PauseScreenState extends State<PauseScreen> {
 
         // Rules Button
         PauseSettingsButton(
-          settingsButtonText: 'ZASADY',
+          settingsButtonText: AppLocalizations.of(context)!.rules.toUpper(),
           settingsButtonIcon: AppIcons.docText,
           settingsButtonPress: () {
             showDialog(
@@ -140,8 +144,8 @@ class PauseScreenState extends State<PauseScreen> {
               builder: (BuildContext context) {
                 return RulesDialog(
                   headingIcon: AppIcons.docText,
-                  headingText: "ZASADY",
-                  buttonText: "DOBRA",
+                  headingText: AppLocalizations.of(context)!.rules.toUpper(),
+                  buttonText: AppLocalizations.of(context)!.okay.toUpper(),
                   contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/rules.txt',
                 );
               },
@@ -154,7 +158,7 @@ class PauseScreenState extends State<PauseScreen> {
 
         // Exit Button
         PauseSettingsButton(
-          settingsButtonText: 'WYJDŻ',
+          settingsButtonText: AppLocalizations.of(context)!.exit.toUpper(),
           settingsButtonIcon: AppIcons.arrowBack,
           settingsButtonPress: () {
             resetGame();
@@ -189,7 +193,7 @@ class PauseSettingsButton extends StatelessWidget {
       style: ButtonStyle(
         fixedSize: WidgetStateProperty.all(
           Size(
-            MediaQuery.of(context).size.width * 0.8,
+            MediaQuery.of(context).size.width * 0.76,
             MediaQuery.of(context).size.height * 0.1,
           ),
         ),
@@ -210,14 +214,14 @@ class PauseSettingsButton extends StatelessWidget {
           Text(
             settingsButtonText,
             style: AppTypography.descBoldStyle.copyWith(
-              fontSize: MediaQuery.of(context).size.height * 0.046,
+              fontSize: MediaQuery.of(context).size.height * 0.04,
             ),
           ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.02),
           Icon(
             settingsButtonIcon,
             color: AppColors.textColor,
-            size: MediaQuery.of(context).size.height * 0.046,
+            size: MediaQuery.of(context).size.height * 0.04,
           ),
         ],
       ),
@@ -270,23 +274,34 @@ class GameGuideDialog extends StatelessWidget {
       // Content: Game Guide Image and Text
       content: SizedBox(
         width: double.maxFinite,
-        child: SingleChildScrollView(
-          child: Column(
+        child: SingleChildScrollView( 
+          child: 
+          (Provider.of<LocaleProvider>(context).locale.languageCode=='pl')
+          ? Column(
             children: [
               Image.asset('assets/images/game/game_guide_pl.png'),
               Center(
                 child: Text(
-                  'RODZAJE PYTAŃ:',
+                  AppLocalizations.of(context)!.questionTypes.toUpper(),
                   textAlign: TextAlign.justify,
                   style: AppTypography.descBoldStyle.copyWith(
                     fontSize: MediaQuery.of(context).size.height * 0.034,
                   ),
                 ),
               ),
-              GameGuideText(difIcon: AppIcons.easyDiff, difName: 'ŁATWE'),
-              GameGuideText(difIcon: AppIcons.mediumDiff, difName: 'ŚREDNIE'),
-              GameGuideText(difIcon: AppIcons.hardDiff, difName: 'TRUDNE'),
+              GameGuideText(difIcon: AppIcons.easyDiff, difName: AppLocalizations.of(context)!.easy.toUpper()),
+              GameGuideText(difIcon: AppIcons.mediumDiff, difName: AppLocalizations.of(context)!.medium.toUpper()),
+              GameGuideText(difIcon: AppIcons.hardDiff, difName: AppLocalizations.of(context)!.hard.toUpper()),
             ],
+          )
+          : Center(
+            child: Text(
+              'No translation for game guide yet..',
+              textAlign: TextAlign.center,
+              style: AppTypography.descBoldStyle.copyWith(
+                fontSize: MediaQuery.of(context).size.height * 0.034,
+              ),
+            ),
           ),
         ),
       ),

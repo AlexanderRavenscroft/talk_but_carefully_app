@@ -72,7 +72,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                 final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
                 localeProvider.setLocale(localeProvider.locale.languageCode == 'pl' ? Locale('en') : Locale('pl'));
               },
-              icon: Icons.flag,
+              icon: AppIcons.language,
             ),
 
             // LICENSE & AGREEMENT
@@ -95,7 +95,7 @@ class SettingsMenuState extends State<SettingsMenu> {
               icon: AppIcons.docText,
             ),
 
-            // AUTHORS
+            // CREATOR
             _buildSettingsOption(
               title: AppLocalizations.of(context)!.creator.capitalize(),
               onPressed: () {
@@ -104,7 +104,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                   barrierColor: Colors.black.withValues(alpha: 0.3),
                   builder: (BuildContext context) {
                     return RulesDialog(
-                      headingIcon: AppIcons.authors,
+                      headingIcon: AppIcons.creator,
                       headingText: AppLocalizations.of(context)!.creator.toUpper(),
                       buttonText: AppLocalizations.of(context)!.cool.toUpper(),
                       contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/creator.txt',
@@ -112,7 +112,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                   },
                 );
               },
-              icon: AppIcons.authors,
+              icon: AppIcons.creator,
             ),
 
             // APP VERSION & BUILD NUMBER
