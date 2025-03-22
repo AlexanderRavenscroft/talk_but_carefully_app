@@ -1,20 +1,29 @@
-// Setup the shared_prefrences to keep value of soundToggled even after app close
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gadajaleostroznie/services/audio_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceService {
-  // Load all preferences into global variables
+  // Load sound preference
   static Future<void> loadPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // Load soundToggled preference, default to true
     GameSounds.soundToggled = prefs.getBool('soundToggled') ?? true;
-
   }
 
-  // Save a specific preference
+  // Load language preference
+  static Future<String> loadLocalePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('languageCode') ?? 'en';
+  }
+
+
+  // Save sound setting
   static Future<void> savePreference(String key, bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(key, value); // Save the value to persistent storage
+    await prefs.setBool(key, value);
+  }
+
+  // Save language setting
+  static Future<void> saveLanguage(String languageCode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', languageCode);
   }
 }

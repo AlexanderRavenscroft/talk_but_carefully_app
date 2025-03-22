@@ -180,7 +180,7 @@ class SettingsText extends StatelessWidget {
     return Text(
       settingsTextString,
       style: AppTypography.descBoldStyle.copyWith(
-        fontSize: MediaQuery.of(context).size.height * 0.034,
+        fontSize: MediaQuery.of(context).size.height * 0.032,
       ),
     );
   }

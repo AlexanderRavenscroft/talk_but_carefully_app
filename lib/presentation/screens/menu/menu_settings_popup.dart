@@ -176,7 +176,7 @@ class SettingsMenuState extends State<SettingsMenu> {
           settingsButtonPress: onPressed,
           settingsButtonIcon: icon,
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.015),
       ],
     );
   }

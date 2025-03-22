@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gadajaleostroznie/core/globals.dart';
 import 'package:gadajaleostroznie/core/app_info.dart';
 import 'package:gadajaleostroznie/core/providers/locale_provider.dart';
@@ -15,13 +16,20 @@ import 'package:gadajaleostroznie/core/providers/timer_provider.dart';
 import 'package:gadajaleostroznie/presentation/screens/menu/menu_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter bindings are initialized
+  // Ensure Flutter bindings are initialized
+  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized(); 
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Load preferences and app version concurrently
   await Future.wait([
-    PreferenceService.loadPreferences(),    
+    PreferenceService.loadPreferences(),
     AppSetup.getAppVersion(),               
   ]);
+
+  // Load locale prefrences
+  String languageCode = await PreferenceService.loadLocalePreference();
+  Locale initialLocale = Locale(languageCode);
 
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
@@ -44,7 +52,8 @@ void main() async {
           ChangeNotifierProvider(create: (context) => GameToggleProvider()),
           ChangeNotifierProvider(create: (context) => GamePauseProvider()),
           ChangeNotifierProvider(create: (context) => TimerProvider()),
-          ChangeNotifierProvider(create: (context) => LocaleProvider()),
+          ChangeNotifierProvider(
+            create: (context) => LocaleProvider(initialLocale)),
         ],
         child: MyApp(), 
       ),
@@ -52,8 +61,25 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    await Future.delayed(const Duration(seconds: 3));
+    FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {
