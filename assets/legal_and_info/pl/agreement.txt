@@ -5,7 +5,12 @@ Witaj, szalony użytkowniku! Zanim zaczniesz grać w moją wspaniałą grę, pro
 
 2. Kto za tym stoi?
 Aplikację stworzyła jedna osoba – tak, jedna! Więc jeśli coś nie działa, to też tylko jedna osoba jest za to odpowiedzialna. Może się zdarzyć, że jakaś funkcja nie zadziała zgodnie z planem, ale hej, przynajmniej możesz narzekać tylko na jedną osobę. To ja – twój niezawodny twórca!
-"Może nie jest resposywna, ale za to jak wolno się ładuje!"
+"Może apka nie jest resposywna, ale za to jak wolno się ładuje!"
+
+Ta aplikacja została zrobiona dzięki Taboo Cards API (https://taboocardsapi.com/pl), autorstwa Michała Kulińskiego.
+Wielkie brawa dla niego! Pamiętaj, aby go sprawdzić:
+https://github.com/Qqkyu
+
 
 3. Warunki korzystania
 Używaj z głową: Gra jest przeznaczona do rozrywki. Jeśli czujesz, że nie masz ochoty na żadne kompromitujące sytuacje, to spokojnie – nie musisz w nią grać.

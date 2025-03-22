@@ -13,25 +13,25 @@ class WinningTeamDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Stack(
       children: [
-        Text(
-       (winningTeam == null)
-          ? AppLocalizations.of(context)!.draw.toUpper()
-          : '${winningTeam?.name.toUpperCase()}\n${AppLocalizations.of(context)!.wins.toUpper()}',
-       textAlign: TextAlign.center,
-       style:  (winningTeam == null)
-         ? AppTypography.descBoldStyle.copyWith(
-            height: 1,
-            fontSize: MediaQuery.of(context).size.height * 0.05,
-            )
-        : AppTypography.descBoldStyle.copyWith(
-             height: 1,
-             fontSize: MediaQuery.of(context).size.height * 0.05,
-             foreground: Paint()
-              ..style = PaintingStyle.stroke
-               ..strokeWidth = 4
-               ..color = AppColors.textColor,
-           ),
-          ),
+      //   Text(
+      //  (winningTeam == null)
+      //     ? AppLocalizations.of(context)!.draw.toUpper()
+      //     : '${winningTeam?.name.toUpperCase()}\n${AppLocalizations.of(context)!.wins.toUpper()}',
+      //  textAlign: TextAlign.center,
+      //  style:  (winningTeam == null)
+      //    ? AppTypography.descBoldStyle.copyWith(
+      //       height: 1,
+      //       fontSize: MediaQuery.of(context).size.height * 0.05,
+      //       )
+      //   : AppTypography.descBoldStyle.copyWith(
+      //        height: 1,
+      //        fontSize: MediaQuery.of(context).size.height * 0.05,
+      //        foreground: Paint()
+      //         ..style = PaintingStyle.stroke
+      //          ..strokeWidth = 4
+      //          ..color = AppColors.textColor,
+      //      ),
+      //     ),
           Text(
             (winningTeam == null)
               ? AppLocalizations.of(context)!.draw.toUpper()
@@ -64,16 +64,16 @@ class ResultsTeamPointsDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Text(
-          displayedText,
-          style: AppTypography.descBoldStyle.copyWith(
-            fontSize: MediaQuery.of(context).size.height * 0.05,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 2
-              ..color = AppColors.textColor,
-          ),
-        ),
+        // Text(
+        //   displayedText,
+        //   style: AppTypography.descBoldStyle.copyWith(
+        //     fontSize: MediaQuery.of(context).size.height * 0.05,
+        //     foreground: Paint()
+        //       ..style = PaintingStyle.stroke
+        //       ..strokeWidth = 2
+        //       ..color = AppColors.textColor,
+        //   ),
+        // ),
                 Text(
           displayedText,
           style: AppTypography.descBoldStyle.copyWith(

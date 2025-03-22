@@ -7,9 +7,14 @@ Welcome, crazy user! Before you start playing my awesome game, please take a mom
 This app was created by just one person—yes, one! So if something doesn’t work, there’s only one person to blame. Some features might not work as expected, but hey, at least you only have one person to complain to. That’s me—your reliable developer!
 "Maybe it’s not responsive, but at least it loads super slowly!"
 
+This app was made possible thanks to Taboo Cards API (https://taboocardsapi.com/en), created by Michał Kuliński.
+Big shoutout to them! Remember to check them out:
+https://github.com/Qqkyu
+
 3. Terms of Use
 Use wisely: This game is meant for entertainment. If you’re not in the mood for any potentially embarrassing situations, no worries—you don’t have to play.
 No whining if you play: Playing? Then go all in and enjoy the moment! But remember—be a little careful, because once you make a fool of yourself, there's no undo button.
+
 4. License & Intellectual Property
 This app is my creation—from the very first line of code to the tiniest button. That means it belongs to me, and I don’t want anyone copying, selling, modifying, or doing anything else with it without my explicit permission.
 Seriously, I appreciate your creativity, but if you want to do something with it, just ask.

@@ -87,7 +87,7 @@ class SettingsMenuState extends State<SettingsMenu> {
                       headingIcon: AppIcons.docText,
                       headingText: AppLocalizations.of(context)!.agreement.toUpper(),
                       buttonText: AppLocalizations.of(context)!.agree.toUpper(),
-                      contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/rules.txt',
+                      contentText: 'legal_and_info/${Provider.of<LocaleProvider>(context).locale.languageCode}/agreement.txt',
                     );
                   },
                 );
@@ -119,7 +119,7 @@ class SettingsMenuState extends State<SettingsMenu> {
             Text(
               "${AppLocalizations.of(context)!.appVersion.capitalize()}: ${AppSetup.appVersion} \n${AppLocalizations.of(context)!.build.capitalize()}: ${AppSetup.buildNumber}",
               style: AppTypography.descBoldStyle.copyWith(
-                fontSize: MediaQuery.of(context).size.height * 0.02,
+                fontSize: MediaQuery.of(context).size.height * 0.024,
               ),
             ),
           ],
@@ -171,7 +171,7 @@ class SettingsMenuState extends State<SettingsMenu> {
     return Column(
       children: [
         SettingsText(settingsTextString: title),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.005),
         SettingsButton(
           settingsButtonPress: onPressed,
           settingsButtonIcon: icon,

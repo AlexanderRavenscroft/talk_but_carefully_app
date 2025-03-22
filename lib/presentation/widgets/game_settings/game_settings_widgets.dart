@@ -118,8 +118,8 @@ class TimeSelection extends StatefulWidget {
 }
 
 class TimeSelectionState extends State<TimeSelection> {
-  final List<String> timeSelectionList = ["00:10", "1:00", "2:00", "3:00"];
-  int selectedIndex = 0;
+  final List<String> timeSelectionList = ["00:30", "1:00", "2:00", "3:00"];
+  int selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
